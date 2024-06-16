@@ -1,11 +1,12 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
+import {Profile} from "./components/profile";
 
 
 function App() {
     return (
         <div className="App">
-            <h1>Lam Portfolio</h1>
+            <Profile />
             <Outlet />
         </div>
     );
