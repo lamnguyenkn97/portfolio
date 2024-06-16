@@ -1,10 +1,14 @@
 import React from 'react';
+import {Outlet} from "react-router-dom";
+
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Portfolio</h1>
-    </div>
-  );
+    return (
+        <div className="App">
+            <h1>Lam Portfolio</h1>
+            <Outlet />
+        </div>
+    );
 }
+
 export default App;
