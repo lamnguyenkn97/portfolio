@@ -1,6 +1,7 @@
+import React from "react";
 import {Link, Stack} from "@mui/material";
 import {Facebook, GitHub, LinkedIn} from "@mui/icons-material";
-import React from "react";
+
 
 
 export const SocialNetworks = () => {
