@@ -1,12 +1,12 @@
-import {Link} from "react-router-dom";
+import {Stack, Link} from "@mui/material";
 
 
 export const NavBar = () => {
     return(
-        <div>
-            <Link to={'/about-me'}>About me</Link>
-            <Link to={'/projects'}>Projects</Link>
-            <Link to={'/experience'}>Experience</Link>
-        </div>
+        <Stack>
+            <Link href={'/about-me'}>About me</Link>
+            <Link href={'/projects'}>Projects</Link>
+            <Link href={'/experience'}>Experience</Link>
+        </Stack>
     )
 }
