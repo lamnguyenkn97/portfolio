@@ -1,11 +1,35 @@
+import { Button, Grid, Typography } from "@mui/material";
+import { Experience, ExperienceCard } from "./components";
 
-
+const experiences: Experience[] = [
+  {
+    startDate: "2020",
+    endDate: "2022",
+    title: "Python Developer",
+    company: "Novobi",
+    description:
+      "I built ERP application for US customers using Python and Odoo framework.",
+    skillSet: ["Python", "Odoo", "PostgreSQL", "Docker"],
+  },
+  {
+    startDate: "2012",
+    endDate: "Current",
+    title: "Frontend Developer",
+    company: "Axon",
+    description: "I built web applications for US officer clients using React",
+    skillSet: ["React", "TypeScript", "Jest", "Material-UI"],
+  },
+];
 
 export const Experiences = () => {
-    return (
-        <div className="experiences">
-            <h1>Experiences</h1>
-            <p>I have worked at Company A for 2 years.</p>
-        </div>
-    );
-}
+  return (
+    <Grid>
+      {experiences.map((experience) => (
+        <ExperienceCard key={experience.title} experience={experience} />
+      ))}
+      <Button onClick={() => {}}>
+        <Typography variant={"body2"}>View full resume</Typography>
+      </Button>
+    </Grid>
+  );
+};
