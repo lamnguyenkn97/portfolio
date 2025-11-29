@@ -1,3 +1,31 @@
+# Dependencies
 node_modules
+.pnp
+.pnp.js
+
+# Production builds
 build
 dist
+.next
+out
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+.DS_Store
+*.pem
+*.log
+
+# IDE
+.vscode
+.idea
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Generated files
+*.tsbuildinfo

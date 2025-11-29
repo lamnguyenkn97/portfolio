@@ -10,20 +10,17 @@ export const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <Card>
       <CardContent>
-        <Grid container>
-          <Grid item md={1}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={2}>
             <img
-              alt={"project-thumbnail"}
+              alt="project-thumbnail"
               src={project.thumbnail}
-              width={60}
-              height={60}
+              style={{ width: 60, height: 60, objectFit: "cover", borderRadius: 8 }}
             />
           </Grid>
-          <Grid item md={7}>
-            <Typography justifyItems={"flex-start"} variant={"h6"}>
-              {project.title}
-            </Typography>
-            <Typography variant={"body2"}>{project.description}</Typography>
+          <Grid item xs={12} sm={10}>
+            <Typography variant="h6">{project.title}</Typography>
+            <Typography variant="body2">{project.description}</Typography>
           </Grid>
         </Grid>
       </CardContent>

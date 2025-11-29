@@ -1,5 +1,5 @@
-import { Grid, Typography } from "@mui/material";
 import React from "react";
+import { Typography, Stack } from "@mui/material";
 import { Project, ProjectCard } from "./components";
 
 const projects: Project[] = [
@@ -22,17 +22,16 @@ const projects: Project[] = [
       "https://images.unsplash.com/photo-1570630992840-0bdd5732442e?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+
 export const Projects = () => {
   return (
-    <Grid>
+    <Stack spacing={2}>
       <Typography variant="h6">Projects</Typography>
-      <Grid spacing={2}>
+      <Stack spacing={2}>
         {projects.map((project) => (
-          <Grid key={project.title}>
-            <ProjectCard project={project} />
-          </Grid>
+          <ProjectCard key={project.title} project={project} />
         ))}
-      </Grid>
-    </Grid>
+      </Stack>
+    </Stack>
   );
 };

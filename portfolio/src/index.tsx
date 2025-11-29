@@ -8,9 +8,7 @@ import { AboutMe } from "./components/aboutMe";
 import { Experiences } from "./components/experiences";
 import { Projects } from "./components/projects";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 const router = createBrowserRouter([
   {
     path: "/",

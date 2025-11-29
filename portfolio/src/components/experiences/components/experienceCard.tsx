@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  Chip,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Grid, Stack, Typography, Chip } from "@mui/material";
 
 export type Experience = {
   title: string;
@@ -17,30 +10,26 @@ export type Experience = {
 };
 
 export const ExperienceCard = ({ experience }: { experience: Experience }) => {
-  const { title, company, startDate, endDate, description, skillSet } =
-    experience;
+  const { title, company, startDate, endDate, description, skillSet } = experience;
   return (
     <Card>
       <CardContent>
-        <Grid container spacing={0} alignItems={"flex-start"}>
-          <Grid item md={1}>
-            <Typography variant={"h6"}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={2}>
+            <Typography variant="h6">
               {startDate} - {endDate}
             </Typography>
           </Grid>
-          <Grid item md={6}>
-            <Typography variant={"body1"}>
+          <Grid item xs={12} md={10}>
+            <Typography variant="body1" sx={{ mb: 1 }}>
               {title}, {company}
             </Typography>
-            <Typography variant={"body2"}>{description}</Typography>
-            <Stack direction={"row"}>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              {description}
+            </Typography>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
               {skillSet.map((skill, idx) => (
-                <Chip
-                  key={skill + idx.toString()}
-                  sx={{ mr: 1 }}
-                  variant={"outlined"}
-                  label={skill}
-                />
+                <Chip key={skill + idx.toString()} label={skill} variant="outlined" size="small" />
               ))}
             </Stack>
           </Grid>

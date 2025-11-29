@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Stack, Button, Typography } from "@mui/material";
 import { Experience, ExperienceCard } from "./components";
 
 const experiences: Experience[] = [
@@ -7,8 +7,7 @@ const experiences: Experience[] = [
     endDate: "2022",
     title: "Python Developer",
     company: "Novobi",
-    description:
-      "I built ERP application for US customers using Python and Odoo framework.",
+    description: "I built ERP application for US customers using Python and Odoo framework.",
     skillSet: ["Python", "Odoo", "PostgreSQL", "Docker"],
   },
   {
@@ -23,13 +22,13 @@ const experiences: Experience[] = [
 
 export const Experiences = () => {
   return (
-    <Grid>
+    <Stack spacing={3} sx={{ mb: 4 }}>
       {experiences.map((experience) => (
         <ExperienceCard key={experience.title} experience={experience} />
       ))}
-      <Button onClick={() => {}}>
-        <Typography variant={"body2"}>View full resume</Typography>
+      <Button variant="contained" onClick={() => {}}>
+        <Typography variant="body2">View full resume</Typography>
       </Button>
-    </Grid>
+    </Stack>
   );
 };
