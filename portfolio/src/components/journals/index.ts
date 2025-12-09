@@ -1,0 +1,2 @@
+export { Journals } from "./journals";
+
