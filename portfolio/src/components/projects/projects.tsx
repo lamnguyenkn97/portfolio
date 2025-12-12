@@ -17,8 +17,15 @@ const projects: Project[] = [
     liveUrl: "https://spotify-storybook.vercel.app/",
     repoUrl: "https://github.com/lamnguyenkn97/spotify_design_system",
     npmUrl: "https://www.npmjs.com/package/spotify-design-system",
-    demoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    techStack: ["React", "TypeScript", "Styled Components", "Storybook", "Design Tokens", "A11y/Perf"],
+    demoUrl: "https://www.loom.com/embed/0d0db7fc585b40dfaaf6035278552394",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Styled Components",
+      "Storybook",
+      "Design Tokens",
+      "A11y/Perf",
+    ],
     stats: {
       downloadsPerMonth: "2.3k",
     },
@@ -26,7 +33,7 @@ const projects: Project[] = [
 ];
 
 export const Projects = () => {
-  const fanmadeDemoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+  const fanmadeDemoUrl = "https://www.loom.com/embed/171c400f6b574762872c22e1bfc2590b";
   const [openFanmadeDemo, setOpenFanmadeDemo] = useState(false);
 
   return (
@@ -48,23 +55,12 @@ export const Projects = () => {
             right: 0,
             top: "50%",
             transform: "translateY(-60%)",
-            height: 12,
+            height: 18,
             backgroundImage:
-              "repeating-linear-gradient(to bottom, rgba(238,200,106,0.32), rgba(238,200,106,0.32) 1px, transparent 1px, transparent 4px)",
-            opacity: 0.45,
+              "repeating-linear-gradient(to bottom, rgba(238,200,106,0.32) 0 1px, transparent 1px 4px)",
+            opacity: 0.5,
             pointerEvents: "none",
             zIndex: 0,
-          },
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            left: 0,
-            top: -2,
-            bottom: -2,
-            width: "2px",
-            borderRadius: "999px",
-            background: "linear-gradient(180deg, rgba(238,200,106,0.6), rgba(238,200,106,0.15))",
-            opacity: 0.8,
           },
           zIndex: 1,
         }}

@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Box, Stack, Typography, Button, Dialog, DialogContent } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLinkAlt, faBoxOpen, faCirclePlay, faDownload } from "@fortawesome/free-solid-svg-icons";
+import {
+  faExternalLinkAlt,
+  faBoxOpen,
+  faCirclePlay,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export type Project = {
@@ -12,7 +17,7 @@ export type Project = {
   liveUrl?: string;
   repoUrl?: string;
   npmUrl?: string;
-   demoUrl?: string;
+  demoUrl?: string;
   techStack?: string[];
   stats?: {
     downloadsPerMonth?: string;
