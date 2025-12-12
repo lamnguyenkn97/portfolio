@@ -29,22 +29,25 @@ export const NavBar = () => {
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map((item) => ({
-        id: item.id,
-        element: document.getElementById(item.id),
-      }));
+      const viewportProbe = window.scrollY + window.innerHeight * 0.3; // sample point ~30% down the viewport
 
-      const scrollPosition = window.scrollY + 150; // Offset for active detection
+      const resolved = navItems
+        .map((item) => {
+          const el = document.getElementById(item.id);
+          if (!el) return null;
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          const bottom = top + height;
+          return { id: item.id, top, bottom };
+        })
+        .filter(Boolean) as { id: string; top: number; bottom: number }[];
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section.element) {
-          const sectionTop = section.element.offsetTop;
-          if (scrollPosition >= sectionTop) {
-            setActiveSection(section.id);
-            break;
-          }
-        }
+      const current =
+        resolved.find((section) => viewportProbe >= section.top && viewportProbe < section.bottom) ||
+        resolved[resolved.length - 1];
+
+      if (current && current.id !== activeSection) {
+        setActiveSection(current.id);
       }
     };
 

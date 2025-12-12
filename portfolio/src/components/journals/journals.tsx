@@ -4,6 +4,7 @@ import { MusicNoteIcon } from "../common/MusicNoteIcon";
 import { Journal, JournalCard } from "./components/journalCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { Link as RouterLink } from "react-router-dom";
 
 const journals: Journal[] = [
   {
@@ -51,23 +52,12 @@ export const Journals = () => {
             right: 0,
             top: "50%",
             transform: "translateY(-60%)",
-            height: 12,
+            height: 18,
             backgroundImage:
-              "repeating-linear-gradient(to bottom, rgba(238,200,106,0.32), rgba(238,200,106,0.32) 1px, transparent 1px, transparent 4px)",
-            opacity: 0.45,
+              "repeating-linear-gradient(to bottom, rgba(238,200,106,0.32) 0 1px, transparent 1px 4px)",
+            opacity: 0.5,
             pointerEvents: "none",
             zIndex: 0,
-          },
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            left: 0,
-            top: -2,
-            bottom: -2,
-            width: "2px",
-            borderRadius: "999px",
-            background: "linear-gradient(180deg, rgba(238,200,106,0.6), rgba(238,200,106,0.15))",
-            opacity: 0.8,
           },
           zIndex: 1,
         }}
@@ -99,7 +89,8 @@ export const Journals = () => {
           color="secondary"
           endIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
           sx={{ textTransform: "none", fontWeight: 700 }}
-          href="#"
+          component={RouterLink}
+          to="/blog"
         >
           View all on blog
         </Button>
@@ -107,4 +98,3 @@ export const Journals = () => {
     </Stack>
   );
 };
-

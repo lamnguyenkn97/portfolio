@@ -45,7 +45,13 @@ export const JournalCard = ({ journal }: { journal: Journal }) => {
           </Typography>
           {status ? (
             <Chip
-              label={status === "coming-soon" ? "Coming soon" : status === "draft" ? "Draft" : "Published"}
+              label={
+                status === "coming-soon"
+                  ? "Coming soon"
+                  : status === "draft"
+                    ? "Draft"
+                    : "Published"
+              }
               size="small"
               sx={{
                 height: 22,
@@ -125,4 +131,3 @@ export const JournalCard = ({ journal }: { journal: Journal }) => {
     </Box>
   );
 };
-

@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Stack, Typography, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -56,14 +57,26 @@ export const Footer = () => {
             }}
           />
           <Stack direction="row" spacing={1} flexWrap="wrap" alignItems="center">
-            <Typography component="span" variant="body2" sx={{ color: "text.primary", fontWeight: 700 }}>
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: "text.primary", fontWeight: 700 }}
+            >
               Lam Nguyen
             </Typography>
-            <Typography component="span" variant="body2" sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: "text.secondary", fontWeight: 600 }}
+            >
               •
             </Typography>
-            <Typography component="span" variant="body2" sx={{ color: "text.primary", fontWeight: 600 }}>
-              Frontend Engineer — Melbourne / Sydney (482)
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: "text.primary", fontWeight: 600 }}
+            >
+              Frontend Engineer
             </Typography>
           </Stack>
         </Box>
@@ -91,6 +104,14 @@ export const Footer = () => {
         </Typography>
 
         <Stack direction="row" spacing={1.5} flexWrap="wrap" justifyContent="center">
+          <Link
+            component={RouterLink}
+            to="/blog"
+            underline="hover"
+            sx={{ color: "secondary.main", fontWeight: 700, fontSize: "0.85rem" }}
+          >
+            Blog
+          </Link>
           <Link
             href="mailto:your.email@example.com"
             underline="hover"
@@ -121,4 +142,3 @@ export const Footer = () => {
     </Box>
   );
 };
-
