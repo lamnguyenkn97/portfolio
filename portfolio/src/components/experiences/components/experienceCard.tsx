@@ -1,5 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { MusicNoteIcon } from "../../common/MusicNoteIcon";
+import React from "react";
+import { Box, Stack, useTheme } from "@mui/material";
+import { Card, SkillPill, DSTypography } from "../../design-system";
 
 export type Experience = {
   title: string;
@@ -11,46 +12,40 @@ export type Experience = {
   companyUrl?: string;
   highlights?: string[];
 };
+
 export const ExperienceCard = ({ experience }: { experience: Experience }) => {
+  const theme = useTheme();
   const { title, company, startDate, endDate, description, skillSet, companyUrl, highlights } =
     experience;
+  const expStyles = theme.custom.componentStyles.experienceCard;
 
   return (
-    <Box
+    <Card
+      variant="gold"
       sx={{
         position: "relative",
-        bgcolor: "background.paper",
-        borderRadius: 2,
-        border: "1px solid",
-        borderColor: "rgba(238,200,106,0.22)",
         overflow: "hidden",
-        transition: "all 260ms ease",
         "&:hover": {
-          borderColor: "rgba(238,200,106,0.4)",
-          boxShadow: (theme) =>
-            `0 10px 28px ${
-              theme.palette.mode === "dark" ? "rgba(0, 0, 0, 0.35)" : "rgba(0, 0, 0, 0.15)"
-            }`,
           transform: "translateY(-1px)",
           "& .accent-bar": {
             bgcolor: "secondary.main",
-            opacity: 0.7,
+            opacity: expStyles.accentBar.opacityHover,
           },
         },
       }}
     >
-      <Stack direction="row" spacing={2} sx={{ p: { xs: 2.5, md: 3 }, alignItems: "flex-start" }}>
+      <Stack direction="row" spacing={2} alignItems="flex-start">
         {/* Left accent bar */}
         <Box
           className="accent-bar"
           sx={{
-            width: "4px",
+            width: expStyles.accentBar.width,
             height: "100%",
-            minHeight: "160px",
-            borderRadius: "999px",
+            minHeight: expStyles.accentBar.minHeight,
+            borderRadius: expStyles.accentBar.borderRadius,
             bgcolor: "divider",
-            opacity: 0.5,
-            transition: "all 200ms ease",
+            opacity: expStyles.accentBar.opacity,
+            transition: theme.custom.transitions.hover,
           }}
         />
 
@@ -58,178 +53,75 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
         <Box sx={{ flex: 1, minWidth: 0 }}>
           {/* Header */}
           <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "text.secondary",
-                fontWeight: 600,
-                fontSize: "0.85rem",
-                letterSpacing: "0.02em",
-              }}
-            >
+            <DSTypography variant="dateRange">
               {startDate} — {endDate}
-            </Typography>
+            </DSTypography>
           </Stack>
 
-          <Typography
-            variant="h6"
-            sx={{
-              color: "text.primary",
-              fontWeight: 700,
-              fontSize: "1.25rem",
-              letterSpacing: "-0.01em",
-              mb: 0.25,
-            }}
-          >
-            {title}
-          </Typography>
+          <DSTypography variant="experienceTitle">{title}</DSTypography>
 
-          <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1.5 }}>
-            {/* Company initial badge */}
+          {companyUrl ? (
             <Box
+              component="a"
+              href={companyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               sx={{
-                width: 28,
-                height: 28,
-                borderRadius: "50%",
-                bgcolor:
-                  "radial-gradient(circle at 30% 30%, rgba(0,194,184,0.18), rgba(245,193,86,0.15))",
-                color: "secondary.main",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
+                textDecoration: "none",
+                display: "inline-block",
+                mb: 1.5,
+                "&:hover": { textDecoration: "underline" },
               }}
             >
-              {company.charAt(0).toUpperCase()}
+              <DSTypography variant="companyName" sx={{ fontWeight: 700 }}>
+                {company}
+              </DSTypography>
             </Box>
-            {companyUrl ? (
-              <Typography
-                variant="body2"
-                component="a"
-                href={companyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  color: "secondary.main",
-                  fontWeight: 600,
-                  textDecoration: "none",
-                  letterSpacing: "0.01em",
-                  "&:hover": { textDecoration: "underline" },
-                }}
-              >
-                {company}
-              </Typography>
-            ) : (
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "secondary.main",
-                  fontWeight: 600,
-                  letterSpacing: "0.01em",
-                }}
-              >
-                {company}
-              </Typography>
-            )}
-          </Stack>
+          ) : (
+            <DSTypography variant="companyName" sx={{ fontWeight: 700, mb: 1.5 }}>
+              {company}
+            </DSTypography>
+          )}
 
-          {/* Album Description */}
-          <Typography
-            variant="body2"
+          {/* Description */}
+          <DSTypography
+            variant="description"
             sx={{
-              color: "text.secondary",
-              lineHeight: 1.7,
-              mb: highlights?.length ? 1.25 : 2,
-              fontSize: "0.875rem",
-              opacity: 0.85,
+              mb: highlights?.length ? expStyles.description.marginBottom : 2,
+              // fontSize and opacity are now handled by DSTypography variant="description"
             }}
           >
             {description}
-          </Typography>
+          </DSTypography>
 
           {/* Highlights (impact bullets) */}
           {highlights?.length ? (
-            <Stack
+            <Box
               component="ul"
-              spacing={0.7}
               sx={{
-                listStyle: "none",
-                pl: 0,
-                mb: 2,
+                listStyle: "disc",
+                pl: 2.5,
+                mb: expStyles.highlights.marginBottom,
                 color: "text.secondary",
                 lineHeight: 1.7,
               }}
             >
               {highlights.map((item, idx) => (
-                <Box
-                  component="li"
-                  key={idx}
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: 1,
-                  }}
-                >
-                  <Box sx={{ mt: "3px", flexShrink: 0 }}>
-                    <MusicNoteIcon size={10} color="secondary.main" opacity={0.7} />
-                  </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      fontSize: "0.85rem",
-                      opacity: 0.9,
-                    }}
-                  >
-                    {item}
-                  </Typography>
+                <Box component="li" key={idx} sx={{ mb: expStyles.highlights.spacing }}>
+                  <DSTypography variant="caption">{item}</DSTypography>
                 </Box>
               ))}
-            </Stack>
+            </Box>
           ) : null}
 
-          {/* Track List (Skills) - Piano key badges */}
+          {/* Skills */}
           <Stack direction="row" spacing={0.75} flexWrap="wrap">
-            {skillSet.map((skill, idx) => {
-              return (
-                <Box
-                  key={skill + idx.toString()}
-                  sx={{
-                    position: "relative",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    px: 1.1,
-                    py: 0.5,
-                    borderRadius: "10px",
-                    bgcolor: "rgba(255,255,255,0.04)",
-                    border: "1px solid",
-                    borderColor: "rgba(255,255,255,0.12)",
-                    transition: "all 180ms ease",
-                    cursor: "default",
-                    "&:hover": {
-                      borderColor: "secondary.main",
-                      color: "secondary.main",
-                      bgcolor: "rgba(245,193,86,0.08)",
-                    },
-                  }}
-                >
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.01em",
-                    }}
-                  >
-                    {skill}
-                  </Typography>
-                </Box>
-              );
-            })}
+            {skillSet.map((skill, idx) => (
+              <SkillPill key={skill + idx.toString()} label={skill} />
+            ))}
           </Stack>
         </Box>
       </Stack>
-    </Box>
+    </Card>
   );
 };

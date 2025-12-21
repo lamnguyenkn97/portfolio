@@ -1,6 +1,2 @@
-export * from "./AudioWaveform";
-export * from "./MusicNoteIcon";
-
-
-
-
+export { AudioWaveform } from "./AudioWaveform";
+export { BlogLayout } from "./BlogLayout";

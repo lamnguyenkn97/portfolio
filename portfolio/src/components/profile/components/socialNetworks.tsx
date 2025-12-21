@@ -1,12 +1,14 @@
 import React from "react";
 import { Stack, IconButton } from "@mui/material";
-import { Facebook, GitHub, LinkedIn } from "@mui/icons-material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { config } from "../../../config/constants";
 
 export const SocialNetworks = () => {
   const socialLinks = [
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: LinkedIn, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: GitHub, href: "https://github.com", label: "GitHub" },
+    { icon: faFacebook, href: config.social.facebook, label: "Facebook" },
+    { icon: faLinkedin, href: config.social.linkedin, label: "LinkedIn" },
+    { icon: faGithub, href: config.social.github, label: "GitHub" },
   ];
 
   return (
@@ -27,7 +29,7 @@ export const SocialNetworks = () => {
             },
           }}
         >
-          <Icon />
+          <FontAwesomeIcon icon={Icon} />
         </IconButton>
       ))}
     </Stack>

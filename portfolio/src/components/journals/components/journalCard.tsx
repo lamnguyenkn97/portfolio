@@ -1,6 +1,8 @@
-import { Box, Stack, Typography, Chip, Button } from "@mui/material";
+import { Box, Stack } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
+import { Card, Badge, Pill, DSTypography, Button } from "../../design-system";
 
 export type Journal = {
   title: string;
@@ -16,35 +18,17 @@ export const JournalCard = ({ journal }: { journal: Journal }) => {
   const isComingSoon = status === "coming-soon";
 
   return (
-    <Box
+    <Card
+      variant="gold"
       sx={{
-        border: "1px solid",
-        borderColor: "rgba(238,200,106,0.25)",
-        bgcolor: "rgba(255,255,255,0.02)",
-        borderRadius: 2,
-        p: 2.25,
-        transition: "all 220ms ease",
-        "&:hover": {
-          borderColor: "rgba(238,200,106,0.45)",
-          boxShadow: "0 8px 18px rgba(0,0,0,0.22)",
-          transform: "translateY(-1px)",
-        },
+        // Padding is now handled by Card component default
       }}
     >
       <Stack spacing={1.2}>
         <Stack direction="row" spacing={1} alignItems="center">
-          <Typography
-            variant="h6"
-            sx={{
-              color: "text.primary",
-              fontWeight: 700,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {title}
-          </Typography>
-          {status ? (
-            <Chip
+          <DSTypography variant="projectTitle">{title}</DSTypography>
+          {status && (
+            <Badge
               label={
                 status === "coming-soon"
                   ? "Coming soon"
@@ -52,82 +36,46 @@ export const JournalCard = ({ journal }: { journal: Journal }) => {
                     ? "Draft"
                     : "Published"
               }
+              variant="gold"
               size="small"
-              sx={{
-                height: 22,
-                fontSize: "0.7rem",
-                fontWeight: 700,
-                borderRadius: 999,
-                bgcolor: "rgba(238,200,106,0.12)",
-                color: "secondary.main",
-                border: "1px solid rgba(238,200,106,0.3)",
-              }}
             />
-          ) : null}
-          {readTime ? (
-            <Chip
-              label={readTime}
-              size="small"
-              sx={{
-                height: 22,
-                fontSize: "0.7rem",
-                fontWeight: 700,
-                borderRadius: 999,
-                bgcolor: "rgba(255,255,255,0.05)",
-                color: "text.secondary",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            />
-          ) : null}
+          )}
+          {readTime && <Badge label={readTime} variant="default" size="small" />}
         </Stack>
 
-        <Typography
-          variant="body2"
-          sx={{
-            color: "text.secondary",
-            lineHeight: 1.65,
-          }}
-        >
-          {summary}
-        </Typography>
+        <DSTypography variant="description">{summary}</DSTypography>
 
         <Stack direction="row" spacing={0.75} flexWrap="wrap">
           {tags.map((tag) => (
-            <Box
-              key={tag}
-              sx={{
-                px: 1,
-                py: 0.4,
-                borderRadius: 999,
-                bgcolor: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                color: "text.secondary",
-                letterSpacing: "0.01em",
-              }}
-            >
+            <Pill key={tag} variant="default">
               {tag}
-            </Box>
+            </Pill>
           ))}
         </Stack>
 
         {href ? (
           <Button
             size="small"
-            variant="text"
-            color="secondary"
+            variant="outlined"
             endIcon={<FontAwesomeIcon icon={faArrowRightLong} />}
-            sx={{ alignSelf: "flex-start", textTransform: "none", fontWeight: 700, pl: 0 }}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
+            sx={{
+              alignSelf: "flex-start",
+              borderColor: "divider",
+              bgcolor: "background.paper",
+              color: "secondary.main",
+              "&:hover": {
+                borderColor: "secondary.main",
+                bgcolor: "rgba(255, 193, 7, 0.1)",
+              },
+            }}
+            component={RouterLink}
+            to={href}
             disabled={isComingSoon}
           >
             Read
           </Button>
         ) : null}
       </Stack>
-    </Box>
+    </Card>
   );
 };

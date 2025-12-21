@@ -1,5 +1,7 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { MusicNoteIcon } from "../../common/MusicNoteIcon";
+import { Box, Stack, useTheme } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { DSTypography } from "../../design-system";
 
 interface CurrentlyPlayingProps {
   track?: {
@@ -11,6 +13,7 @@ interface CurrentlyPlayingProps {
 }
 
 export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
+  const theme = useTheme();
   // Placeholder data - replace with Spotify API integration
   const currentTrack = track || {
     name: "Not playing",
@@ -31,20 +34,19 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
         border: "1px solid",
         borderColor: "divider",
         bgcolor: "background.paper",
-        transition: "all 250ms ease",
+        transition: theme.custom.transitions.hover,
         "&:hover": {
           borderColor: "primary.main",
           bgcolor: "rgba(0, 194, 184, 0.05)",
         },
       }}
     >
-      <Stack direction="row" spacing={1.5} alignItems="center">
-        <MusicNoteIcon size={20} color="primary.main" opacity={0.8} />
+      <Stack direction="row" spacing={1.5} alignItems="center" sx={{ color: "primary.main" }}>
+        <FontAwesomeIcon icon={faMusic} style={{ fontSize: 20, opacity: 0.8 }} />
         <Box sx={{ flex: 1, minWidth: 0 }}>
-          <Typography
+          <DSTypography
             variant="caption"
             sx={{
-              color: "text.secondary",
               fontSize: "0.7rem",
               textTransform: "uppercase",
               letterSpacing: "0.1em",
@@ -52,11 +54,10 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
             }}
           >
             Currently Playing
-          </Typography>
-          <Typography
-            variant="body2"
+          </DSTypography>
+          <DSTypography
+            variant="body"
             sx={{
-              color: "text.primary",
               fontWeight: 500,
               fontSize: "0.8125rem",
               overflow: "hidden",
@@ -65,11 +66,10 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
             }}
           >
             {currentTrack.name}
-          </Typography>
-          <Typography
+          </DSTypography>
+          <DSTypography
             variant="caption"
             sx={{
-              color: "text.secondary",
               fontSize: "0.75rem",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -77,7 +77,7 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
             }}
           >
             {currentTrack.artist}
-          </Typography>
+          </DSTypography>
         </Box>
         {currentTrack.isPlaying && (
           <Box

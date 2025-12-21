@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Stack, Box, Typography, Button, Dialog, DialogContent } from "@mui/material";
-import { Project, ProjectCard } from "./components";
-import { MusicNoteIcon } from "../common/MusicNoteIcon";
+import { Stack, Box, Dialog, DialogContent, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { Button, SectionHeader, Pill, DSTypography } from "../design-system";
+import { Project, ProjectCard } from "./components";
 
 const projects: Project[] = [
   {
@@ -13,7 +13,6 @@ const projects: Project[] = [
       "A comprehensive design system inspired by Spotify&apos;s visual language. Built with React, TypeScript, and modern design principles. Features component library, design tokens, and documentation.",
     thumbnail:
       "https://images.unsplash.com/photo-1567861911437-538298e4232c?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    isSpotify: true,
     liveUrl: "https://spotify-storybook.vercel.app/",
     repoUrl: "https://github.com/lamnguyenkn97/spotify_design_system",
     npmUrl: "https://www.npmjs.com/package/spotify-design-system",
@@ -33,65 +32,25 @@ const projects: Project[] = [
 ];
 
 export const Projects = () => {
+  const theme = useTheme();
   const fanmadeDemoUrl = "https://www.loom.com/embed/171c400f6b574762872c22e1bfc2590b";
   const [openFanmadeDemo, setOpenFanmadeDemo] = useState(false);
 
   return (
-    <Stack spacing={4} sx={{ maxWidth: "640px" }}>
-      {/* Section Header with Music Note */}
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 1,
-          mb: 1,
-          mt: -1,
-          pl: 1.5,
-          position: "relative",
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: "50%",
-            transform: "translateY(-60%)",
-            height: 18,
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, rgba(238,200,106,0.32) 0 1px, transparent 1px 4px)",
-            opacity: 0.5,
-            pointerEvents: "none",
-            zIndex: 0,
-          },
-          zIndex: 1,
-        }}
-      >
-        <MusicNoteIcon size={18} color="secondary.main" opacity={0.75} />
-        <Typography
-          variant="h6"
-          sx={{
-            color: "text.primary",
-            fontWeight: 700,
-            fontSize: "1rem",
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-          }}
-        >
-          Side Projects
-        </Typography>
-      </Box>
+    <Stack spacing={theme.custom.layout.section.spacing} sx={{ maxWidth: "640px" }}>
+      <SectionHeader title="Side Projects" iconSize={18} />
 
       {/* Spotify Fanmade hero */}
-      <Box
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={theme.custom.componentStyles.projectHero.gap}
         sx={{
           border: "1px solid",
-          borderColor: "rgba(29, 185, 84, 0.4)",
-          bgcolor: "rgba(29, 185, 84, 0.08)",
-          borderRadius: 3,
-          p: { xs: 3, sm: 4 },
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          gap: 3,
-          boxShadow: "0 12px 32px rgba(0,0,0,0.25)",
+          borderColor: theme.custom.colorOpacity.spotify.hover,
+          bgcolor: theme.custom.colorOpacity.spotify.light,
+          borderRadius: theme.custom.componentStyles.projectHero.borderRadius,
+          p: theme.custom.componentStyles.projectHero.padding,
+          boxShadow: theme.custom.shadows.spotify.glow,
         }}
       >
         <Box
@@ -99,55 +58,29 @@ export const Projects = () => {
           alt="Spotify Fanmade"
           src="https://images.unsplash.com/photo-1633002239926-181ca9b48a3e?q=80&w=3153&auto=format&fit=crop"
           sx={{
-            width: { xs: "100%", sm: 180 },
-            height: { xs: 160, sm: 180 },
-            objectFit: "cover",
-            borderRadius: 2,
-            border: "1px solid",
-            borderColor: "rgba(29, 185, 84, 0.3)",
+            width: theme.custom.componentStyles.projectHero.imageWidth,
+            height: theme.custom.componentStyles.projectHero.imageHeight,
+            objectFit: theme.custom.componentStyles.projectHero.image.objectFit,
+            borderRadius: theme.custom.componentStyles.projectHero.image.borderRadius,
+            border: theme.custom.componentStyles.projectHero.image.border,
+            borderColor: theme.custom.colorOpacity.spotify.border,
           }}
         />
         <Box sx={{ flex: 1 }}>
-          <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
-            <MusicNoteIcon size={16} color="#1DB954" opacity={0.8} />
-            <Typography
-              variant="h6"
-              sx={{ color: "#1DB954", fontWeight: 700, letterSpacing: "-0.01em" }}
-            >
-              Spotify Fanmade
-            </Typography>
-          </Stack>
+          <DSTypography variant="projectTitle" spotify sx={{ mb: 0.5 }}>
+            Spotify Fanmade
+          </DSTypography>
           <Stack direction="row" spacing={1} sx={{ mb: 1.25, flexWrap: "wrap" }}>
             {["React", "TypeScript", "Spotify Web API"].map((tech) => (
-              <Box
-                key={tech}
-                sx={{
-                  px: 1.2,
-                  py: 0.5,
-                  borderRadius: 999,
-                  bgcolor: "rgba(29,185,84,0.12)",
-                  color: "#1DB954",
-                  border: "1px solid rgba(29,185,84,0.35)",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.02em",
-                }}
-              >
+              <Pill key={tech} variant="spotify">
                 {tech}
-              </Box>
+              </Pill>
             ))}
           </Stack>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "text.secondary",
-              lineHeight: 1.7,
-              mb: 2,
-            }}
-          >
+          <DSTypography variant="description" sx={{ mb: 2 }}>
             Fan-made Spotify experience with music discovery, playlists, and audio visualization.
             Built with React and Spotify Web API; features real-time data and interactive controls.
-          </Typography>
+          </DSTypography>
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={1}
@@ -156,23 +89,11 @@ export const Projects = () => {
           >
             {fanmadeDemoUrl && (
               <Button
-                variant="contained"
+                variant="primary"
                 size="small"
                 onClick={() => setOpenFanmadeDemo(true)}
-                sx={{
-                  textTransform: "none",
-                  fontWeight: 700,
-                  px: 2.4,
-                  bgcolor: "#1DB954",
-                  color: "#0b1a0f",
-                  boxShadow: "0 6px 16px rgba(29,185,84,0.28)",
-                  "&:hover": {
-                    bgcolor: "#1ed760",
-                    boxShadow: "0 8px 18px rgba(29,185,84,0.32)",
-                  },
-                }}
+                startIcon={<FontAwesomeIcon icon={faCirclePlay} />}
               >
-                <FontAwesomeIcon icon={faCirclePlay} style={{ marginRight: 8 }} />
                 Watch demo
               </Button>
             )}
@@ -182,18 +103,16 @@ export const Projects = () => {
               href="https://spotify-fanmade.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
+              startIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
               sx={{
-                textTransform: "none",
-                fontWeight: 700,
-                borderColor: "rgba(29,185,84,0.5)",
-                color: "#1DB954",
-                px: 2,
+                borderColor: theme.custom.componentStyles.projectHero.button.borderColor,
+                color: theme.custom.componentStyles.projectHero.button.color,
                 "&:hover": {
-                  borderColor: "rgba(29,185,84,0.8)",
+                  borderColor: theme.custom.colors.spotify.green,
+                  bgcolor: theme.custom.colorOpacity.spotify.light,
                 },
               }}
             >
-              <FontAwesomeIcon icon={faExternalLinkAlt} style={{ marginRight: 6 }} />
               Live
             </Button>
             <Button
@@ -202,23 +121,21 @@ export const Projects = () => {
               href="https://github.com/lamnguyenkn97/spotify_fanmade"
               target="_blank"
               rel="noopener noreferrer"
+              startIcon={<FontAwesomeIcon icon={faGithub} />}
               sx={{
-                textTransform: "none",
-                fontWeight: 700,
-                borderColor: "rgba(29,185,84,0.5)",
-                color: "#1DB954",
-                px: 2,
+                borderColor: theme.custom.componentStyles.projectHero.button.borderColor,
+                color: theme.custom.componentStyles.projectHero.button.color,
                 "&:hover": {
-                  borderColor: "rgba(29,185,84,0.8)",
+                  borderColor: theme.custom.colors.spotify.green,
+                  bgcolor: theme.custom.colorOpacity.spotify.light,
                 },
               }}
             >
-              <FontAwesomeIcon icon={faGithub} style={{ marginRight: 6 }} />
               GitHub
             </Button>
           </Stack>
         </Box>
-      </Box>
+      </Stack>
 
       {projects.map((project) => (
         <ProjectCard key={project.title} project={project} />
@@ -233,19 +150,17 @@ export const Projects = () => {
         PaperProps={{
           sx: {
             bgcolor: "background.default",
-            border: "1px solid",
-            borderColor: "rgba(29,185,84,0.3)",
+            border: theme.custom.componentStyles.dialog.paper.border,
+            borderColor: theme.custom.colorOpacity.spotify.border,
           },
         }}
       >
-        <DialogContent sx={{ p: 0, position: "relative" }}>
+        <DialogContent sx={{ p: theme.custom.componentStyles.dialog.contentPadding, position: "relative" }}>
           <Box
             sx={{
-              position: "relative",
-              width: "100%",
-              pb: "56.25%",
-              overflow: "hidden",
-              borderRadius: 1.5,
+              ...theme.custom.componentStyles.dialog.container,
+              pb: theme.custom.componentStyles.dialog.iframeAspectRatio,
+              borderRadius: theme.custom.componentStyles.dialog.borderRadius,
             }}
           >
             <Box
@@ -259,7 +174,7 @@ export const Projects = () => {
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                border: 0,
+                border: theme.custom.componentStyles.dialog.iframe.border,
               }}
             />
           </Box>

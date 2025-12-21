@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, ThemeProvider, Box } from "@mui/material";
+import { Container, Grid, ThemeProvider, Box, useTheme } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import { Profile } from "./components/profile";
 import { AboutMe } from "./components/aboutMe";
@@ -12,6 +12,23 @@ import { BlogPage } from "./pages/Blog";
 import { BlogDetailPage } from "./pages/BlogDetail";
 
 const HomePage = () => {
+  const theme = useTheme();
+  const layout = theme.custom.layout;
+
+  const sections = [
+    { id: "about", content: <AboutMe /> },
+    { id: "experience", content: <Experiences /> },
+    { id: "projects", content: <Projects /> },
+    { id: "journals", content: <Journals /> },
+  ];
+
+  const sectionSx = {
+    scrollMarginTop: layout.section.scrollMarginTop,
+    mb: layout.section.marginBottom,
+    pt: layout.section.paddingTop,
+    position: "relative",
+  };
+
   return (
     <Container
       maxWidth={false}
@@ -20,25 +37,25 @@ const HomePage = () => {
         mx: "auto",
         minHeight: "100vh",
         bgcolor: "background.default",
-        py: 6,
-        px: { xs: 3, sm: 3.5, md: 4.5, lg: 5.5 },
+        py: layout.container.paddingY,
+        px: layout.container.paddingX,
       }}
     >
       <Grid
         container
-        spacing={{ xs: 5, md: 6 }}
-        columnSpacing={{ md: 4, lg: 6 }}
+        spacing={layout.grid.rowSpacing}
+        columnSpacing={layout.grid.columnSpacing}
         alignItems="flex-start"
       >
         {/* Left Column - Profile & Navigation */}
         <Grid
           item
           xs={12}
-          md={5}
-          lg={5}
+          md={layout.grid.leftColumn.md}
+          lg={layout.grid.leftColumn.lg}
           sx={{
             position: { xs: "static", md: "sticky" },
-            top: { md: 24 },
+            top: { md: theme.spacing(layout.grid.stickyTopSpacing) },
             alignSelf: "flex-start",
             height: "fit-content",
           }}
@@ -47,54 +64,12 @@ const HomePage = () => {
         </Grid>
 
         {/* Right Column - Content Sections */}
-        <Grid item xs={12} md={7} lg={7}>
-          <Box
-            id="about"
-            sx={{
-              scrollMarginTop: "100px",
-              mb: { xs: 6, md: 8 },
-              pt: { xs: 3, md: 4 },
-              position: "relative",
-            }}
-          >
-            <AboutMe />
-          </Box>
-
-          <Box
-            id="experience"
-            sx={{
-              scrollMarginTop: "100px",
-              mb: { xs: 6, md: 8 },
-              pt: { xs: 3, md: 4 },
-              position: "relative",
-            }}
-          >
-            <Experiences />
-          </Box>
-
-          <Box
-            id="projects"
-            sx={{
-              scrollMarginTop: "100px",
-              mb: { xs: 6, md: 8 },
-              pt: { xs: 3, md: 4 },
-              position: "relative",
-            }}
-          >
-            <Projects />
-          </Box>
-
-          <Box
-            id="journals"
-            sx={{
-              scrollMarginTop: "100px",
-              mb: { xs: 6, md: 8 },
-              pt: { xs: 3, md: 4 },
-              position: "relative",
-            }}
-          >
-            <Journals />
-          </Box>
+        <Grid item xs={12} md={layout.grid.rightColumn.md} lg={layout.grid.rightColumn.lg}>
+          {sections.map((section) => (
+            <Box key={section.id} id={section.id} sx={sectionSx}>
+              {section.content}
+            </Box>
+          ))}
         </Grid>
       </Grid>
 
