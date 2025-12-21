@@ -29,8 +29,7 @@ export const Avatar = ({ src, alt, size = "medium", sx, ...props }: AvatarProps)
         height: sizes,
         borderRadius: theme.custom.borderRadius.lg,
         overflow: "hidden",
-        border: "1px solid",
-        borderColor: "divider",
+        ...theme.custom.borders.divider,
         boxShadow: theme.custom.shadows.avatar,
         ...sx,
       }}

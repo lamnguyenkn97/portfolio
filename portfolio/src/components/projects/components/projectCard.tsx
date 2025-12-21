@@ -54,8 +54,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             minWidth: { sm: 80 },
             objectFit: "cover",
             borderRadius: theme.custom.borderRadius.md,
-            border: "1px solid",
-            borderColor: theme.custom.colorOpacity.spotify.hover,
+            ...theme.custom.borders.spotify,
             boxShadow: theme.custom.shadows.sm,
           }}
         />
@@ -73,7 +72,9 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               {project.stats?.downloadsPerMonth && (
                 <Pill
                   variant="spotify"
-                  startIcon={<FontAwesomeIcon icon={faDownload} style={{ fontSize: "0.75rem" }} />}
+                  startIcon={
+                    <FontAwesomeIcon icon={faDownload} style={{ fontSize: theme.custom.typography.fontSizes.xs }} />
+                  }
                 >
                   Downloads: {project.stats.downloadsPerMonth}/month
                 </Pill>
@@ -175,8 +176,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         PaperProps={{
           sx: {
             bgcolor: "background.default",
-            border: "1px solid",
-            borderColor: "rgba(29,185,84,0.3)",
+            ...theme.custom.borders.spotify,
           },
         }}
       >

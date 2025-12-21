@@ -49,7 +49,7 @@ export const Button = ({
       color: theme.custom.colors.core.ivoryWhite,
       "&:hover": {
         bgcolor: theme.custom.colors.spotify.green,
-        opacity: 0.9,
+        opacity: theme.custom.opacity.highest,
         transform: "scale(1.02)",
       },
     },
@@ -73,17 +73,17 @@ export const Button = ({
     small: {
       px: theme.spacing(1.5),
       py: theme.spacing(0.75),
-      fontSize: "0.875rem",
+      fontSize: theme.custom.typography.fontSizes.sm,
     },
     medium: {
       px: theme.spacing(2.5),
       py: theme.spacing(1.25),
-      fontSize: "1rem",
+      fontSize: theme.custom.typography.fontSizes.base,
     },
     large: {
       px: theme.spacing(3.5),
       py: theme.spacing(1.75),
-      fontSize: "1.125rem",
+      fontSize: theme.custom.typography.fontSizes.lg,
     },
   };
 

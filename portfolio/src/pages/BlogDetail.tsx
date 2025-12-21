@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Box, Stack, Divider } from "@mui/material";
+import { Box, Stack, Divider, useTheme } from "@mui/material";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { Button, Card, Badge, DSTypography } from "../components/design-system";
 import { BlogLayout } from "../components/common/BlogLayout";
@@ -8,6 +8,7 @@ import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 
 export const BlogDetailPage = () => {
+  const theme = useTheme();
   const { id } = useParams();
   const post = blogPosts.find((p) => p.id === id);
   const [Compiled, setCompiled] = useState<React.ComponentType | null>(null);
@@ -84,7 +85,7 @@ export const BlogDetailPage = () => {
             bgcolor: "rgba(255,255,255,0.08)",
             border: "1px solid rgba(255,255,255,0.14)",
             color: "#e8ecf1",
-            fontSize: "0.9em",
+            fontSize: theme.custom.typography.fontSizes["base-sm"],
             fontWeight: 600,
           }}
           {...props}
@@ -99,7 +100,7 @@ export const BlogDetailPage = () => {
             bgcolor: "#0f1117",
             border: "1px solid rgba(255,255,255,0.08)",
             overflowX: "auto",
-            fontSize: "0.95em",
+            fontSize: theme.custom.typography.fontSizes.sm,
             lineHeight: 1.65,
             mb: 2,
             color: "#e8ecf1",

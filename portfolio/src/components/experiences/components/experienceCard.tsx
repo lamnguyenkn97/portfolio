@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Stack, useTheme } from "@mui/material";
-import { Card, SkillPill, DSTypography } from "../../design-system";
+import { Card, Pill, DSTypography } from "../../design-system";
 
 export type Experience = {
   title: string;
@@ -117,7 +117,9 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
           {/* Skills */}
           <Stack direction="row" spacing={0.75} flexWrap="wrap">
             {skillSet.map((skill, idx) => (
-              <SkillPill key={skill + idx.toString()} label={skill} />
+              <Pill key={skill + idx.toString()} variant="skill">
+                {skill}
+              </Pill>
             ))}
           </Stack>
         </Box>

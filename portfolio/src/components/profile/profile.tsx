@@ -81,7 +81,10 @@ export const Profile = () => {
                           gap: theme.spacing(0.75),
                         }}
                       >
-                        <FontAwesomeIcon icon={item.icon} style={{ fontSize: "0.875rem" }} />
+                        <FontAwesomeIcon
+                          icon={item.icon}
+                          style={{ fontSize: theme.custom.typography.fontSizes.sm }}
+                        />
                         <span>{item.label}</span>
                       </Box>
                     }
@@ -132,7 +135,9 @@ export const Profile = () => {
         }}
       >
         <Stack spacing={0.4} direction="row" alignItems="center">
-          <DSTypography variant="overline">current mood</DSTypography>
+          <DSTypography variant="overline" color={"white"}>
+            current mood
+          </DSTypography>
           <IconButton
             size="small"
             onClick={shuffleMood}

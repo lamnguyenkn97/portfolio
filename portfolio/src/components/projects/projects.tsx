@@ -45,8 +45,7 @@ export const Projects = () => {
         direction={{ xs: "column", sm: "row" }}
         spacing={theme.custom.componentStyles.projectHero.gap}
         sx={{
-          border: "1px solid",
-          borderColor: theme.custom.colorOpacity.spotify.hover,
+          ...theme.custom.borders.spotify,
           bgcolor: theme.custom.colorOpacity.spotify.light,
           borderRadius: theme.custom.componentStyles.projectHero.borderRadius,
           p: theme.custom.componentStyles.projectHero.padding,

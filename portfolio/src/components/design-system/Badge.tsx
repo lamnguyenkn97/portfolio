@@ -16,6 +16,9 @@ export interface BadgeProps {
  * @deprecated Use Pill component with variant and size props
  */
 export const Badge = ({ label, variant = "default", size = "small" }: BadgeProps) => {
-  return <Pill variant={variant as PillProps["variant"]} size={size}>{label}</Pill>;
+  return (
+    <Pill variant={variant as PillProps["variant"]} size={size}>
+      {label}
+    </Pill>
+  );
 };
-

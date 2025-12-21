@@ -31,8 +31,7 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
         mt: 3,
         p: 2,
         borderRadius: 2,
-        border: "1px solid",
-        borderColor: "divider",
+        ...theme.custom.borders.divider,
         bgcolor: "background.paper",
         transition: theme.custom.transitions.hover,
         "&:hover": {
@@ -42,12 +41,15 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
       }}
     >
       <Stack direction="row" spacing={1.5} alignItems="center" sx={{ color: "primary.main" }}>
-        <FontAwesomeIcon icon={faMusic} style={{ fontSize: 20, opacity: 0.8 }} />
+        <FontAwesomeIcon
+          icon={faMusic}
+          style={{ fontSize: 20, opacity: theme.custom.opacity.high }}
+        />
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <DSTypography
             variant="caption"
             sx={{
-              fontSize: "0.7rem",
+              fontSize: theme.custom.typography.fontSizes["2xs"],
               textTransform: "uppercase",
               letterSpacing: "0.1em",
               mb: 0.25,
@@ -59,7 +61,7 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
             variant="body"
             sx={{
               fontWeight: 500,
-              fontSize: "0.8125rem",
+              fontSize: theme.custom.typography.fontSizes["sm-md"],
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
@@ -70,7 +72,7 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
           <DSTypography
             variant="caption"
             sx={{
-              fontSize: "0.75rem",
+              fontSize: theme.custom.typography.fontSizes.xs,
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",

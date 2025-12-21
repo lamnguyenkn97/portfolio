@@ -4,10 +4,12 @@ import {
   typography,
   spacing,
   borderRadius,
+  borders,
   shadows,
   transitions,
   layout,
   colorOpacity,
+  opacity,
   rgba,
   componentStyles,
   gradients,
@@ -371,6 +373,8 @@ declare module "@mui/material/styles" {
     custom: {
       spacing: typeof spacing;
       borderRadius: typeof borderRadius;
+      borders: typeof borders;
+      opacity: typeof opacity;
       transitions: typeof transitions;
       shadows: typeof shadows;
       layout: typeof layout;
@@ -388,6 +392,8 @@ declare module "@mui/material/styles" {
     custom?: {
       spacing?: typeof spacing;
       borderRadius?: typeof borderRadius;
+      borders?: typeof borders;
+      opacity?: typeof opacity;
       transitions?: typeof transitions;
       shadows?: typeof shadows;
       layout?: typeof layout;
@@ -408,6 +414,8 @@ declare module "@mui/material/styles" {
 theme.custom = {
   spacing,
   borderRadius,
+  borders,
+  opacity,
   transitions,
   shadows,
   layout,

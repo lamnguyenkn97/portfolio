@@ -21,8 +21,7 @@ export const Card = ({ variant = "default", children, sx, ...props }: CardProps)
   const variantStyles = {
     default: {
       bgcolor: "background.paper",
-      border: "1px solid",
-      borderColor: "divider",
+      ...theme.custom.borders.divider,
       borderRadius: theme.custom.borderRadius.md,
       p: defaultPadding,
       width: "100%", // Consistent width - takes full width of container
@@ -36,8 +35,7 @@ export const Card = ({ variant = "default", children, sx, ...props }: CardProps)
     },
     spotify: {
       bgcolor: theme.custom.colorOpacity.spotify.light,
-      border: "1px solid",
-      borderColor: theme.custom.colorOpacity.spotify.border,
+      ...theme.custom.borders.spotifyLight,
       borderRadius: theme.custom.borderRadius.md,
       p: defaultPadding,
       width: "100%", // Consistent width - takes full width of container
@@ -63,8 +61,7 @@ export const Card = ({ variant = "default", children, sx, ...props }: CardProps)
     },
     gold: {
       bgcolor: "background.paper",
-      border: "1px solid",
-      borderColor: theme.custom.colorOpacity.gold.light,
+      ...theme.custom.borders.gold,
       borderRadius: theme.custom.borderRadius.md,
       p: defaultPadding,
       width: "100%", // Consistent width - takes full width of container
@@ -78,8 +75,7 @@ export const Card = ({ variant = "default", children, sx, ...props }: CardProps)
     },
     elevated: {
       bgcolor: "background.paper",
-      border: "1px solid",
-      borderColor: "divider",
+      ...theme.custom.borders.divider,
       borderRadius: theme.custom.borderRadius.md,
       p: defaultPadding,
       width: "100%", // Consistent width - takes full width of container

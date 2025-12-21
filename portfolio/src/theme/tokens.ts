@@ -107,15 +107,26 @@ export const typography = {
   },
 
   fontSizes: {
-    xs: "0.75rem", // 12px
-    sm: "0.875rem", // 14px
-    base: "1rem", // 16px
-    lg: "1.125rem", // 18px
-    xl: "1.25rem", // 20px
+    "2xs": "0.7rem", // 11.2px - for very small text (CurrentlyPlaying)
+    xs: "0.75rem", // 12px - for pills, badges, small labels
+    "xs-sm": "0.78rem", // 12.5px - for project card stats
+    sm: "0.875rem", // 14px - for descriptions, buttons, body text
+    "sm-md": "0.8125rem", // 13px - for CurrentlyPlaying text
+    base: "1rem", // 16px - for body text, section titles
+    "base-sm": "0.9rem", // 14.4px - for navBar, footer tagline
+    "base-md": "0.85rem", // 13.6px - for dateRange, caption, links
+    lg: "1.125rem", // 18px - for buttons (medium)
+    xl: "1.25rem", // 20px - for project/experience titles
     "2xl": "1.5rem", // 24px
     "3xl": "1.875rem", // 30px
     "4xl": "2.25rem", // 36px
     "5xl": "3rem", // 48px
+    // Responsive hero sizes
+    hero: {
+      xs: "1.8rem", // 28.8px
+      sm: "2.1rem", // 33.6px
+      md: "2.4rem", // 38.4px
+    },
   },
 
   fontWeights: {
@@ -123,13 +134,38 @@ export const typography = {
     medium: 500,
     semibold: 600,
     bold: 700,
+    extraBold: 800,
   },
 
   lineHeights: {
     tight: 1.2,
     normal: 1.5,
     relaxed: 1.75,
+    // Additional line heights for specific use cases
+    relaxedTight: 1.7,
+    relaxedNormal: 1.6,
   },
+
+  letterSpacing: {
+    tight: "-0.02em",
+    normal: "-0.01em",
+    wide: "0.01em",
+    wider: "0.02em",
+    widest: "0.06em",
+    extraWide: "0.14em",
+  },
+} as const;
+
+// Opacity tokens for consistent opacity values across components
+export const opacity = {
+  // Text/content opacity
+  subtle: 0.5, // For inactive states, secondary elements
+  medium: 0.7, // For hover states, medium emphasis
+  high: 0.8, // For icons, medium-high emphasis
+  higher: 0.85, // For descriptions, secondary text
+  highest: 0.9, // For buttons, high emphasis
+  full: 0.92, // For taglines, almost full
+  // Full opacity (1.0) is default, no token needed
 } as const;
 
 // Spacing tokens - Note: Most spacing uses MUI's theme.spacing() function
@@ -147,6 +183,37 @@ export const borderRadius = {
   xl: "1rem", // 16px
   "2xl": "1.5rem", // 24px
   full: "9999px",
+} as const;
+
+// Border tokens for consistent border styling
+export const borders = {
+  // Standard border styles
+  default: "1px solid",
+  none: "none",
+  // Common border color combinations
+  divider: {
+    border: "1px solid",
+    borderColor: "divider",
+  },
+  // Spotify-themed borders
+  spotify: {
+    border: "1px solid",
+    borderColor: colorOpacity.spotify.hover,
+  },
+  spotifyLight: {
+    border: "1px solid",
+    borderColor: colorOpacity.spotify.border,
+  },
+  // Gold-themed borders
+  gold: {
+    border: "1px solid",
+    borderColor: colorOpacity.gold.light,
+  },
+  // Teal-themed borders
+  teal: {
+    border: "1px solid",
+    borderColor: colorOpacity.teal.light,
+  },
 } as const;
 
 export const shadows = {
@@ -200,8 +267,8 @@ export const layout = {
   },
   section: {
     scrollMarginTop: "100px",
-    marginBottom: { xs: 8, md: 10 },
-    paddingTop: { xs: 4, md: 5 },
+    marginBottom: { xs: 5, md: 6 }, // Reduced from 8/10 to 5/6 (40px/48px)
+    paddingTop: { xs: 2, md: 3 }, // Reduced from 4/5 to 2/3 (16px/24px)
     spacing: { xs: 4, md: 5 },
   },
 } as const;
@@ -210,15 +277,14 @@ export const layout = {
 export const componentStyles = {
   // Link styles
   link: {
-    fontSize: "0.85rem",
+    fontSize: typography.fontSizes["base-md"],
     fontWeight: 700,
     color: "secondary.main",
   },
   // Chip/Hobby styles
   hobbyChip: {
     bgcolor: colorOpacity.white.subtle,
-    border: "1px solid",
-    borderColor: "divider",
+    ...borders.divider,
     color: "text.secondary",
     fontWeight: 700,
     letterSpacing: "0.01em",
@@ -242,12 +308,12 @@ export const componentStyles = {
       },
     },
     tagline: {
-      fontSize: "0.85rem",
+      fontSize: typography.fontSizes["base-md"],
       lineHeight: 1.6,
       fontWeight: 600,
       opacity: 0.92,
       gap: 0.6,
-      iconSize: "0.9rem",
+      iconSize: typography.fontSizes["base-sm"],
     },
     links: {
       spacing: 2.5,
@@ -259,9 +325,9 @@ export const componentStyles = {
     itemSpacing: 1.25,
     barWidth: "5px",
     barHeight: "28px",
-    barInactiveOpacity: 0.5,
+    barInactiveOpacity: opacity.subtle,
     hoverTransform: "translateX(3px)",
-    fontSize: "0.9rem",
+    fontSize: typography.fontSizes["base-sm"],
     letterSpacing: "0.08em",
     button: {
       padding: { y: 1.25, x: 0 },
@@ -282,23 +348,38 @@ export const componentStyles = {
     icon: {
       fontSize: 16,
       color: "#1DB954",
-      opacity: 0.8,
+      opacity: opacity.high,
     },
     image: {
       objectFit: "cover",
       borderRadius: "1rem", // xl = 16px
-      border: "1px solid",
+      border: borders.default as string,
     },
     button: {
       borderColor: "rgba(29, 185, 84, 0.35)",
       color: "#1DB954",
     },
   },
+  // Pill component styles (padding uses MUI's theme.spacing(), not hardcoded)
+  pill: {
+    small: {
+      fontSize: typography.fontSizes.xs,
+      fontWeight: typography.fontWeights.semibold,
+      letterSpacing: typography.letterSpacing.wider,
+    },
+    medium: {
+      fontSize: typography.fontSizes.sm,
+      fontWeight: typography.fontWeights.semibold,
+      letterSpacing: typography.letterSpacing.widest,
+    },
+    // Variant-specific letter spacing (for gold/teal variants)
+    variantLetterSpacing: typography.letterSpacing.widest,
+  },
   // Project card stats badge styles
   projectCardStats: {
     padding: { x: 1.15, y: 0.45 },
     borderRadius: borderRadius.full,
-    fontSize: "0.78rem",
+    fontSize: typography.fontSizes["xs-sm"],
     fontWeight: 700,
     letterSpacing: "0.01em",
     marginBottom: 0.75,
@@ -326,7 +407,7 @@ export const componentStyles = {
     iframeAspectRatio: "56.25%", // 16:9
     contentPadding: 0,
     paper: {
-      border: "1px solid",
+      border: borders.default,
     },
     iframe: {
       border: 0,
@@ -363,17 +444,17 @@ export const componentStyles = {
       width: "4px",
       minHeight: "160px",
       borderRadius: borderRadius.full,
-      opacity: 0.5,
-      opacityHover: 0.7,
+      opacity: opacity.subtle,
+      opacityHover: opacity.medium,
     },
     companyBadge: {
       size: 28,
-      fontSize: "0.9rem",
+      fontSize: typography.fontSizes["base-sm"],
       fontWeight: 700,
     },
     description: {
-      fontSize: "0.875rem",
-      opacity: 0.85,
+      fontSize: typography.fontSizes.sm,
+      opacity: opacity.higher,
       marginBottom: 1.25,
     },
     highlights: {
