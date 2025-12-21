@@ -1,6 +1,6 @@
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, useTheme } from "@mui/material";
+import { SectionHeader } from "../design-system";
 import { Experience, ExperienceCard } from "./components";
-import { MusicNoteIcon } from "../common/MusicNoteIcon";
 
 const experiences: Experience[] = [
   {
@@ -35,49 +35,10 @@ const experiences: Experience[] = [
 ];
 
 export const Experiences = () => {
+  const theme = useTheme();
   return (
-    <Stack spacing={4} sx={{ maxWidth: "640px" }}>
-      {/* Section Header with Music Note */}
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 1,
-          mb: 2,
-          mt: -1,
-          pl: 1.5,
-          position: "relative",
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: "50%",
-            transform: "translateY(-60%)",
-            height: 18,
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, rgba(238,200,106,0.32) 0 1px, transparent 1px 4px)",
-            opacity: 0.5,
-            pointerEvents: "none",
-            zIndex: 0,
-          },
-          zIndex: 1,
-        }}
-      >
-        <MusicNoteIcon size={18} color="secondary.main" opacity={0.75} />
-        <Typography
-          variant="h6"
-          sx={{
-            color: "text.primary",
-            fontWeight: 700,
-            fontSize: "1rem",
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-          }}
-        >
-          Professional Experience
-        </Typography>
-      </Box>
+    <Stack spacing={theme.custom.layout.section.spacing} sx={{ maxWidth: "640px" }}>
+      <SectionHeader title="Professional Experience" iconSize={18} />
 
       {experiences.map((experience) => (
         <ExperienceCard key={experience.title} experience={experience} />

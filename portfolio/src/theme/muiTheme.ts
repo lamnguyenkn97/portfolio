@@ -1,5 +1,21 @@
 import { createTheme } from "@mui/material/styles";
-import { colors, typography, spacing, borderRadius, shadows, transitions } from "./tokens";
+import {
+  colors,
+  typography,
+  spacing,
+  borderRadius,
+  shadows,
+  transitions,
+  layout,
+  colorOpacity,
+  rgba,
+  componentStyles,
+  gradients,
+  zIndex,
+} from "./tokens";
+
+// Re-export typography for convenience
+export { typography };
 
 /**
  * Comprehensive Design System Theme
@@ -16,15 +32,15 @@ export const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: colors.accents.synthTeal,
-      light: "#33CFC7",
-      dark: "#00A89F",
+      main: colors.accents.synthTeal.main,
+      light: colors.accents.synthTeal.light,
+      dark: colors.accents.synthTeal.dark,
       contrastText: colors.core.keyBlack,
     },
     secondary: {
-      main: colors.accents.metronomeGold,
-      light: "#F7CF7A",
-      dark: "#D9A73D",
+      main: colors.accents.metronomeGold.main,
+      light: colors.accents.metronomeGold.light,
+      dark: colors.accents.metronomeGold.dark,
       contrastText: colors.core.keyBlack,
     },
     background: {
@@ -37,9 +53,9 @@ export const theme = createTheme({
     },
     divider: colors.support.keyOutline,
     action: {
-      active: colors.accents.synthTeal,
-      hover: `${colors.accents.synthTeal}14`, // 8% opacity
-      selected: `${colors.accents.synthTeal}1F`, // 12% opacity
+      active: colors.accents.synthTeal.main,
+      hover: colorOpacity.teal.light,
+      selected: colorOpacity.teal.medium,
       disabled: colors.core.mutedIvory,
       disabledBackground: colors.support.keyOutline,
     },
@@ -170,7 +186,7 @@ export const theme = createTheme({
         root: {
           borderRadius: borderRadius.md,
           padding: `${spacing.sm} ${spacing.lg}`,
-          transition: transitions.all,
+          transition: transitions.hover,
           textTransform: "none",
           fontWeight: typography.fontWeights.semibold,
 
@@ -187,19 +203,17 @@ export const theme = createTheme({
           },
         },
         containedPrimary: {
-          background: `linear-gradient(135deg, ${colors.accents.synthTeal} 0%, #00A89F 100%)`,
+          background: gradients.primary,
 
           "&:hover": {
-            background: `linear-gradient(135deg, #33CFC7 0%, ${colors.accents.synthTeal} 100%)`,
-            boxShadow: shadows.glow,
+            background: gradients.primary,
           },
         },
         containedSecondary: {
-          background: `linear-gradient(135deg, ${colors.accents.metronomeGold} 0%, #D9A73D 100%)`,
+          background: gradients.secondary,
 
           "&:hover": {
-            background: `linear-gradient(135deg, #F7CF7A 0%, ${colors.accents.metronomeGold} 100%)`,
-            boxShadow: shadows.goldGlow,
+            background: gradients.secondary,
           },
         },
         outlined: {
@@ -207,14 +221,14 @@ export const theme = createTheme({
           borderWidth: "1px",
 
           "&:hover": {
-            borderColor: colors.accents.synthTeal,
-            backgroundColor: `${colors.accents.synthTeal}0A`, // 4% opacity
+            borderColor: colors.accents.synthTeal.main,
+            backgroundColor: rgba(colors.accents.synthTeal, 0.04),
             transform: "translateY(-2px)",
           },
         },
         text: {
           "&:hover": {
-            backgroundColor: `${colors.accents.synthTeal}0A`,
+            backgroundColor: rgba(colors.accents.synthTeal, 0.04),
             transform: "translateY(-1px)",
           },
         },
@@ -228,13 +242,13 @@ export const theme = createTheme({
           backgroundColor: colors.core.graphite,
           borderRadius: borderRadius.lg,
           border: `1px solid ${colors.support.keyOutline}`,
-          transition: transitions.all,
+          transition: transitions.hover,
           boxShadow: shadows.card,
 
           "&:hover": {
             transform: "translateY(-4px)",
             boxShadow: shadows.cardHover,
-            borderColor: `${colors.accents.synthTeal}33`, // 20% opacity
+            borderColor: rgba(colors.accents.synthTeal, 0.2),
           },
         },
       },
@@ -258,7 +272,7 @@ export const theme = createTheme({
           borderRadius: borderRadius.md,
           fontWeight: typography.fontWeights.medium,
           fontSize: typography.fontSizes.xs,
-          transition: transitions.colors,
+          transition: transitions.hover,
         },
         filled: {
           backgroundColor: colors.core.graphite,
@@ -266,8 +280,8 @@ export const theme = createTheme({
           color: colors.core.ivoryWhite,
 
           "&:hover": {
-            borderColor: colors.accents.synthTeal,
-            backgroundColor: `${colors.accents.synthTeal}14`,
+            borderColor: colors.accents.synthTeal.main,
+            backgroundColor: colorOpacity.teal.light,
           },
         },
         outlined: {
@@ -276,7 +290,7 @@ export const theme = createTheme({
 
           "&:hover": {
             borderColor: colors.accents.synthTeal,
-            backgroundColor: `${colors.accents.synthTeal}0A`,
+            backgroundColor: rgba(colors.accents.synthTeal, 0.04),
           },
         },
       },
@@ -286,13 +300,13 @@ export const theme = createTheme({
     MuiLink: {
       styleOverrides: {
         root: {
-          color: colors.accents.synthTeal,
+          color: colors.accents.synthTeal.main,
           textDecoration: "none",
-          transition: transitions.colors,
+          transition: transitions.hover,
           fontWeight: typography.fontWeights.medium,
 
           "&:hover": {
-            color: colors.accents.metronomeGold,
+            color: colors.accents.metronomeGold.main,
             textDecoration: "underline",
             textDecorationThickness: "2px",
             textUnderlineOffset: "2px",
@@ -305,7 +319,7 @@ export const theme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          transition: transitions.colors,
+          transition: transitions.hover,
         },
       },
     },
@@ -314,7 +328,7 @@ export const theme = createTheme({
     MuiIconButton: {
       styleOverrides: {
         root: {
-          transition: transitions.all,
+          transition: transitions.hover,
           borderRadius: borderRadius.md,
 
           "&:hover": {
@@ -359,6 +373,14 @@ declare module "@mui/material/styles" {
       borderRadius: typeof borderRadius;
       transitions: typeof transitions;
       shadows: typeof shadows;
+      layout: typeof layout;
+      colors: typeof colors;
+      colorOpacity: typeof colorOpacity;
+      rgba: typeof rgba;
+      typography: typeof typography;
+      componentStyles: typeof componentStyles;
+      gradients: typeof gradients;
+      zIndex: typeof zIndex;
     };
   }
 
@@ -368,19 +390,35 @@ declare module "@mui/material/styles" {
       borderRadius?: typeof borderRadius;
       transitions?: typeof transitions;
       shadows?: typeof shadows;
+      layout?: typeof layout;
+      colors?: typeof colors;
+      colorOpacity?: typeof colorOpacity;
+      rgba?: typeof rgba;
+      typography?: typeof typography;
+      componentStyles?: typeof componentStyles;
+      gradients?: typeof gradients;
+      zIndex?: typeof zIndex;
     };
   }
 }
 
-// Add custom properties to theme
-export const themeWithCustom = {
-  ...theme,
-  custom: {
-    spacing,
-    borderRadius,
-    transitions,
-    shadows,
-  },
+// Add custom properties directly to the theme instance
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+theme.custom = {
+  spacing,
+  borderRadius,
+  transitions,
+  shadows,
+  layout,
+  colors,
+  colorOpacity,
+  rgba,
+  typography,
+  componentStyles,
+  gradients,
+  zIndex,
 };
 
+export const themeWithCustom = theme;
 export default theme;

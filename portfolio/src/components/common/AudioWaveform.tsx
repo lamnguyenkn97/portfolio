@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 interface AudioWaveformProps {
   height?: number;
@@ -14,12 +14,12 @@ export const AudioWaveform = ({
   const barHeights = Array.from({ length: bars }, () => Math.random() * 0.6 + 0.2);
 
   return (
-    <Box
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+      spacing={0.5}
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 0.5,
         height,
         width: "100%",
       }}
@@ -47,6 +47,6 @@ export const AudioWaveform = ({
           }}
         />
       ))}
-    </Box>
+    </Stack>
   );
 };

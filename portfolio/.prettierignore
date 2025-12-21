@@ -29,3 +29,14 @@ pnpm-lock.yaml
 
 # Generated files
 *.tsbuildinfo
+
+# Config files that shouldn't be formatted
+tsconfig.json
+tsconfig.*.json
+
+# Public assets (images, fonts, etc.)
+public/**/*.{png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot}
+
+# Build outputs
+*.min.js
+*.min.css

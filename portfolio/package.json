@@ -30,8 +30,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --max-warnings=0",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css}'",
-    "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx,json,css}'",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}' 'public/**/*.{html,json}'",
+    "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx,json,css,md}' 'public/**/*.{html,json}'",
+    "format:staged": "prettier --write",
     "type-check": "tsc --noEmit"
   },
   "browserslist": {
