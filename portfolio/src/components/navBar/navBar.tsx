@@ -1,6 +1,52 @@
-import { Stack, Box, useTheme } from "@mui/material";
+import { Stack, Box, useTheme, SxProps, Theme } from "@mui/material";
 import { useEffect, useState, useMemo } from "react";
 import { DSTypography } from "../design-system";
+
+const getNavButtonStyles = (theme: Theme, itemColor: string): SxProps<Theme> => {
+  const navStyles = theme.custom.componentStyles.navBar;
+  return {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    gap: theme.spacing(navStyles.button.gap),
+    padding: `${theme.spacing(navStyles.button.padding.y)} 0`,
+    border: "none",
+    background: "transparent",
+    cursor: "pointer",
+    transition: navStyles.button.transition,
+    "&:hover .nav-text": {
+      color: itemColor,
+    },
+    "&:hover .nav-bar": {
+      bgcolor: itemColor,
+      opacity: 1,
+    },
+  };
+};
+
+const getNavBarStyles = (theme: Theme, isActive: boolean, itemColor: string): SxProps<Theme> => {
+  const navStyles = theme.custom.componentStyles.navBar;
+  return {
+    width: navStyles.bar.width,
+    height: navStyles.bar.height,
+    borderRadius: navStyles.bar.borderRadius,
+    bgcolor: isActive ? itemColor : "divider",
+    opacity: isActive ? 1 : navStyles.bar.inactiveOpacity,
+    transition: navStyles.bar.transition,
+  };
+};
+
+const getNavTextStyles = (theme: Theme, isActive: boolean, itemColor: string): SxProps<Theme> => {
+  const navStyles = theme.custom.componentStyles.navBar;
+  return {
+    color: isActive ? itemColor : "text.primary",
+    fontWeight: isActive ? navStyles.text.fontWeight.active : navStyles.text.fontWeight.inactive,
+    fontSize: navStyles.text.fontSize,
+    letterSpacing: navStyles.text.letterSpacing,
+    textTransform: navStyles.text.textTransform,
+    transition: navStyles.text.transition,
+  };
+};
 
 export const NavBar = () => {
   const theme = useTheme();
@@ -66,7 +112,7 @@ export const NavBar = () => {
 
   const navStyles = theme.custom.componentStyles.navBar;
   return (
-    <Stack spacing={navStyles.itemSpacing}>
+    <Stack spacing={theme.spacing(navStyles.itemSpacing)}>
       {navItems.map((item) => {
         const isActive = activeSection === item.id;
         return (
@@ -75,53 +121,10 @@ export const NavBar = () => {
             component="button"
             onClick={() => handleScrollTo(item.id)}
             aria-label={`Navigate to ${item.label} section`}
-            sx={{
-              position: "relative",
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              gap: navStyles.button.gap,
-              textDecoration: "none",
-              cursor: "pointer",
-              padding: `${theme.spacing(navStyles.button.padding.y)} 0`,
-              border: "none",
-              background: "transparent",
-              transition: theme.custom.transitions.hover,
-              "&:hover": {
-                transform: navStyles.hoverTransform,
-                "& .nav-text": {
-                  color: item.color,
-                },
-                "& .nav-bar": {
-                  bgcolor: item.color,
-                  opacity: 1,
-                },
-              },
-            }}
+            sx={getNavButtonStyles(theme, item.color)}
           >
-            <Box
-              className="nav-bar"
-              sx={{
-                width: navStyles.barWidth,
-                height: navStyles.barHeight,
-                borderRadius: theme.custom.borderRadius.full,
-                bgcolor: isActive ? item.color : "divider",
-                opacity: isActive ? 1 : navStyles.barInactiveOpacity,
-                transition: theme.custom.transitions.hover,
-              }}
-            />
-            <DSTypography
-              className="nav-text"
-              variant="body"
-              sx={{
-                color: isActive ? item.color : "text.primary",
-                fontWeight: isActive ? navStyles.text.fontWeight.active : navStyles.text.fontWeight.inactive,
-                fontSize: navStyles.fontSize,
-                letterSpacing: navStyles.letterSpacing,
-                textTransform: navStyles.text.textTransform,
-                transition: theme.custom.transitions.hover,
-              }}
-            >
+            <Box className="nav-bar" sx={getNavBarStyles(theme, isActive, item.color)} />
+            <DSTypography className="nav-text" variant="body" sx={getNavTextStyles(theme, isActive, item.color)}>
               {item.label}
             </DSTypography>
           </Box>

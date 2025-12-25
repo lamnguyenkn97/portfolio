@@ -1,8 +1,7 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, alpha, Theme } from "@mui/material/styles";
 import {
   colors,
   typography,
-  spacing,
   borderRadius,
   borders,
   shadows,
@@ -10,7 +9,6 @@ import {
   layout,
   colorOpacity,
   opacity,
-  rgba,
   componentStyles,
   gradients,
   zIndex,
@@ -148,115 +146,17 @@ export const theme = createTheme({
 
   // Shaping Language - Subtle, elegant curves (piano key aesthetic)
   shape: {
-    borderRadius: parseInt(borderRadius.md), // 8px default
+    borderRadius: 8, // 8px default - matches borderRadius.md
   },
 
-  // Shadows - Depth and elevation
-  shadows: [
-    "none",
-    shadows.sm,
-    shadows.sm,
-    shadows.md,
-    shadows.md,
-    shadows.md,
-    shadows.lg,
-    shadows.lg,
-    shadows.lg,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-    shadows.xl,
-  ],
+  // Shadows - Removed for clean, professional design
+  shadows: Array(25).fill("none") as any,
 
-  // Component Overrides - Consistent design language
+  // Component Overrides - Only override components actually used directly
+  // Best Practice: Only override what's necessary for global consistency
+  // Custom wrapper components (Button, Card, DSTypography, Pill) handle their own styling
   components: {
-    // Button - Primary interaction element
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: borderRadius.md,
-          padding: `${spacing.sm} ${spacing.lg}`,
-          transition: transitions.hover,
-          textTransform: "none",
-          fontWeight: typography.fontWeights.semibold,
-
-          "&:hover": {
-            transform: "translateY(-2px)",
-            boxShadow: shadows.cardHover,
-          },
-        },
-        contained: {
-          boxShadow: shadows.card,
-
-          "&:hover": {
-            boxShadow: shadows.cardHover,
-          },
-        },
-        containedPrimary: {
-          background: gradients.primary,
-
-          "&:hover": {
-            background: gradients.primary,
-          },
-        },
-        containedSecondary: {
-          background: gradients.secondary,
-
-          "&:hover": {
-            background: gradients.secondary,
-          },
-        },
-        outlined: {
-          borderColor: colors.support.keyOutline,
-          borderWidth: "1px",
-
-          "&:hover": {
-            borderColor: colors.accents.synthTeal.main,
-            backgroundColor: rgba(colors.accents.synthTeal, 0.04),
-            transform: "translateY(-2px)",
-          },
-        },
-        text: {
-          "&:hover": {
-            backgroundColor: rgba(colors.accents.synthTeal, 0.04),
-            transform: "translateY(-1px)",
-          },
-        },
-      },
-    },
-
-    // Card - Content containers (like piano keys)
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          backgroundColor: colors.core.graphite,
-          borderRadius: borderRadius.lg,
-          border: `1px solid ${colors.support.keyOutline}`,
-          transition: transitions.hover,
-          boxShadow: shadows.card,
-
-          "&:hover": {
-            transform: "translateY(-4px)",
-            boxShadow: shadows.cardHover,
-            borderColor: rgba(colors.accents.synthTeal, 0.2),
-          },
-        },
-      },
-    },
-
-    // Paper - Base surface
+    // Paper - Used by Dialog, Menu, Popover, etc. (MUI internal components)
     MuiPaper: {
       styleOverrides: {
         root: {
@@ -267,7 +167,7 @@ export const theme = createTheme({
       },
     },
 
-    // Chip - Tags and labels
+    // Chip - Used directly in profile.tsx (keep minimal override)
     MuiChip: {
       styleOverrides: {
         root: {
@@ -280,7 +180,6 @@ export const theme = createTheme({
           backgroundColor: colors.core.graphite,
           border: `1px solid ${colors.support.keyOutline}`,
           color: colors.core.ivoryWhite,
-
           "&:hover": {
             borderColor: colors.accents.synthTeal.main,
             backgroundColor: colorOpacity.teal.light,
@@ -289,35 +188,16 @@ export const theme = createTheme({
         outlined: {
           borderColor: colors.support.keyOutline,
           color: colors.core.ivoryWhite,
-
           "&:hover": {
-            borderColor: colors.accents.synthTeal,
-            backgroundColor: rgba(colors.accents.synthTeal, 0.04),
+            borderColor: colors.accents.synthTeal.main,
+            backgroundColor: alpha(colors.accents.synthTeal.main, 0.04),
           },
         },
       },
     },
 
-    // Link - Navigation and external links
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: colors.accents.synthTeal.main,
-          textDecoration: "none",
-          transition: transitions.hover,
-          fontWeight: typography.fontWeights.medium,
-
-          "&:hover": {
-            color: colors.accents.metronomeGold.main,
-            textDecoration: "underline",
-            textDecorationThickness: "2px",
-            textUnderlineOffset: "2px",
-          },
-        },
-      },
-    },
-
-    // Typography - Consistent text styling
+    // Typography - Minimal override (custom DSTypography handles most styling)
+    // Only adding transition for consistency
     MuiTypography: {
       styleOverrides: {
         root: {
@@ -326,39 +206,40 @@ export const theme = createTheme({
       },
     },
 
-    // Icon Button - Interactive icons
-    MuiIconButton: {
+    // Link - Navigation and external links
+    MuiLink: {
       styleOverrides: {
         root: {
           transition: transitions.hover,
-          borderRadius: borderRadius.md,
-
+          textDecoration: "none",
           "&:hover": {
-            backgroundColor: `${colors.accents.synthTeal}14`,
-            transform: "scale(1.1)",
+            textDecoration: "underline",
           },
         },
       },
     },
 
-    // Divider - Section separators
-    MuiDivider: {
+    // Icon Button - Used directly in socialNetworks.tsx and profile.tsx
+    MuiIconButton: {
       styleOverrides: {
         root: {
-          borderColor: colors.support.keyOutline,
-          borderWidth: "1px",
+          transition: transitions.hover,
+          borderRadius: borderRadius.md,
+          "&:hover": {
+            backgroundColor: alpha(colors.accents.synthTeal.main, 0.08),
+          },
         },
       },
     },
 
-    // Stack - Layout component
+    // Stack - Layout utility (defaultProps only, no style overrides)
     MuiStack: {
       defaultProps: {
         spacing: 2, // 16px default spacing
       },
     },
 
-    // Grid - Layout system
+    // Grid - Layout utility (defaultProps only, no style overrides)
     MuiGrid: {
       defaultProps: {
         spacing: 2, // 16px default spacing
@@ -371,7 +252,6 @@ export const theme = createTheme({
 declare module "@mui/material/styles" {
   interface Theme {
     custom: {
-      spacing: typeof spacing;
       borderRadius: typeof borderRadius;
       borders: typeof borders;
       opacity: typeof opacity;
@@ -380,39 +260,17 @@ declare module "@mui/material/styles" {
       layout: typeof layout;
       colors: typeof colors;
       colorOpacity: typeof colorOpacity;
-      rgba: typeof rgba;
       typography: typeof typography;
       componentStyles: typeof componentStyles;
       gradients: typeof gradients;
       zIndex: typeof zIndex;
     };
   }
-
-  interface ThemeOptions {
-    custom?: {
-      spacing?: typeof spacing;
-      borderRadius?: typeof borderRadius;
-      borders?: typeof borders;
-      opacity?: typeof opacity;
-      transitions?: typeof transitions;
-      shadows?: typeof shadows;
-      layout?: typeof layout;
-      colors?: typeof colors;
-      colorOpacity?: typeof colorOpacity;
-      rgba?: typeof rgba;
-      typography?: typeof typography;
-      componentStyles?: typeof componentStyles;
-      gradients?: typeof gradients;
-      zIndex?: typeof zIndex;
-    };
-  }
 }
 
 // Add custom properties directly to the theme instance
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-theme.custom = {
-  spacing,
+// Type assertion is safe here because we've declared the type in module augmentation above
+(theme as Theme).custom = {
   borderRadius,
   borders,
   opacity,
@@ -421,12 +279,10 @@ theme.custom = {
   layout,
   colors,
   colorOpacity,
-  rgba,
   typography,
   componentStyles,
   gradients,
   zIndex,
 };
 
-export const themeWithCustom = theme;
 export default theme;

@@ -3,13 +3,95 @@
  * Music-inspired color palette with modern tech aesthetics
  */
 
+// Opacity constants for color variants
+const opacityValues = {
+  verySubtle: 0.04,
+  subtle: 0.08,
+  light: 0.12,
+  medium: 0.2,
+  mediumHigh: 0.3,
+  high: 0.35,
+  muted: 0.7,
+} as const;
+
+// Opacity constants for UI elements (text/content)
+const uiOpacity = {
+  subtle: 0.5,
+  medium: 0.7,
+  high: 0.8,
+  higher: 0.85,
+  highest: 0.9,
+  full: 0.92,
+} as const;
+
+// Spacing constants (semantic names for MUI spacing units)
+// MUI provides 8px base unit: theme.spacing(1) = 8px, theme.spacing(3) = 24px
+// All values are multiples of 0.5 (4px) for consistency and clean pixel values
+// This ensures: 0.5=4px, 1=8px, 1.5=12px, 2=16px, 2.5=20px, 3=24px, etc.
+const spacingValues = {
+  xs: 0.5,    // 4px
+  sm: 1,      // 8px
+  md: 1.5,    // 12px
+  lg: 2,      // 16px
+  xl: 2.5,    // 20px
+  "2xl": 3,   // 24px
+  "3xl": 4,   // 32px
+  "4xl": 5,   // 40px
+  "5xl": 6,   // 48px
+  "6xl": 7,   // 56px
+  "7xl": 8,   // 64px
+  "8xl": 10,  // 80px
+  "9xl": 12,  // 96px
+  "10xl": 16, // 128px
+  "40xl": 40, // 320px
+  "80xl": 80, // 640px
+} as const;
+
+// Pixel size constants
+const pixelSizes = {
+  xs: "2px",
+  sm: "5px",
+  md: "14px",
+  lg: "28px",
+  xl: "60px",
+  "2xl": "100px",
+} as const;
+
+// Percentage constants
+const percentages = {
+  full: "100%",
+  eighty: "80%",
+  fiftySix: "56.25%", // 16:9 aspect ratio
+  fifteen: 15,
+} as const;
+
+// Border width constants
+const borderWidths = {
+  thin: "1px",
+  thick: "1.5px",
+} as const;
+
+// Note: Use theme.transitions.duration.short (250ms) from MUI
+// No need to define transition duration - MUI provides it
+
+// Other numeric constants
+const otherValues = {
+  accentBarWidth: 0.375, // 3px = 0.375 * 8px
+  staffLineCount: 5,
+  footerMaxWidth: 780,
+  sectionMaxWidth: 80, // 640px = 80 * 8px
+  companyBadgeSize: 28,
+  lineHeightCustom: 1.6,
+} as const;
+
 export const colors = {
   // Core Colors
   core: {
     keyBlack: "#0E0E10",
     ivoryWhite: "#F5F5F2",
     graphite: "#2B2B2F",
-    mutedIvory: "rgba(245, 245, 242, 0.7)",
+    // Derived from ivoryWhite with opacity
+    mutedIvory: `rgba(245, 245, 242, ${opacityValues.muted})`,
   },
 
   // Accent Colors
@@ -33,72 +115,49 @@ export const colors = {
 
   // Support Colors
   support: {
-    keyOutline: "rgba(245, 245, 242, 0.08)",
-    softShadow: "rgba(0, 0, 0, 0.45)",
+    // Derived from ivoryWhite with low opacity
+    keyOutline: `rgba(245, 245, 242, ${opacityValues.subtle})`,
   },
 } as const;
-
-/**
- * Helper function to create rgba colors with opacity
- * Usage: rgba(colors.accents.metronomeGold.main, 0.12)
- * Supports both string colors and nested color objects
- */
-export const rgba = (color: string | { main: string }, opacity: number): string => {
-  // Handle nested color objects (e.g., colors.accents.synthTeal)
-  const colorValue = typeof color === "string" ? color : color.main;
-  // Convert hex to rgb
-  const hex = colorValue.replace("#", "");
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-};
 
 /**
  * Pre-defined opacity variants for common use cases
+ * Use MUI's alpha() function for dynamic opacity: alpha(theme.palette.primary.main, 0.12)
  */
+// Helper to create rgba from hex color
+const hexToRgba = (hex: string, opacity: number): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+};
+
 export const colorOpacity = {
-  // Gold opacity variants
+  // Gold opacity variants - derived from colors.accents.metronomeGold.main
   gold: {
-    light: "rgba(245, 193, 86, 0.12)",
-    medium: "rgba(245, 193, 86, 0.3)",
-    dark: "rgba(245, 193, 86, 0.5)",
+    light: hexToRgba(colors.accents.metronomeGold.main, opacityValues.light),
+    medium: hexToRgba(colors.accents.metronomeGold.main, opacityValues.mediumHigh),
   },
-  // Teal opacity variants
+  // Teal opacity variants - derived from colors.accents.synthTeal.main
   teal: {
-    light: "rgba(0, 194, 184, 0.12)",
-    medium: "rgba(0, 194, 184, 0.2)",
-    dark: "rgba(0, 194, 184, 0.35)",
+    light: hexToRgba(colors.accents.synthTeal.main, opacityValues.light),
+    medium: hexToRgba(colors.accents.synthTeal.main, opacityValues.medium),
   },
-  // Spotify green opacity variants
+  // Spotify green opacity variants - derived from colors.spotify.green
   spotify: {
-    light: "rgba(29, 185, 84, 0.05)",
-    medium: "rgba(29, 185, 84, 0.12)",
-    border: "rgba(29, 185, 84, 0.2)",
-    hover: "rgba(29, 185, 84, 0.35)",
-    shadow: "rgba(29, 185, 84, 0.15)",
-    glow: "rgba(29, 185, 84, 0.2)",
+    light: hexToRgba(colors.spotify.green, opacityValues.light),
+    medium: hexToRgba(colors.spotify.green, opacityValues.high), // Used for hover/border
   },
-  // White/black opacity variants
+  // White opacity variants
   white: {
-    subtle: "rgba(255, 255, 255, 0.04)",
-    light: "rgba(255, 255, 255, 0.08)",
-    medium: "rgba(255, 255, 255, 0.12)",
-  },
-  black: {
-    light: "rgba(0, 0, 0, 0.2)",
-    medium: "rgba(0, 0, 0, 0.3)",
-    dark: "rgba(0, 0, 0, 0.45)",
+    subtle: `rgba(255, 255, 255, ${opacityValues.verySubtle})`,
+    light: `rgba(255, 255, 255, ${opacityValues.subtle})`,
   },
 } as const;
 
-// Background gradients for visual depth (defined after colorOpacity)
+// Background gradients for visual depth
 export const gradients = {
   hero: `linear-gradient(135deg, ${colors.core.keyBlack} 0%, ${colors.core.graphite} 100%)`,
-  card: `linear-gradient(135deg, ${colors.core.graphite} 0%, ${colors.core.keyBlack} 100%)`,
-  subtle: `linear-gradient(180deg, transparent 0%, ${colorOpacity.black.light} 100%)`,
-  primary: `linear-gradient(135deg, ${colors.accents.synthTeal.light} 0%, ${colors.accents.synthTeal.main} 100%)`,
-  secondary: `linear-gradient(135deg, ${colors.accents.metronomeGold.light} 0%, ${colors.accents.metronomeGold.main} 100%)`,
 } as const;
 
 export const typography = {
@@ -109,7 +168,6 @@ export const typography = {
   fontSizes: {
     "2xs": "0.7rem", // 11.2px - for very small text (CurrentlyPlaying)
     xs: "0.75rem", // 12px - for pills, badges, small labels
-    "xs-sm": "0.78rem", // 12.5px - for project card stats
     sm: "0.875rem", // 14px - for descriptions, buttons, body text
     "sm-md": "0.8125rem", // 13px - for CurrentlyPlaying text
     base: "1rem", // 16px - for body text, section titles
@@ -159,21 +217,17 @@ export const typography = {
 // Opacity tokens for consistent opacity values across components
 export const opacity = {
   // Text/content opacity
-  subtle: 0.5, // For inactive states, secondary elements
-  medium: 0.7, // For hover states, medium emphasis
-  high: 0.8, // For icons, medium-high emphasis
-  higher: 0.85, // For descriptions, secondary text
-  highest: 0.9, // For buttons, high emphasis
-  full: 0.92, // For taglines, almost full
+  subtle: uiOpacity.subtle, // For inactive states, secondary elements
+  medium: uiOpacity.medium, // For hover states, medium emphasis
+  high: uiOpacity.high, // For icons, medium-high emphasis
+  higher: uiOpacity.higher, // For descriptions, secondary text
+  highest: uiOpacity.highest, // For buttons, high emphasis
+  full: uiOpacity.full, // For taglines, almost full
   // Full opacity (1.0) is default, no token needed
 } as const;
 
-// Spacing tokens - Note: Most spacing uses MUI's theme.spacing() function
-// Only keeping minimal tokens used in muiTheme.ts
-export const spacing = {
-  sm: "0.5rem", // 8px
-  lg: "1.5rem", // 24px
-} as const;
+// Spacing: Use MUI's theme.spacing() function directly
+// MUI uses 8px base unit: theme.spacing(1) = 8px, theme.spacing(3) = 24px
 
 export const borderRadius = {
   none: "0",
@@ -186,90 +240,107 @@ export const borderRadius = {
 } as const;
 
 // Border tokens for consistent border styling
+const borderStyle = `${borderWidths.thin} solid`;
+const borderStyleThick = `${borderWidths.thick} solid`;
+
 export const borders = {
   // Standard border styles
-  default: "1px solid",
+  default: borderStyle,
+  thick: borderStyleThick,
   none: "none",
   // Common border color combinations
   divider: {
-    border: "1px solid",
+    border: borderStyle,
     borderColor: "divider",
   },
   // Spotify-themed borders
   spotify: {
-    border: "1px solid",
-    borderColor: colorOpacity.spotify.hover,
+    border: borderStyle,
+    borderColor: colorOpacity.spotify.medium,
   },
-  spotifyLight: {
-    border: "1px solid",
-    borderColor: colorOpacity.spotify.border,
+  spotifyThick: {
+    border: borderStyleThick,
+    borderColor: colorOpacity.spotify.medium,
   },
   // Gold-themed borders
   gold: {
-    border: "1px solid",
+    border: borderStyle,
     borderColor: colorOpacity.gold.light,
   },
   // Teal-themed borders
   teal: {
-    border: "1px solid",
+    border: borderStyle,
     borderColor: colorOpacity.teal.light,
   },
 } as const;
 
+// Shadows removed for clean, professional design
 export const shadows = {
-  sm: `0 1px 2px ${colors.support.softShadow}`,
-  md: `0 4px 6px ${colors.support.softShadow}`,
-  lg: `0 10px 15px ${colors.support.softShadow}`,
-  xl: `0 20px 25px ${colors.support.softShadow}`,
-
-  // Specialized shadows
-  card: `0 4px 12px ${colors.support.softShadow}`,
-  cardHover: `0 8px 24px ${colors.support.softShadow}`,
-  avatar: `0 8px 24px ${colorOpacity.black.light}`,
-  spotify: {
-    card: `0 4px 16px ${colorOpacity.spotify.shadow}`,
-    glow: `0 12px 32px ${colorOpacity.spotify.glow}`,
-  },
+  none: "none",
 } as const;
 
-// Core transitions for hover effects - centralized for consistency
+// Transitions: Use MUI's theme.transitions.create() directly in components
+// For styleOverrides, use static strings (MUI's default short duration is 250ms)
+// Usage in components: theme.transitions.create(["all"], { duration: theme.transitions.duration.short })
 export const transitions = {
-  // Primary hover transition - use for all hover effects (colors, borders, shadows, transforms)
+  // Static transition strings for styleOverrides (MUI's default: 250ms, easeInOut)
+  // Uses MUI's default transition duration (250ms) and easing (cubic-bezier(0.4, 0, 0.2, 1))
   hover: "all 250ms cubic-bezier(0.4, 0, 0.2, 1)",
-  // Transform-only transition - use when only animating transforms (scale, translate)
-  transform: "transform 250ms cubic-bezier(0.4, 0, 0.2, 1)",
 } as const;
 
-// Z-index scale for layering
+// Z-index: Use MUI's theme.zIndex utilities
+// MUI provides: mobileStepper (1000), speedDial (1050), appBar (1100), drawer (1200),
+//               modal (1300), snackbar (1400), tooltip (1500)
+// Access via: theme.zIndex.modal, theme.zIndex.tooltip, etc.
+// Only define custom z-index values that don't exist in MUI
 export const zIndex = {
   base: 0,
-  dropdown: 1000,
-  sticky: 1100,
-  fixed: 1200,
-  modalBackdrop: 1300,
-  modal: 1400,
-  popover: 1500,
-  tooltip: 1600,
+  // Use MUI's zIndex for: dropdown (mobileStepper), sticky (appBar), fixed (drawer),
+  // modalBackdrop (modal), modal (snackbar), popover (tooltip), tooltip (tooltip)
 } as const;
 
 // Layout primitives to avoid hard-coded spacing in layout files
+// Values are in MUI spacing units (use theme.spacing() to convert to pixels)
 export const layout = {
   container: {
-    paddingX: { xs: 3, sm: 3.5, md: 4.5, lg: 5.5 },
-    paddingY: 6,
+    paddingX: { xs: spacingValues["2xl"], sm: spacingValues["3xl"], md: spacingValues["4xl"], lg: spacingValues["5xl"] }, // 24px, 32px, 40px, 48px
+    paddingY: spacingValues["5xl"], // 48px
   },
   grid: {
-    rowSpacing: { xs: 5, md: 6 },
-    columnSpacing: { md: 4, lg: 6 },
-    leftColumn: { md: 5, lg: 5 },
-    rightColumn: { md: 7, lg: 7 },
-    stickyTopSpacing: 3, // theme.spacing(3) = 24px
+    rowSpacing: { xs: spacingValues["4xl"], md: spacingValues["5xl"] }, // 40px, 48px
+    columnSpacing: { md: spacingValues["3xl"], lg: spacingValues["5xl"] }, // 32px, 48px
+    leftColumn: { md: spacingValues["4xl"], lg: spacingValues["4xl"] }, // 40px
+    rightColumn: { md: spacingValues["6xl"], lg: spacingValues["6xl"] }, // 56px
+    stickyTopSpacing: spacingValues["2xl"], // 24px
   },
   section: {
-    scrollMarginTop: "100px",
-    marginBottom: { xs: 5, md: 6 }, // Reduced from 8/10 to 5/6 (40px/48px)
-    paddingTop: { xs: 2, md: 3 }, // Reduced from 4/5 to 2/3 (16px/24px)
-    spacing: { xs: 4, md: 5 },
+    scrollMarginTop: pixelSizes["2xl"],
+    marginBottom: { xs: spacingValues["4xl"], md: spacingValues["5xl"] }, // 40px, 48px
+    paddingTop: { xs: spacingValues.lg, md: spacingValues["2xl"] }, // 16px, 24px
+    spacing: { xs: spacingValues["3xl"], md: spacingValues["4xl"] }, // 32px, 40px
+    maxWidth: otherValues.sectionMaxWidth, // 640px = 80 * 8px
+  },
+} as const;
+
+// Common spacing patterns (reusable across components)
+// Values are in MUI spacing units (use theme.spacing() to convert to pixels)
+const commonSpacing = {
+  xs: spacingValues.xs,      // 4px
+  sm: spacingValues.sm,      // 8px
+  md: spacingValues.md,      // 12px
+  lg: spacingValues.lg,      // 16px
+  xl: spacingValues.xl,      // 20px
+  "2xl": spacingValues["2xl"], // 24px
+} as const;
+
+// Common typography patterns
+const commonTypography = {
+  secondaryText: {
+    fontSize: typography.fontSizes["base-md"],
+    fontWeight: typography.fontWeights.bold,
+  },
+  smallText: {
+    fontSize: typography.fontSizes["base-sm"],
   },
 } as const;
 
@@ -277,8 +348,7 @@ export const layout = {
 export const componentStyles = {
   // Link styles
   link: {
-    fontSize: typography.fontSizes["base-md"],
-    fontWeight: 700,
+    ...commonTypography.secondaryText,
     color: "secondary.main",
   },
   // Chip/Hobby styles
@@ -286,125 +356,99 @@ export const componentStyles = {
     bgcolor: colorOpacity.white.subtle,
     ...borders.divider,
     color: "text.secondary",
-    fontWeight: 700,
-    letterSpacing: "0.01em",
+    fontWeight: typography.fontWeights.bold,
+    letterSpacing: typography.letterSpacing.wide,
   },
   // Footer styles
   footer: {
-    maxWidth: 780,
-    marginTop: { xs: 6, md: 8 },
-    paddingTop: { xs: 3.5, md: 4.5 },
-    paddingBottom: { xs: 4, md: 5 },
-    bridgeHeight: "14px",
-    bridgeOpacity: 0.45,
+    maxWidth: otherValues.footerMaxWidth,
+    marginTop: { xs: spacingValues["5xl"], md: spacingValues["7xl"] }, // 48px, 64px
+    paddingTop: { xs: spacingValues["3xl"], md: spacingValues["4xl"] }, // 32px, 40px
+    paddingBottom: { xs: spacingValues["3xl"], md: spacingValues["4xl"] }, // 32px, 40px
+    bridgeHeight: pixelSizes.md,
+    bridgeOpacity: opacity.subtle,
     badge: {
-      padding: { x: 1.25, y: 0.6 },
-      gap: 1,
+      padding: { x: commonSpacing.md, y: commonSpacing.xs }, // 12px, 4px
+      gap: commonSpacing.sm, // 8px
       borderRadius: borderRadius.full,
       accentBar: {
-        width: "2px",
-        height: "80%",
-        opacity: 0.85,
+        width: pixelSizes.xs,
+        height: percentages.eighty,
+        opacity: opacity.higher,
       },
     },
     tagline: {
-      fontSize: typography.fontSizes["base-md"],
-      lineHeight: 1.6,
-      fontWeight: 600,
-      opacity: 0.92,
-      gap: 0.6,
-      iconSize: typography.fontSizes["base-sm"],
+      fontSize: commonTypography.secondaryText.fontSize,
+      lineHeight: otherValues.lineHeightCustom,
+      fontWeight: typography.fontWeights.semibold,
+      opacity: opacity.full,
+      gap: commonSpacing.xs, // 4px
+      iconSize: commonTypography.smallText.fontSize,
     },
     links: {
-      spacing: 2.5,
+      spacing: spacingValues["2xl"], // 24px
       iconSpacing: "0.5rem",
     },
   },
   // NavBar styles
   navBar: {
-    itemSpacing: 1.25,
-    barWidth: "5px",
-    barHeight: "28px",
-    barInactiveOpacity: opacity.subtle,
-    hoverTransform: "translateX(3px)",
-    fontSize: typography.fontSizes["base-sm"],
-    letterSpacing: "0.08em",
+    itemSpacing: commonSpacing.md,
     button: {
-      padding: { y: 1.25, x: 0 },
-      gap: 1.25,
+      padding: { y: commonSpacing.md, x: 0 },
+      gap: commonSpacing.md,
+      transition: transitions.hover,
+    },
+    bar: {
+      width: pixelSizes.sm,
+      height: pixelSizes.lg,
+      borderRadius: borderRadius.full,
+      inactiveOpacity: opacity.subtle,
+      transition: transitions.hover,
     },
     text: {
-      fontWeight: { active: 700, inactive: 500 },
+      fontSize: commonTypography.smallText.fontSize,
+      letterSpacing: typography.letterSpacing.widest,
+      fontWeight: { active: typography.fontWeights.bold, inactive: typography.fontWeights.medium },
       textTransform: "uppercase",
-    },
-  },
-  // Project hero styles
-  projectHero: {
-    borderRadius: 3,
-    padding: { xs: 3, sm: 4 },
-    gap: 3,
-    imageWidth: { xs: "100%", sm: 180 },
-    imageHeight: { xs: 160, sm: 180 },
-    icon: {
-      fontSize: 16,
-      color: "#1DB954",
-      opacity: opacity.high,
-    },
-    image: {
-      objectFit: "cover",
-      borderRadius: "1rem", // xl = 16px
-      border: borders.default as string,
-    },
-    button: {
-      borderColor: "rgba(29, 185, 84, 0.35)",
-      color: "#1DB954",
+      transition: transitions.hover,
     },
   },
   // Pill component styles (padding uses MUI's theme.spacing(), not hardcoded)
   pill: {
     small: {
+      padding: { x: spacingValues.md, y: spacingValues.xs }, // 12px, 4px
       fontSize: typography.fontSizes.xs,
       fontWeight: typography.fontWeights.semibold,
       letterSpacing: typography.letterSpacing.wider,
     },
     medium: {
+      padding: { x: spacingValues.lg, y: spacingValues.sm }, // 16px, 8px
       fontSize: typography.fontSizes.sm,
       fontWeight: typography.fontWeights.semibold,
       letterSpacing: typography.letterSpacing.widest,
     },
+    iconGap: spacingValues.xs, // 4px
     // Variant-specific letter spacing (for gold/teal variants)
     variantLetterSpacing: typography.letterSpacing.widest,
   },
-  // Project card stats badge styles
-  projectCardStats: {
-    padding: { x: 1.15, y: 0.45 },
-    borderRadius: borderRadius.full,
-    fontSize: typography.fontSizes["xs-sm"],
-    fontWeight: 700,
-    letterSpacing: "0.01em",
-    marginBottom: 0.75,
-    default: {
-      bgcolor: "rgba(255,255,255,0.04)",
-      borderColor: "divider",
-      color: "text.secondary",
-    },
-    spotify: {
-      bgcolor: "rgba(29,185,84,0.12)",
-      borderColor: "rgba(29,185,84,0.35)",
-      color: "#1DB954",
-    },
-  },
-  // Project card button styles
-  projectCardButton: {
-    spotify: {
-      borderColor: "rgba(29,185,84,0.35)",
-      color: "#1DB954",
-    },
+  // Project card layout styles (for consistency with projectHero)
+  projectCard: {
+    gap: commonSpacing.xl, // Stack spacing between image and content
+    imageWidth: { xs: percentages.full, sm: spacingValues["40xl"] }, // 320px = 40 * 8px
+    imageHeight: { xs: "auto", sm: spacingValues["40xl"] }, // 320px = 40 * 8px
+    contentPaddingLeft: commonSpacing.sm, // Left padding for content to account for accent bar
+    titleMarginBottom: 0, // No margin by default (ProjectCard doesn't have mb)
+    pillsMarginBottom: commonSpacing.sm,
+    pillsSpacing: commonSpacing.xs,
+    descriptionMarginBottom: 0, // No margin by default
+    buttonsMarginTop: commonSpacing.lg,
+    buttonsSpacing: commonSpacing.sm,
+    accentBarWidth: otherValues.accentBarWidth, // 3px = 0.375 * 8px
   },
   // Dialog/Modal styles
   dialog: {
-    borderRadius: 1.5,
-    iframeAspectRatio: "56.25%", // 16:9
+    borderRadius: spacingValues.md, // 12px
+    iframeAspectRatio: percentages.fiftySix, // 16:9
     contentPadding: 0,
     paper: {
       border: borders.default,
@@ -414,56 +458,53 @@ export const componentStyles = {
     },
     container: {
       position: "relative",
-      width: "100%",
+      width: percentages.full,
       overflow: "hidden",
     },
   },
-  // Hero card styles
-  heroCard: {
-    backgroundGradient: gradients.hero,
-    padding: { xs: 3, sm: 4 },
-    borderRadius: 2,
-    hoverTransform: "translateY(-2px) scale(1.01)",
-  },
-  // Enhanced card hover states
-  cardHover: {
-    transform: "translateY(-3px) scale(1.01)",
-  },
   // Section header styles
   sectionHeader: {
-    staffLineOpacity: 0.2,
-    spacingBottom: 3,
+    spacingBottom: spacingValues["2xl"], // 24px
+    marginTop: -1,
+    paddingLeft: commonSpacing.lg, // 16px
+    minHeight: pixelSizes.xl,
+    stackSpacing: commonSpacing.sm, // 8px
+    icon: {
+      size: typography.fontSizes.base, // 16px
+      color: "white",
+      opacity: opacity.full,
+      hoverOpacity: opacity.high,
+    },
+    title: {
+      color: "white",
+    },
+    staffLines: {
+      count: otherValues.staffLineCount,
+      startPosition: percentages.fifteen, // percentage
+      stepPosition: percentages.fifteen, // percentage step between lines
+      height: "0.1px",
+      color: `rgba(255, 255, 255, ${opacity.medium})`,
+    },
   },
   // Experience card styles
   experienceCard: {
-    padding: { xs: 2.5, md: 3 },
-    borderRadius: borderRadius.md,
-    borderColor: colorOpacity.gold.light,
-    borderColorHover: colorOpacity.gold.medium,
-    accentBar: {
-      width: "4px",
-      minHeight: "160px",
+    headerSpacing: commonSpacing.sm, // 8px
+    headerMarginBottom: commonSpacing.lg, // 16px
+    companyMarginBottom: spacingValues["2xl"], // 24px
+    descriptionMarginBottom: spacingValues.md, // 12px
+    descriptionMarginBottomNoHighlights: spacingValues["2xl"], // 24px
+    highlightsMarginBottom: spacingValues["2xl"], // 24px
+    highlightsSpacing: spacingValues.md, // 12px
+    highlightMarker: {
+      size: spacingValues.xs, // 4px
       borderRadius: borderRadius.full,
-      opacity: opacity.subtle,
-      opacityHover: opacity.medium,
     },
+    skillsSpacing: spacingValues.sm, // 8px
+    skillsMarginTop: spacingValues["2xl"], // 24px
     companyBadge: {
-      size: 28,
-      fontSize: typography.fontSizes["base-sm"],
-      fontWeight: 700,
-    },
-    description: {
-      fontSize: typography.fontSizes.sm,
-      opacity: opacity.higher,
-      marginBottom: 1.25,
-    },
-    highlights: {
-      spacing: 0.7,
-      listStyle: "none",
-      paddingLeft: 0,
-      marginBottom: 2,
-      iconSize: 10,
-      iconOpacity: 0.7,
+      size: otherValues.companyBadgeSize,
+      fontSize: commonTypography.smallText.fontSize,
+      fontWeight: typography.fontWeights.bold,
     },
   },
 } as const;

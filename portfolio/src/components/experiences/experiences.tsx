@@ -37,7 +37,13 @@ const experiences: Experience[] = [
 export const Experiences = () => {
   const theme = useTheme();
   return (
-    <Stack spacing={theme.custom.layout.section.spacing} sx={{ maxWidth: "640px" }}>
+    <Stack
+      spacing={theme.custom.layout.section.spacing}
+      sx={{
+        width: "100%",
+        maxWidth: theme.spacing(theme.custom.layout.section.maxWidth),
+      }}
+    >
       <SectionHeader title="Professional Experience" iconSize={18} />
 
       {experiences.map((experience) => (

@@ -87,14 +87,14 @@ export const Typography = ({
       fontWeight: theme.custom.typography.fontWeights.bold,
       fontSize: theme.custom.typography.fontSizes.xl,
       letterSpacing: theme.custom.typography.letterSpacing.normal,
-      mb: 0.5,
+      mb: theme.spacing(0.5),
     },
     experienceTitle: {
       color: "text.primary",
       fontWeight: theme.custom.typography.fontWeights.bold,
       fontSize: theme.custom.typography.fontSizes.xl,
       letterSpacing: theme.custom.typography.letterSpacing.normal,
-      mb: 0.25,
+      mb: theme.spacing(0.25),
     },
     dateRange: {
       color: "text.secondary",

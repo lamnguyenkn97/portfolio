@@ -33,7 +33,9 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
         borderRadius: 2,
         ...theme.custom.borders.divider,
         bgcolor: "background.paper",
-        transition: theme.custom.transitions.hover,
+        transition: theme.transitions.create(["all"], {
+          duration: theme.transitions.duration.short,
+        }),
         "&:hover": {
           borderColor: "primary.main",
           bgcolor: "rgba(0, 194, 184, 0.05)",
@@ -88,17 +90,6 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
               height: 8,
               borderRadius: "50%",
               bgcolor: "primary.main",
-              animation: "pulse 2s ease-in-out infinite",
-              "@keyframes pulse": {
-                "0%, 100%": {
-                  opacity: 1,
-                  transform: "scale(1)",
-                },
-                "50%": {
-                  opacity: 0.5,
-                  transform: "scale(1.2)",
-                },
-              },
             }}
           />
         )}

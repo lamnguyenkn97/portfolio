@@ -33,7 +33,6 @@ export const Button = ({
       color: theme.custom.colors.core.keyBlack,
       "&:hover": {
         bgcolor: "primary.light",
-        transform: "scale(1.02)",
       },
     },
     secondary: {
@@ -41,7 +40,6 @@ export const Button = ({
       color: theme.custom.colors.core.keyBlack,
       "&:hover": {
         bgcolor: "secondary.light",
-        transform: "scale(1.02)",
       },
     },
     spotify: {
@@ -50,7 +48,6 @@ export const Button = ({
       "&:hover": {
         bgcolor: theme.custom.colors.spotify.green,
         opacity: theme.custom.opacity.highest,
-        transform: "scale(1.02)",
       },
     },
     text: {
@@ -93,8 +90,8 @@ export const Button = ({
       variant={variant === "outlined" ? "outlined" : "contained"}
       sx={{
         borderRadius: theme.custom.borderRadius.md,
-        fontWeight: 700,
-        letterSpacing: "0.02em",
+        fontWeight: theme.custom.typography.fontWeights.bold,
+        letterSpacing: theme.custom.typography.letterSpacing.wider,
         textTransform: "none",
         transition: theme.custom.transitions.hover,
         ...variantStyles[variant],

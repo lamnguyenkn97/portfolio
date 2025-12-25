@@ -33,9 +33,9 @@ export const Pill = ({
       borderRadius: theme.custom.borderRadius.full,
     },
     spotify: {
-      bgcolor: theme.custom.colorOpacity.spotify.medium,
-      color: theme.custom.colors.spotify.green,
-      borderColor: theme.custom.colorOpacity.spotify.hover,
+      bgcolor: "transparent",
+      color: "text.secondary",
+      borderColor: "text.secondary",
       borderRadius: theme.custom.borderRadius.full,
     },
     teal: {
@@ -61,15 +61,15 @@ export const Pill = ({
   const pillStyles = theme.custom.componentStyles.pill;
   const sizeStyles = {
     small: {
-      px: theme.spacing(1.2),
-      py: theme.spacing(0.5),
+      px: theme.spacing(pillStyles.small.padding.x),
+      py: theme.spacing(pillStyles.small.padding.y),
       fontSize: pillStyles.small.fontSize,
       fontWeight: pillStyles.small.fontWeight,
       letterSpacing: pillStyles.small.letterSpacing,
     },
     medium: {
-      px: theme.spacing(1.75),
-      py: theme.spacing(0.75),
+      px: theme.spacing(pillStyles.medium.padding.x),
+      py: theme.spacing(pillStyles.medium.padding.y),
       fontSize: pillStyles.medium.fontSize,
       fontWeight: pillStyles.medium.fontWeight,
       letterSpacing: pillStyles.medium.letterSpacing,
@@ -96,14 +96,17 @@ export const Pill = ({
       ? pillStyles.variantLetterSpacing
       : sizeStyles[size].letterSpacing;
 
+  // For spotify variant, use thicker border for better visibility
+  const spotifyBorder = variant === "spotify" ? theme.custom.borders.spotifyThick.border : borderStyle;
+
   return (
     <Box
       {...props}
       sx={{
         display: "inline-flex",
         alignItems: "center",
-        gap: startIcon ? theme.spacing(0.5) : 0,
-        border: borderStyle,
+        gap: startIcon ? theme.spacing(pillStyles.iconGap) : 0,
+        border: variant === "spotify" ? spotifyBorder : borderStyle,
         whiteSpace: "nowrap",
         ...sizeStyles[size],
         letterSpacing,
