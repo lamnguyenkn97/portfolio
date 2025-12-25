@@ -15,7 +15,14 @@ export interface PillProps extends Omit<BoxProps, "component"> {
  * Design System Pill Component
  * Unified pill/badge component for tech tags, skills, badges, and stats
  */
-export const Pill = ({ children, variant = "default", size = "small", startIcon, sx, ...props }: PillProps) => {
+export const Pill = ({
+  children,
+  variant = "default",
+  size = "small",
+  startIcon,
+  sx,
+  ...props
+}: PillProps) => {
   const theme = useTheme();
 
   const variantStyles = {
@@ -26,9 +33,9 @@ export const Pill = ({ children, variant = "default", size = "small", startIcon,
       borderRadius: theme.custom.borderRadius.full,
     },
     spotify: {
-      bgcolor: theme.custom.colorOpacity.spotify.medium,
-      color: theme.custom.colors.spotify.green,
-      borderColor: theme.custom.colorOpacity.spotify.hover,
+      bgcolor: "transparent",
+      color: "text.secondary",
+      borderColor: "text.secondary",
       borderRadius: theme.custom.borderRadius.full,
     },
     teal: {
@@ -51,36 +58,46 @@ export const Pill = ({ children, variant = "default", size = "small", startIcon,
     },
   };
 
+  const pillStyles = theme.custom.componentStyles.pill;
   const sizeStyles = {
     small: {
-      px: 1.2,
-      py: 0.5,
-      fontSize: "0.75rem",
-      fontWeight: 600,
-      letterSpacing: "0.02em",
+      px: theme.spacing(pillStyles.small.padding.x),
+      py: theme.spacing(pillStyles.small.padding.y),
+      fontSize: pillStyles.small.fontSize,
+      fontWeight: pillStyles.small.fontWeight,
+      letterSpacing: pillStyles.small.letterSpacing,
     },
     medium: {
-      px: 1.75,
-      py: 0.75,
-      fontSize: "0.875rem",
-      fontWeight: 600,
-      letterSpacing: "0.08em",
+      px: theme.spacing(pillStyles.medium.padding.x),
+      py: theme.spacing(pillStyles.medium.padding.y),
+      fontSize: pillStyles.medium.fontSize,
+      fontWeight: pillStyles.medium.fontWeight,
+      letterSpacing: pillStyles.medium.letterSpacing,
     },
   };
 
-  const hoverStyles = variant === "skill" ? {
-    transition: theme.custom.transitions.hover,
-    cursor: "default",
-    "&:hover": {
-      borderColor: "secondary.main",
-      color: "secondary.main",
-      bgcolor: theme.custom.colorOpacity.gold.light,
-    },
-  } : {};
+  const hoverStyles =
+    variant === "skill"
+      ? {
+          transition: theme.custom.transitions.hover,
+          cursor: "default",
+          "&:hover": {
+            borderColor: "secondary.main",
+            color: "secondary.main",
+            bgcolor: theme.custom.colorOpacity.gold.light,
+          },
+        }
+      : {};
 
-  const borderStyle = variant === "teal" ? "none" : "1px solid";
+  const borderStyle = variant === "teal" ? theme.custom.borders.none : theme.custom.borders.default;
   const textTransform = variant === "gold" || variant === "teal" ? "uppercase" : "none";
-  const letterSpacing = variant === "gold" || variant === "teal" ? "0.08em" : sizeStyles[size].letterSpacing;
+  const letterSpacing =
+    variant === "gold" || variant === "teal"
+      ? pillStyles.variantLetterSpacing
+      : sizeStyles[size].letterSpacing;
+
+  // For spotify variant, use thicker border for better visibility
+  const spotifyBorder = variant === "spotify" ? theme.custom.borders.spotifyThick.border : borderStyle;
 
   return (
     <Box
@@ -88,8 +105,8 @@ export const Pill = ({ children, variant = "default", size = "small", startIcon,
       sx={{
         display: "inline-flex",
         alignItems: "center",
-        gap: startIcon ? 0.5 : 0,
-        border: borderStyle,
+        gap: startIcon ? theme.spacing(pillStyles.iconGap) : 0,
+        border: variant === "spotify" ? spotifyBorder : borderStyle,
         whiteSpace: "nowrap",
         ...sizeStyles[size],
         letterSpacing,
@@ -104,4 +121,3 @@ export const Pill = ({ children, variant = "default", size = "small", startIcon,
     </Box>
   );
 };
-

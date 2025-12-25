@@ -81,7 +81,10 @@ export const Profile = () => {
                           gap: theme.spacing(0.75),
                         }}
                       >
-                        <FontAwesomeIcon icon={item.icon} style={{ fontSize: "0.875rem" }} />
+                        <FontAwesomeIcon
+                          icon={item.icon}
+                          style={{ fontSize: theme.custom.typography.fontSizes.sm }}
+                        />
                         <span>{item.label}</span>
                       </Box>
                     }
@@ -108,13 +111,30 @@ export const Profile = () => {
       {/* Resume CTA */}
       <Box sx={{ mt: 2 }}>
         <Button
-          variant="primary"
+          variant="outlined"
           size="small"
           href={config.resumeUrl}
           target={config.resumeUrl !== "#" ? "_blank" : undefined}
           rel={config.resumeUrl !== "#" ? "noopener noreferrer" : undefined}
           startIcon={<FontAwesomeIcon icon={faFile} size="sm" />}
           aria-label="View full resume"
+          sx={{
+            textTransform: "none",
+            fontWeight: 500,
+            fontSize: theme.custom.typography.fontSizes.base,
+            color: "text.primary",
+            bgcolor: "background.paper",
+            borderColor: "divider",
+            borderWidth: 1,
+            borderRadius: theme.custom.borderRadius.md,
+            px: 2.5,
+            py: 1,
+            "&:hover": {
+              borderColor: "primary.main",
+              bgcolor: "background.paper",
+              color: "primary.main",
+            },
+          }}
         >
           View full resume
         </Button>
@@ -132,7 +152,9 @@ export const Profile = () => {
         }}
       >
         <Stack spacing={0.4} direction="row" alignItems="center">
-          <DSTypography variant="overline">current mood</DSTypography>
+          <DSTypography variant="overline" color={"white"}>
+            current mood
+          </DSTypography>
           <IconButton
             size="small"
             onClick={shuffleMood}

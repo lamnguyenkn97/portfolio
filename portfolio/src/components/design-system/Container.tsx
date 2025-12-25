@@ -19,30 +19,23 @@ export const Container = ({ variant = "default", children, sx, ...props }: Conta
     default: {
       p: 2.5,
       borderRadius: theme.custom.borderRadius.md,
-      border: "1px solid",
-      borderColor: "divider",
+      ...theme.custom.borders.divider,
       bgcolor: "background.paper",
-      backgroundImage: theme.custom.gradients.card,
-      boxShadow: theme.custom.shadows.cardHover,
       transition: theme.custom.transitions.hover,
       "&:hover": {
         borderColor: "primary.main",
-        boxShadow: theme.custom.shadows.card,
       },
     },
     elevated: {
       p: 2.5,
       borderRadius: theme.custom.borderRadius.md,
-      border: "1px solid",
-      borderColor: "divider",
+      ...theme.custom.borders.divider,
       bgcolor: "background.paper",
-      boxShadow: theme.custom.shadows.card,
     },
     subtle: {
       p: 2.5,
       borderRadius: theme.custom.borderRadius.md,
-      border: "1px solid",
-      borderColor: "divider",
+      ...theme.custom.borders.divider,
       bgcolor: "background.paper",
     },
   };

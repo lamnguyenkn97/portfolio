@@ -3,7 +3,7 @@ import { Stack, Box, Dialog, DialogContent, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { Button, SectionHeader, Pill, DSTypography } from "../design-system";
+import { Button, SectionHeader, Pill, DSTypography, Card } from "../design-system";
 import { Project, ProjectCard } from "./components";
 
 const projects: Project[] = [
@@ -20,10 +20,7 @@ const projects: Project[] = [
     techStack: [
       "React",
       "TypeScript",
-      "Styled Components",
       "Storybook",
-      "Design Tokens",
-      "A11y/Perf",
     ],
     stats: {
       downloadsPerMonth: "2.3k",
@@ -37,105 +34,97 @@ export const Projects = () => {
   const [openFanmadeDemo, setOpenFanmadeDemo] = useState(false);
 
   return (
-    <Stack spacing={theme.custom.layout.section.spacing} sx={{ maxWidth: "640px" }}>
+    <Stack
+      spacing={theme.custom.layout.section.spacing}
+      sx={{
+        width: "100%",
+        maxWidth: theme.spacing(theme.custom.layout.section.maxWidth),
+      }}
+    >
       <SectionHeader title="Side Projects" iconSize={18} />
 
       {/* Spotify Fanmade hero */}
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        spacing={theme.custom.componentStyles.projectHero.gap}
-        sx={{
-          border: "1px solid",
-          borderColor: theme.custom.colorOpacity.spotify.hover,
-          bgcolor: theme.custom.colorOpacity.spotify.light,
-          borderRadius: theme.custom.componentStyles.projectHero.borderRadius,
-          p: theme.custom.componentStyles.projectHero.padding,
-          boxShadow: theme.custom.shadows.spotify.glow,
-        }}
-      >
-        <Box
-          component="img"
-          alt="Spotify Fanmade"
-          src="https://images.unsplash.com/photo-1633002239926-181ca9b48a3e?q=80&w=3153&auto=format&fit=crop"
-          sx={{
-            width: theme.custom.componentStyles.projectHero.imageWidth,
-            height: theme.custom.componentStyles.projectHero.imageHeight,
-            objectFit: theme.custom.componentStyles.projectHero.image.objectFit,
-            borderRadius: theme.custom.componentStyles.projectHero.image.borderRadius,
-            border: theme.custom.componentStyles.projectHero.image.border,
-            borderColor: theme.custom.colorOpacity.spotify.border,
-          }}
-        />
-        <Box sx={{ flex: 1 }}>
-          <DSTypography variant="projectTitle" spotify sx={{ mb: 0.5 }}>
-            Spotify Fanmade
-          </DSTypography>
-          <Stack direction="row" spacing={1} sx={{ mb: 1.25, flexWrap: "wrap" }}>
-            {["React", "TypeScript", "Spotify Web API"].map((tech) => (
-              <Pill key={tech} variant="spotify">
-                {tech}
-              </Pill>
-            ))}
-          </Stack>
-          <DSTypography variant="description" sx={{ mb: 2 }}>
-            Fan-made Spotify experience with music discovery, playlists, and audio visualization.
-            Built with React and Spotify Web API; features real-time data and interactive controls.
-          </DSTypography>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1}
-            rowGap={1}
-            sx={{ flexWrap: "wrap", alignItems: "flex-start" }}
-          >
-            {fanmadeDemoUrl && (
+      <Card variant="spotify">
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={theme.custom.componentStyles.projectCard.gap}
+        >
+          <Box
+            component="img"
+            alt="Spotify Fanmade"
+            src="https://images.unsplash.com/photo-1633002239926-181ca9b48a3e?q=80&w=3153&auto=format&fit=crop"
+            sx={{
+              width: theme.custom.componentStyles.projectCard.imageWidth,
+              height: theme.custom.componentStyles.projectCard.imageHeight,
+              minWidth: theme.custom.componentStyles.projectCard.imageWidth,
+              objectFit: "cover",
+              borderRadius: theme.custom.borderRadius.md,
+              ...theme.custom.borders.spotify,
+            }}
+          />
+          <Box sx={{ flex: 1, pl: theme.spacing(theme.custom.componentStyles.projectCard.contentPaddingLeft) }}>
+            <DSTypography variant="projectTitle" spotify>
+              Spotify Fanmade
+            </DSTypography>
+            <Stack
+              direction="row"
+              spacing={theme.custom.componentStyles.projectCard.pillsSpacing}
+              flexWrap="wrap"
+              sx={{ mb: theme.spacing(theme.custom.componentStyles.projectCard.pillsMarginBottom) }}
+            >
+              {["React", "TypeScript", "Spotify Web API"].map((tech) => (
+                <Pill key={tech} variant="spotify">
+                  {tech}
+                </Pill>
+              ))}
+            </Stack>
+            <DSTypography variant="description">
+              Fan-made Spotify experience with music discovery, playlists, and audio visualization.
+              Built with React and Spotify Web API; features real-time data and interactive
+              controls.
+            </DSTypography>
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={theme.custom.componentStyles.projectCard.buttonsSpacing}
+              rowGap={theme.custom.componentStyles.projectCard.buttonsSpacing}
+              flexWrap="wrap"
+              alignItems="flex-start"
+              sx={{ mt: theme.spacing(theme.custom.componentStyles.projectCard.buttonsMarginTop) }}
+            >
+              {fanmadeDemoUrl && (
+                <Button
+                  variant="primary"
+                  size="small"
+                  onClick={() => setOpenFanmadeDemo(true)}
+                  startIcon={<FontAwesomeIcon icon={faCirclePlay} />}
+                >
+                  Watch demo
+                </Button>
+              )}
               <Button
-                variant="primary"
+                variant="outlined"
                 size="small"
-                onClick={() => setOpenFanmadeDemo(true)}
-                startIcon={<FontAwesomeIcon icon={faCirclePlay} />}
+                href="https://spotify-fanmade.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
               >
-                Watch demo
+                Live
               </Button>
-            )}
-            <Button
-              variant="outlined"
-              size="small"
-              href="https://spotify-fanmade.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
-              sx={{
-                borderColor: theme.custom.componentStyles.projectHero.button.borderColor,
-                color: theme.custom.componentStyles.projectHero.button.color,
-                "&:hover": {
-                  borderColor: theme.custom.colors.spotify.green,
-                  bgcolor: theme.custom.colorOpacity.spotify.light,
-                },
-              }}
-            >
-              Live
-            </Button>
-            <Button
-              variant="outlined"
-              size="small"
-              href="https://github.com/lamnguyenkn97/spotify_fanmade"
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={<FontAwesomeIcon icon={faGithub} />}
-              sx={{
-                borderColor: theme.custom.componentStyles.projectHero.button.borderColor,
-                color: theme.custom.componentStyles.projectHero.button.color,
-                "&:hover": {
-                  borderColor: theme.custom.colors.spotify.green,
-                  bgcolor: theme.custom.colorOpacity.spotify.light,
-                },
-              }}
-            >
-              GitHub
-            </Button>
-          </Stack>
-        </Box>
-      </Stack>
+              <Button
+                variant="outlined"
+                size="small"
+                href="https://github.com/lamnguyenkn97/spotify_fanmade"
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<FontAwesomeIcon icon={faGithub} />}
+              >
+                GitHub
+              </Button>
+            </Stack>
+          </Box>
+        </Stack>
+      </Card>
 
       {projects.map((project) => (
         <ProjectCard key={project.title} project={project} />
@@ -151,16 +140,18 @@ export const Projects = () => {
           sx: {
             bgcolor: "background.default",
             border: theme.custom.componentStyles.dialog.paper.border,
-            borderColor: theme.custom.colorOpacity.spotify.border,
+            borderColor: theme.custom.colorOpacity.spotify.medium,
           },
         }}
       >
-        <DialogContent sx={{ p: theme.custom.componentStyles.dialog.contentPadding, position: "relative" }}>
+        <DialogContent sx={{ p: 0, position: "relative" }}>
           <Box
             sx={{
-              ...theme.custom.componentStyles.dialog.container,
+              position: "relative",
+              width: "100%",
               pb: theme.custom.componentStyles.dialog.iframeAspectRatio,
-              borderRadius: theme.custom.componentStyles.dialog.borderRadius,
+              overflow: "hidden",
+              borderRadius: theme.custom.borderRadius.md,
             }}
           >
             <Box
@@ -174,7 +165,7 @@ export const Projects = () => {
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                border: theme.custom.componentStyles.dialog.iframe.border,
+                border: 0,
               }}
             />
           </Box>

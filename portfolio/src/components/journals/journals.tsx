@@ -26,7 +26,13 @@ export const Journals = () => {
   }));
 
   return (
-    <Stack spacing={theme.custom.layout.section.spacing} sx={{ maxWidth: "740px" }}>
+    <Stack
+      spacing={theme.custom.layout.section.spacing}
+      sx={{
+        width: "100%",
+        maxWidth: theme.spacing(theme.custom.layout.section.maxWidth),
+      }}
+    >
       <SectionHeader title="Frontend Journals" iconSize={18} />
 
       <Stack spacing={2.25}>

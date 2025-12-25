@@ -4,7 +4,13 @@ import { SectionHeader, DSTypography } from "../design-system";
 export const AboutMe = () => {
   const theme = useTheme();
   return (
-    <Stack spacing={theme.custom.layout.section.spacing} sx={{ maxWidth: "640px" }}>
+    <Stack
+      spacing={theme.custom.layout.section.spacing}
+      sx={{
+        width: "100%",
+        maxWidth: theme.spacing(theme.custom.layout.section.maxWidth),
+      }}
+    >
       <SectionHeader title="About" />
       <DSTypography variant="body">
         I&apos;m a Frontend Engineer passionate about crafting accessible, pixel-perfect user

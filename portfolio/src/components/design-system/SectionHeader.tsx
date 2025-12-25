@@ -16,26 +16,29 @@ export interface SectionHeaderProps {
  * Consistent section headers with music note icon and staff line background
  * Features 5 horizontal staff lines (musical staff) behind music note icon and white text
  */
-export const SectionHeader = ({
-  title,
-  iconSize = 16,
-  iconColor = "white",
-  iconOpacity = 1,
-}: SectionHeaderProps) => {
+export const SectionHeader = ({ title, iconSize, iconColor, iconOpacity }: SectionHeaderProps) => {
   const theme = useTheme();
+  const sectionHeaderTokens = theme.custom.componentStyles.sectionHeader;
 
-  // Create 5 horizontal lines for the musical staff - evenly spaced across full height
-  const staffLines = Array.from({ length: 5 }, (_, i) => (
+  // Use tokens with props as overrides
+  const finalIconSize = iconSize ?? sectionHeaderTokens.icon.size;
+  const finalIconColor = iconColor ?? sectionHeaderTokens.icon.color;
+  const finalIconOpacity = iconOpacity ?? sectionHeaderTokens.icon.opacity;
+
+  // Create staff lines using tokens
+  const staffLines = Array.from({ length: sectionHeaderTokens.staffLines.count }, (_, i) => (
     <Box
       key={i}
       sx={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: `${15 + i * 15}%`, // Tighter spacing: 15%, 30%, 45%, 60%, 75% - fits full height
-        height: "1px",
-        bgcolor: "rgba(255, 255, 255, 0.3)", // Visible gray lines
-        boxShadow: "0 1px 1px rgba(0, 0, 0, 0.2)", // Subtle shadow for depth
+        top: `${
+          sectionHeaderTokens.staffLines.startPosition +
+          i * sectionHeaderTokens.staffLines.stepPosition
+        }%`,
+        height: sectionHeaderTokens.staffLines.height,
+        bgcolor: sectionHeaderTokens.staffLines.color,
       }}
     />
   ));
@@ -44,13 +47,13 @@ export const SectionHeader = ({
     <Stack
       direction="row"
       alignItems="center"
-      spacing={1}
+      spacing={sectionHeaderTokens.stackSpacing}
       sx={{
-        mb: theme.custom.componentStyles.sectionHeader.spacingBottom,
-        mt: -1,
-        pl: 1.5,
+        mb: sectionHeaderTokens.spacingBottom,
+        mt: sectionHeaderTokens.marginTop,
+        pl: sectionHeaderTokens.paddingLeft,
         position: "relative",
-        minHeight: "60px", // Ensure enough height for staff lines
+        minHeight: sectionHeaderTokens.minHeight,
         zIndex: theme.custom.zIndex.base + 1,
       }}
     >
@@ -73,20 +76,18 @@ export const SectionHeader = ({
       <FontAwesomeIcon
         icon={faMusic}
         style={{
-          fontSize: iconSize,
-          color: iconColor,
-          opacity: iconOpacity,
+          fontSize: finalIconSize,
+          color: finalIconColor,
+          opacity: finalIconOpacity,
           transition: theme.custom.transitions.hover,
           position: "relative",
           zIndex: theme.custom.zIndex.base + 1,
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.opacity = "0.8";
-          e.currentTarget.style.transform = "scale(1.1)";
+          e.currentTarget.style.opacity = String(sectionHeaderTokens.icon.hoverOpacity);
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.opacity = String(iconOpacity);
-          e.currentTarget.style.transform = "scale(1)";
+          e.currentTarget.style.opacity = String(finalIconOpacity);
         }}
       />
 
@@ -94,7 +95,7 @@ export const SectionHeader = ({
       <DSTypography
         variant="sectionTitle"
         sx={{
-          color: "white",
+          color: sectionHeaderTokens.title.color,
           position: "relative",
           zIndex: theme.custom.zIndex.base + 1,
         }}

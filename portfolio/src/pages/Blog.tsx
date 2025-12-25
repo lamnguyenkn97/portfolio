@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Card, Badge, SectionHeader, DSTypography } from "../components/design-system";
 import { BlogLayout } from "../components/common/BlogLayout";
@@ -7,6 +7,7 @@ import { blogPosts } from "../content/blog/posts";
 import { config } from "../config/constants";
 
 export const BlogPage = () => {
+  const theme = useTheme();
   return (
     <BlogLayout>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -44,10 +45,9 @@ export const BlogPage = () => {
                       py: 0.5,
                       borderRadius: 999,
                       bgcolor: "rgba(255,255,255,0.04)",
-                      border: "1px solid",
-                      borderColor: "divider",
+                      ...theme.custom.borders.divider,
                       color: "text.secondary",
-                      fontSize: "0.75rem",
+                      fontSize: theme.custom.typography.fontSizes.xs,
                       fontWeight: 600,
                       letterSpacing: "0.02em",
                     }}

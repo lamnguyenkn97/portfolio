@@ -25,7 +25,6 @@ export const SocialNetworks = () => {
             color: "text.primary",
             "&:hover": {
               color: "primary.main",
-              transform: "scale(1.1)",
             },
           }}
         >

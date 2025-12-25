@@ -29,9 +29,7 @@ export const Avatar = ({ src, alt, size = "medium", sx, ...props }: AvatarProps)
         height: sizes,
         borderRadius: theme.custom.borderRadius.lg,
         overflow: "hidden",
-        border: "1px solid",
-        borderColor: "divider",
-        boxShadow: theme.custom.shadows.avatar,
+        ...theme.custom.borders.divider,
         ...sx,
       }}
     >
@@ -43,8 +41,8 @@ export const Avatar = ({ src, alt, size = "medium", sx, ...props }: AvatarProps)
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transition: theme.custom.transitions.transform,
-          "&:hover": { transform: "scale(1.02)" },
+          transition: theme.custom.transitions.hover,
+          "&:hover": {},
         }}
       />
     </Box>
