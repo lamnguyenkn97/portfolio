@@ -29,8 +29,10 @@ export const Profile = () => {
     setCurrentMood(next || currentMood);
   };
 
+  const profileStyles = theme.custom.componentStyles.profile;
+
   return (
-    <Stack spacing={3.25}>
+    <Stack spacing={theme.spacing(profileStyles.containerSpacing)}>
       {/* Now Playing / Hero */}
       <Container
         variant="default"
@@ -39,32 +41,38 @@ export const Profile = () => {
           borderColor: theme.custom.colorOpacity.teal.light,
         }}
       >
-        <Stack spacing={2}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
-            <Stack direction="row" alignItems="center" spacing={1.25}>
+        <Stack spacing={theme.spacing(profileStyles.heroSpacing)}>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={theme.spacing(profileStyles.heroHeaderSpacing)}>
+            <Stack direction="row" alignItems="center" spacing={theme.spacing(profileStyles.heroBadgeSpacing)}>
               <Badge label="Now Playing" variant="teal" />
-              <Box sx={{ width: 80, maxWidth: 120 }}>
-                <AudioWaveform height={18} color="primary.main" bars={12} />
+              <Box sx={{ width: profileStyles.audioWaveformWidth, maxWidth: profileStyles.audioWaveformMaxWidth }}>
+                <AudioWaveform height={profileStyles.audioWaveformHeight} color="primary.main" bars={12} />
               </Box>
             </Stack>
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={theme.spacing(profileStyles.heroSpacing)}>
               <Badge label="Open for 482" variant="gold" />
             </Stack>
           </Stack>
 
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems="center">
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={theme.spacing(profileStyles.heroSpacing)} alignItems="center">
             <Avatar src={avatarImage} alt="Lam Nguyen" size="medium" />
 
             {/* Track info */}
-            <Stack spacing={1} sx={{ flex: 1, minWidth: 0 }}>
+            <Stack spacing={theme.spacing(profileStyles.trackInfoSpacing)} sx={{ flex: 1, minWidth: 0 }}>
               <DSTypography variant="hero">Lam Nguyen — Frontend Engineer</DSTypography>
-              <DSTypography variant="description" sx={{ maxWidth: "640px", lineHeight: 1.6 }}>
+              <DSTypography 
+                variant="description" 
+                sx={{ 
+                  maxWidth: theme.spacing(profileStyles.descriptionMaxWidth), 
+                  lineHeight: profileStyles.descriptionLineHeight 
+                }}
+              >
                 Building accessible, performance-focused web experiences. I blend design systems,
                 music-inspired craft, and reliable delivery.
               </DSTypography>
 
               {/* Hobbies / interests */}
-              <Stack direction="row" spacing={0.75} flexWrap="wrap">
+              <Stack direction="row" spacing={theme.spacing(profileStyles.hobbiesSpacing)} flexWrap="wrap">
                 {[
                   { label: "Coding", icon: faCode },
                   { label: "Music", icon: faMusic },
@@ -78,7 +86,7 @@ export const Profile = () => {
                         sx={{
                           display: "inline-flex",
                           alignItems: "center",
-                          gap: theme.spacing(0.75),
+                          gap: theme.spacing(profileStyles.hobbyChipIconGap),
                         }}
                       >
                         <FontAwesomeIcon
@@ -99,17 +107,17 @@ export const Profile = () => {
       </Container>
 
       {/* Navigation */}
-      <Box sx={{ mt: 3 }}>
+      <Box sx={{ mt: theme.spacing(profileStyles.navMarginTop) }}>
         <NavBar />
       </Box>
 
       {/* Social Networks */}
-      <Box sx={{ mt: 1.5 }}>
+      <Box sx={{ mt: theme.spacing(profileStyles.socialMarginTop) }}>
         <SocialNetworks />
       </Box>
 
       {/* Resume CTA */}
-      <Box sx={{ mt: 2 }}>
+      <Box sx={{ mt: theme.spacing(profileStyles.resumeMarginTop) }}>
         <Button
           variant="outlined"
           size="small"
@@ -120,15 +128,15 @@ export const Profile = () => {
           aria-label="View full resume"
           sx={{
             textTransform: "none",
-            fontWeight: 500,
-            fontSize: theme.custom.typography.fontSizes.base,
+            fontWeight: profileStyles.resumeButton.fontWeight,
+            fontSize: profileStyles.resumeButton.fontSize,
             color: "text.primary",
             bgcolor: "background.paper",
             borderColor: "divider",
             borderWidth: 1,
             borderRadius: theme.custom.borderRadius.md,
-            px: 2.5,
-            py: 1,
+            px: theme.spacing(profileStyles.resumeButton.padding.x),
+            py: theme.spacing(profileStyles.resumeButton.padding.y),
             "&:hover": {
               borderColor: "primary.main",
               bgcolor: "background.paper",
@@ -144,14 +152,14 @@ export const Profile = () => {
       <Card
         variant="default"
         sx={{
-          mt: 2,
-          p: 1.5,
+          mt: theme.spacing(profileStyles.moodCard.marginTop),
+          p: theme.spacing(profileStyles.moodCard.padding),
           display: "grid",
-          gap: 1,
+          gap: theme.spacing(profileStyles.moodCard.gap),
           backgroundImage: currentMood.background ?? "none",
         }}
       >
-        <Stack spacing={0.4} direction="row" alignItems="center">
+        <Stack spacing={theme.spacing(profileStyles.moodHeaderSpacing)} direction="row" alignItems="center">
           <DSTypography variant="overline" color={"white"}>
             current mood
           </DSTypography>
@@ -161,7 +169,7 @@ export const Profile = () => {
             sx={{
               color: "secondary.main",
               "&:hover": { color: "secondary.dark", backgroundColor: "transparent" },
-              p: theme.spacing(0.25),
+              p: theme.spacing(profileStyles.moodIconButtonPadding),
             }}
             aria-label="Shuffle mood"
           >
@@ -176,7 +184,7 @@ export const Profile = () => {
           sx={{
             border: 0,
             width: "100%",
-            height: 152,
+            height: profileStyles.moodIframeHeight,
             display: "block",
           }}
         />

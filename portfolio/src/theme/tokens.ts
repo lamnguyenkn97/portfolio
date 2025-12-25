@@ -486,6 +486,48 @@ export const componentStyles = {
       color: `rgba(255, 255, 255, ${opacity.medium})`,
     },
   },
+  // Profile styles
+  profile: {
+    containerSpacing: spacingValues["3xl"], // 32px
+    heroSpacing: spacingValues.lg, // 16px
+    heroHeaderSpacing: spacingValues.lg, // 16px
+    heroBadgeSpacing: spacingValues.md, // 12px
+    audioWaveformWidth: 80, // 80px
+    audioWaveformMaxWidth: 120, // 120px
+    audioWaveformHeight: 18, // 18px
+    trackInfoSpacing: spacingValues.sm, // 8px
+    descriptionMaxWidth: otherValues.sectionMaxWidth, // 640px = 80 * 8px
+    descriptionLineHeight: otherValues.lineHeightCustom, // 1.6
+    hobbiesSpacing: spacingValues.sm, // 8px
+    hobbyChipIconGap: spacingValues.sm, // 8px
+    navMarginTop: spacingValues["2xl"], // 24px
+    socialMarginTop: spacingValues.md, // 12px
+    resumeMarginTop: spacingValues.lg, // 16px
+    resumeButton: {
+      fontWeight: typography.fontWeights.medium,
+      fontSize: typography.fontSizes.base,
+      padding: { x: spacingValues.xl, y: spacingValues.sm },
+    },
+    moodCard: {
+      marginTop: spacingValues.lg, // 16px
+      padding: spacingValues.md, // 12px
+      gap: spacingValues.sm, // 8px
+    },
+    moodHeaderSpacing: spacingValues.xs, // 4px
+    moodIconButtonPadding: spacingValues.xs, // 4px
+    moodIframeHeight: 152, // 152px
+    currentlyPlaying: {
+      marginTop: spacingValues["2xl"], // 24px
+      padding: spacingValues.lg, // 16px
+      borderRadius: spacingValues.lg, // 16px
+      spacing: spacingValues.md, // 12px
+      iconSize: 20, // 20px
+      iconOpacity: opacity.high,
+      labelLetterSpacing: typography.letterSpacing.extraWide,
+      labelMarginBottom: spacingValues.xs, // 4px
+      playingIndicatorSize: spacingValues.sm, // 8px
+    },
+  },
   // Experience card styles
   experienceCard: {
     headerSpacing: commonSpacing.sm, // 8px

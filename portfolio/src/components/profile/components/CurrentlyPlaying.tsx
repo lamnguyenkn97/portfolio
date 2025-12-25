@@ -14,6 +14,8 @@ interface CurrentlyPlayingProps {
 
 export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
   const theme = useTheme();
+  const currentlyPlayingStyles = theme.custom.componentStyles.profile.currentlyPlaying;
+  
   // Placeholder data - replace with Spotify API integration
   const currentTrack = track || {
     name: "Not playing",
@@ -28,24 +30,22 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
   return (
     <Box
       sx={{
-        mt: 3,
-        p: 2,
-        borderRadius: 2,
+        mt: theme.spacing(currentlyPlayingStyles.marginTop),
+        p: theme.spacing(currentlyPlayingStyles.padding),
+        borderRadius: theme.spacing(currentlyPlayingStyles.borderRadius),
         ...theme.custom.borders.divider,
         bgcolor: "background.paper",
-        transition: theme.transitions.create(["all"], {
-          duration: theme.transitions.duration.short,
-        }),
+        transition: theme.custom.transitions.hover,
         "&:hover": {
           borderColor: "primary.main",
-          bgcolor: "rgba(0, 194, 184, 0.05)",
+          bgcolor: theme.custom.colorOpacity.teal.light,
         },
       }}
     >
-      <Stack direction="row" spacing={1.5} alignItems="center" sx={{ color: "primary.main" }}>
+      <Stack direction="row" spacing={theme.spacing(currentlyPlayingStyles.spacing)} alignItems="center" sx={{ color: "primary.main" }}>
         <FontAwesomeIcon
           icon={faMusic}
-          style={{ fontSize: 20, opacity: theme.custom.opacity.high }}
+          style={{ fontSize: currentlyPlayingStyles.iconSize, opacity: currentlyPlayingStyles.iconOpacity }}
         />
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <DSTypography
@@ -53,8 +53,8 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
             sx={{
               fontSize: theme.custom.typography.fontSizes["2xs"],
               textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              mb: 0.25,
+              letterSpacing: currentlyPlayingStyles.labelLetterSpacing,
+              mb: theme.spacing(currentlyPlayingStyles.labelMarginBottom),
             }}
           >
             Currently Playing
@@ -62,7 +62,7 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
           <DSTypography
             variant="body"
             sx={{
-              fontWeight: 500,
+              fontWeight: theme.custom.typography.fontWeights.medium,
               fontSize: theme.custom.typography.fontSizes["sm-md"],
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -86,9 +86,9 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
         {currentTrack.isPlaying && (
           <Box
             sx={{
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
+              width: theme.spacing(currentlyPlayingStyles.playingIndicatorSize),
+              height: theme.spacing(currentlyPlayingStyles.playingIndicatorSize),
+              borderRadius: theme.custom.borderRadius.full,
               bgcolor: "primary.main",
             }}
           />
