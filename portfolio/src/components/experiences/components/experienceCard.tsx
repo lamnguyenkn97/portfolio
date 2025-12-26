@@ -219,8 +219,8 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
                         left: 0,
                         top: "0.5em", // Align with first line of text
                         transform: "translateY(-50%)", // Center vertically with first line
-                        width: "2px", // 2px - minimal bullet point
-                        height: "2px", // 2px - minimal bullet point
+                        width: "3px", // 3px - slightly bigger bullet point
+                        height: "3px", // 3px - slightly bigger bullet point
                         borderRadius: theme.custom.borderRadius.full,
                         bgcolor: "primary.main",
                         opacity: expStyles.highlightMarker.opacity,
