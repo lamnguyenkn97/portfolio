@@ -1,8 +1,7 @@
 import React from "react";
 import { Box, Stack, Link, useTheme } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faMusic, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { DSTypography } from "../design-system";
 import { config } from "../../config/constants";
@@ -40,7 +39,7 @@ export const Footer = () => {
             icon={faMusic}
             style={{ fontSize: footerStyles.tagline.iconSize, color: "inherit" }}
           />
-          Grown up in Saigon • Crafting my next chapter in Melbourne
+          Frontend Engineer • Seeking opportunities in Australia with 482 visa sponsorship
         </DSTypography>
 
         <Stack
@@ -49,18 +48,6 @@ export const Footer = () => {
           flexWrap="wrap"
           justifyContent="center"
         >
-          <Link
-            component={RouterLink}
-            to="/blog"
-            underline="hover"
-            sx={theme.custom.componentStyles.link}
-          >
-            <FontAwesomeIcon
-              icon={faFileAlt}
-              style={{ marginRight: footerStyles.links.iconSpacing }}
-            />
-            Blog
-          </Link>
           <Link
             href={`mailto:${config.email}`}
             underline="hover"

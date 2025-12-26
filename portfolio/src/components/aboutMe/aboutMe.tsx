@@ -1,8 +1,23 @@
-import { Stack, Box, useTheme } from "@mui/material";
+import { Stack, Box, Link, useTheme } from "@mui/material";
 import { SectionHeader, DSTypography } from "../design-system";
 
 export const AboutMe = () => {
   const theme = useTheme();
+  
+  const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById("projects");
+    if (element) {
+      const offset = parseInt(theme.custom.layout.section.scrollMarginTop, 10);
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <Stack
       spacing={theme.custom.layout.section.spacing}
@@ -13,45 +28,120 @@ export const AboutMe = () => {
     >
       <SectionHeader title="About" />
       <DSTypography variant="body">
-        I&apos;m a Frontend Engineer passionate about crafting accessible, pixel-perfect user
-        interfaces that blend thoughtful design with robust engineering. My work lives at the
-        intersection of code and creativity, where I build experiences that not only look great but
-        are meticulously crafted for performance and usability.
-      </DSTypography>
-
-      <DSTypography variant="body">
-        Currently, I&apos;m a Front End Developer specializing in React and TypeScript. I contribute
-        to the creation and maintenance of UI components and design systems, ensuring our platform
-        meets web accessibility standards and best practices to deliver an inclusive user
-        experience.
-      </DSTypography>
-
-      <DSTypography variant="body">
-        In the past, I&apos;ve had the opportunity to develop software across a variety of settings
-        — from{" "}
+        For 4+ years at{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
-          advertising agencies
-        </Box>{" "}
-        and{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          large corporations
-        </Box>{" "}
-        to{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          start-ups
-        </Box>{" "}
-        and{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          small digital product studios
+          Axon
         </Box>
-        .
+        {" "}in the{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Records Management
+        </Box>
+        {" "}department, I&apos;ve built{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          React/TypeScript
+        </Box>
+        {" "}applications for enterprise clients. I developed critical systems including{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Training
+        </Box>
+        ,{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          EIS (Early Intervention System)
+        </Box>
+        ,{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Report Writing
+        </Box>
+        , and{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Personnel Management
+        </Box>
+        {" "}platforms with dynamic configuration capabilities.
       </DSTypography>
 
       <DSTypography variant="body">
-        When I&apos;m not coding, you&apos;ll find me playing piano, exploring new music, or working
-        on side projects that combine my love for music and technology. I&apos;ve built projects
-        like Spotify Design System and Spotify Fanmade, where I get to merge my passion for frontend
-        engineering with my love for music.
+        I own all testing for my projects, implementing{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          shift-left testing
+        </Box>
+        {" "}and{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          automation test writing
+        </Box>
+        {" "}to ensure reliability and accessibility standards across complex workflows.
+      </DSTypography>
+
+      <DSTypography variant="body">
+        Prior to Axon, I spent 2 years at{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Novobi
+        </Box>
+        {" "}building{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          ERP systems
+        </Box>
+        {" "}using{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Python
+        </Box>
+        ,{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          Odoo
+        </Box>
+        , and{" "}
+        <Box component="span" sx={{ fontWeight: 600 }}>
+          JavaScript
+        </Box>
+        {" "}for B2B clients, gaining deep insight into complex enterprise workflows and business requirements.
+      </DSTypography>
+
+      <DSTypography variant="body">
+        In my free time, I play piano and build side projects like{" "}
+        <Link
+          href="#projects"
+          onClick={scrollToProjects}
+          sx={{
+            fontWeight: 600,
+            color: "primary.main",
+            textDecoration: "none",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+          }}
+        >
+          Spotify Design System
+        </Link>
+        {" "}and{" "}
+        <Link
+          href="#projects"
+          onClick={scrollToProjects}
+          sx={{
+            fontWeight: 600,
+            color: "primary.main",
+            textDecoration: "none",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+          }}
+        >
+          Spotify Fanmade
+        </Link>
+        {" "}(see{" "}
+        <Link
+          href="#projects"
+          onClick={scrollToProjects}
+          sx={{
+            fontWeight: 600,
+            color: "primary.main",
+            textDecoration: "none",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+          }}
+        >
+          Projects
+        </Link>
+        {" "}section below).
       </DSTypography>
     </Stack>
   );

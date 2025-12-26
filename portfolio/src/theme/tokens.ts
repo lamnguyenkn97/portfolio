@@ -438,9 +438,10 @@ export const componentStyles = {
     imageHeight: { xs: "auto", sm: spacingValues["40xl"] }, // 320px = 40 * 8px
     contentPaddingLeft: commonSpacing.sm, // Left padding for content to account for accent bar
     titleMarginBottom: 0, // No margin by default (ProjectCard doesn't have mb)
-    pillsMarginBottom: commonSpacing.sm,
+    pillsMarginBottom: commonSpacing.md, // Increased from sm for better spacing
     pillsSpacing: commonSpacing.xs,
-    descriptionMarginBottom: 0, // No margin by default
+    descriptionMarginBottom: commonSpacing.md, // Added spacing before buttons
+    featuresSpacing: spacingValues.md, // 12px - spacing between feature bullets
     buttonsMarginTop: commonSpacing.lg,
     buttonsSpacing: commonSpacing.sm,
     accentBarWidth: otherValues.accentBarWidth, // 3px = 0.375 * 8px
@@ -532,14 +533,17 @@ export const componentStyles = {
   experienceCard: {
     headerSpacing: commonSpacing.sm, // 8px
     headerMarginBottom: commonSpacing.lg, // 16px
-    companyMarginBottom: spacingValues["2xl"], // 24px
-    descriptionMarginBottom: spacingValues.md, // 12px
+    companyMarginBottom: spacingValues["3xl"], // 28px - increased from 24px
+    descriptionMarginBottom: spacingValues.lg, // 16px - increased from 12px
     descriptionMarginBottomNoHighlights: spacingValues["2xl"], // 24px
     highlightsMarginBottom: spacingValues["2xl"], // 24px
     highlightsSpacing: spacingValues.md, // 12px
+    highlightsGroupSpacing: spacingValues.lg, // 16px - spacing before quality/testing group
     highlightMarker: {
-      size: spacingValues.xs, // 4px
+      size: spacingValues.sm, // 8px - increased from 4px for better visibility
       borderRadius: borderRadius.full,
+      opacity: opacity.medium, // 0.7 - increased from 0.6 for better visibility
+      padding: spacingValues.lg, // 16px - left padding for text to accommodate marker
     },
     skillsSpacing: spacingValues.sm, // 8px
     skillsMarginTop: spacingValues["2xl"], // 24px
