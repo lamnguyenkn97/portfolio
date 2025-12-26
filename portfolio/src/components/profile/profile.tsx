@@ -6,7 +6,7 @@ import { SocialNetworks, CurrentlyPlaying } from "./components";
 import { AudioWaveform } from "../common/AudioWaveform";
 import avatarImage from "../../assets/img/avatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode, faMusic, faDumbbell, faShuffle, faFile } from "@fortawesome/free-solid-svg-icons";
+import { faShuffle, faFile } from "@fortawesome/free-solid-svg-icons";
 import moodsData from "../../data/moods.json";
 import { config } from "../../config/constants";
 
@@ -42,64 +42,77 @@ export const Profile = () => {
         }}
       >
         <Stack spacing={theme.spacing(profileStyles.heroSpacing)}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={theme.spacing(profileStyles.heroHeaderSpacing)}>
-            <Stack direction="row" alignItems="center" spacing={theme.spacing(profileStyles.heroBadgeSpacing)}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            spacing={theme.spacing(profileStyles.heroHeaderSpacing)}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={theme.spacing(profileStyles.heroBadgeSpacing)}
+            >
               <Badge label="Now Playing" variant="teal" />
-              <Box sx={{ width: profileStyles.audioWaveformWidth, maxWidth: profileStyles.audioWaveformMaxWidth }}>
-                <AudioWaveform height={profileStyles.audioWaveformHeight} color="primary.main" bars={12} />
+              <Box
+                sx={{
+                  width: profileStyles.audioWaveformWidth,
+                  maxWidth: profileStyles.audioWaveformMaxWidth,
+                }}
+              >
+                <AudioWaveform
+                  height={profileStyles.audioWaveformHeight}
+                  color="primary.main"
+                  bars={12}
+                />
               </Box>
             </Stack>
             <Stack direction="row" spacing={theme.spacing(profileStyles.heroSpacing)}>
-              <Badge label="Open for 482" variant="gold" />
+              <Badge label="Seeking 482 Sponsorship" variant="gold" />
             </Stack>
           </Stack>
 
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={theme.spacing(profileStyles.heroSpacing)} alignItems="center">
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={theme.spacing(profileStyles.heroSpacing)}
+            alignItems="center"
+          >
             <Avatar src={avatarImage} alt="Lam Nguyen" size="medium" />
 
             {/* Track info */}
-            <Stack spacing={theme.spacing(profileStyles.trackInfoSpacing)} sx={{ flex: 1, minWidth: 0 }}>
-              <DSTypography variant="hero">Lam Nguyen — Frontend Engineer</DSTypography>
-              <DSTypography 
-                variant="description" 
-                sx={{ 
-                  maxWidth: theme.spacing(profileStyles.descriptionMaxWidth), 
-                  lineHeight: profileStyles.descriptionLineHeight 
+            <Stack
+              spacing={theme.spacing(profileStyles.trackInfoSpacing)}
+              sx={{ flex: 1, minWidth: 0 }}
+            >
+              <DSTypography variant="hero">Lam Nguyen — Software Engineer</DSTypography>
+              <DSTypography
+                variant="description"
+                sx={{
+                  maxWidth: theme.spacing(profileStyles.descriptionMaxWidth),
+                  lineHeight: profileStyles.descriptionLineHeight,
                 }}
               >
-                Building accessible, performance-focused web experiences. I blend design systems,
-                music-inspired craft, and reliable delivery.
+                Software Engineer with 6 years building enterprise B2B applications. Specialized
+                in React/TypeScript, developing scalable systems including Records Management, Training,
+                and EIS platforms for enterprise clients.
               </DSTypography>
 
-              {/* Hobbies / interests */}
-              <Stack direction="row" spacing={theme.spacing(profileStyles.hobbiesSpacing)} flexWrap="wrap">
-                {[
-                  { label: "Coding", icon: faCode },
-                  { label: "Music", icon: faMusic },
-                  { label: "Working out", icon: faDumbbell },
-                ].map((item) => (
-                  <Chip
-                    key={item.label}
-                    label={
-                      <Box
-                        component="span"
-                        sx={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: theme.spacing(profileStyles.hobbyChipIconGap),
-                        }}
-                      >
-                        <FontAwesomeIcon
-                          icon={item.icon}
-                          style={{ fontSize: theme.custom.typography.fontSizes.sm }}
-                        />
-                        <span>{item.label}</span>
-                      </Box>
-                    }
-                    size="small"
-                    sx={theme.custom.componentStyles.hobbyChip}
-                  />
-                ))}
+              {/* Professional skills */}
+              <Stack
+                direction="row"
+                spacing={theme.spacing(profileStyles.hobbiesSpacing)}
+                flexWrap="wrap"
+              >
+                {[{ label: "React" }, { label: "TypeScript" }, { label: "Enterprise Client" }].map(
+                  (item) => (
+                    <Chip
+                      key={item.label}
+                      label={item.label}
+                      size="small"
+                      sx={theme.custom.componentStyles.hobbyChip}
+                    />
+                  )
+                )}
               </Stack>
             </Stack>
           </Stack>
@@ -159,7 +172,11 @@ export const Profile = () => {
           backgroundImage: currentMood.background ?? "none",
         }}
       >
-        <Stack spacing={theme.spacing(profileStyles.moodHeaderSpacing)} direction="row" alignItems="center">
+        <Stack
+          spacing={theme.spacing(profileStyles.moodHeaderSpacing)}
+          direction="row"
+          alignItems="center"
+        >
           <DSTypography variant="overline" color={"white"}>
             current mood
           </DSTypography>

@@ -94,7 +94,7 @@ export const Typography = ({
       fontWeight: theme.custom.typography.fontWeights.bold,
       fontSize: theme.custom.typography.fontSizes.xl,
       letterSpacing: theme.custom.typography.letterSpacing.normal,
-      mb: theme.spacing(0.25),
+      mb: theme.spacing(0.5), // 4px - spacing between title and company
     },
     dateRange: {
       color: "text.secondary",
@@ -104,7 +104,8 @@ export const Typography = ({
     },
     companyName: {
       color: "secondary.main",
-      fontWeight: theme.custom.typography.fontWeights.semibold,
+      fontWeight: theme.custom.typography.fontWeights.bold,
+      fontSize: theme.custom.typography.fontSizes.lg, // Increased from base-md to lg (18px)
       letterSpacing: theme.custom.typography.letterSpacing.wide,
     },
     body: {
