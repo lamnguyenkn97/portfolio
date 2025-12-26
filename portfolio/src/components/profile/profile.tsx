@@ -43,8 +43,8 @@ export const Profile = () => {
       >
         <Stack spacing={theme.spacing(profileStyles.heroSpacing)}>
           <Stack
-            direction="row"
-            alignItems="center"
+            direction={{ xs: "column", sm: "row" }}
+            alignItems={{ xs: "flex-start", sm: "center" }}
             justifyContent="space-between"
             spacing={theme.spacing(profileStyles.heroHeaderSpacing)}
           >
@@ -52,6 +52,7 @@ export const Profile = () => {
               direction="row"
               alignItems="center"
               spacing={theme.spacing(profileStyles.heroBadgeSpacing)}
+              flexWrap="wrap"
             >
               <Badge label="Now Playing" variant="teal" />
               <Box
@@ -67,7 +68,7 @@ export const Profile = () => {
                 />
               </Box>
             </Stack>
-            <Stack direction="row" spacing={theme.spacing(profileStyles.heroSpacing)}>
+            <Stack direction="row" spacing={theme.spacing(profileStyles.heroSpacing)} flexWrap="wrap">
               <Badge label="Open to 482 Sponsorship (Australia)" variant="gold" />
             </Stack>
           </Stack>
@@ -84,12 +85,22 @@ export const Profile = () => {
               spacing={theme.spacing(profileStyles.trackInfoSpacing)}
               sx={{ flex: 1, minWidth: 0 }}
             >
-              <DSTypography variant="hero">Lam Nguyen — Software Engineer</DSTypography>
+              <DSTypography 
+                variant="hero"
+                sx={{
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
+                }}
+              >
+                Lam Nguyen — Software Engineer
+              </DSTypography>
               <DSTypography
                 variant="description"
                 sx={{
-                  maxWidth: theme.spacing(profileStyles.descriptionMaxWidth),
+                  maxWidth: { xs: "100%", sm: theme.spacing(profileStyles.descriptionMaxWidth) },
                   lineHeight: profileStyles.descriptionLineHeight,
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
                 }}
               >
                 Software Engineer with 6 years of experience building and leading frontend systems for enterprise B2B platforms.
