@@ -68,7 +68,7 @@ export const Profile = () => {
               </Box>
             </Stack>
             <Stack direction="row" spacing={theme.spacing(profileStyles.heroSpacing)}>
-              <Badge label="Seeking 482 Sponsorship" variant="gold" />
+              <Badge label="Open to 482 Sponsorship (Australia)" variant="gold" />
             </Stack>
           </Stack>
 
@@ -92,9 +92,7 @@ export const Profile = () => {
                   lineHeight: profileStyles.descriptionLineHeight,
                 }}
               >
-                Software Engineer with 6 years building enterprise B2B applications. Specialized
-                in React/TypeScript, developing scalable systems including Records Management, Training,
-                and EIS platforms for enterprise clients.
+                Software Engineer with 6 years of experience building and leading frontend systems for enterprise B2B platforms.
               </DSTypography>
 
               {/* Professional skills */}
