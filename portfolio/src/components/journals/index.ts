@@ -1,8 +1,1 @@
 export { Journals } from "./journals";
-
-
-
-
-
-
-

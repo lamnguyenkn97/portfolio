@@ -19,9 +19,3 @@ export const config = {
     github: process.env.REACT_APP_GITHUB || "https://github.com/lamnguyenkn97",
   },
 } as const;
-
-
-
-
-
-

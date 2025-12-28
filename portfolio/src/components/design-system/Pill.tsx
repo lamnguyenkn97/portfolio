@@ -97,7 +97,8 @@ export const Pill = ({
       : sizeStyles[size].letterSpacing;
 
   // For spotify variant, use thicker border for better visibility
-  const spotifyBorder = variant === "spotify" ? theme.custom.borders.spotifyThick.border : borderStyle;
+  const spotifyBorder =
+    variant === "spotify" ? theme.custom.borders.spotifyThick.border : borderStyle;
 
   return (
     <Box

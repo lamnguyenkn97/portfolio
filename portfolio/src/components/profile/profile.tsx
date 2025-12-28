@@ -68,7 +68,11 @@ export const Profile = () => {
                 />
               </Box>
             </Stack>
-            <Stack direction="row" spacing={theme.spacing(profileStyles.heroSpacing)} flexWrap="wrap">
+            <Stack
+              direction="row"
+              spacing={theme.spacing(profileStyles.heroSpacing)}
+              flexWrap="wrap"
+            >
               <Badge label="Open to 482 Sponsorship (Australia)" variant="gold" />
             </Stack>
           </Stack>
@@ -85,7 +89,7 @@ export const Profile = () => {
               spacing={theme.spacing(profileStyles.trackInfoSpacing)}
               sx={{ flex: 1, minWidth: 0 }}
             >
-              <DSTypography 
+              <DSTypography
                 variant="hero"
                 sx={{
                   wordBreak: "break-word",
@@ -103,7 +107,8 @@ export const Profile = () => {
                   overflowWrap: "break-word",
                 }}
               >
-                Software Engineer with 6 years of experience building and leading frontend systems for enterprise B2B platforms.
+                Software Engineer with 6 years of experience building and leading frontend systems
+                for enterprise B2B platforms.
               </DSTypography>
 
               {/* Professional skills */}

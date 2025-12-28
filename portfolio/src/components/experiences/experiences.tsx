@@ -9,7 +9,8 @@ const experiences: Experience[] = [
     title: "Frontend Engineer",
     company: "Axon",
     companyUrl: "https://axon.com",
-    description: "Building React/TypeScript applications in the Records Management department for enterprise clients, developing Training, EIS, Report Writing, and Personnel Management systems with dynamic configuration capabilities.",
+    description:
+      "Building React/TypeScript applications in the Records Management department for enterprise clients, developing Training, EIS, Report Writing, and Personnel Management systems with dynamic configuration capabilities.",
     skillSet: ["React", "TypeScript", "Jest", "Design System", "E2E Testing", "pdfTron"],
     highlights: [
       "Led Training System development—built scalable course and curriculum management platform with learner management and bulk import capabilities, serving multiple enterprise clients",
@@ -26,7 +27,8 @@ const experiences: Experience[] = [
     title: "Software Engineer",
     company: "Novobi",
     companyUrl: "https://novobi.com/",
-    description: "Developed enterprise ERP solutions with customization and integration for B2B clients, building Sales, Inventory, Accounting, Delivery modules, and e-commerce integrations.",
+    description:
+      "Developed enterprise ERP solutions with customization and integration for B2B clients, building Sales, Inventory, Accounting, Delivery modules, and e-commerce integrations.",
     skillSet: ["Python", "Odoo", "JavaScript", "PostgreSQL", "Docker", "Shopify API"],
     highlights: [
       "Developed enterprise ERP modules (Sales, Inventory, Accounting, Delivery) for multiple B2B clients including GoodNature and FeelGoodz, customizing workflows to meet complex business requirements",

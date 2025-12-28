@@ -26,7 +26,13 @@ export const BlogPage = () => {
               <Stack direction="row" alignItems="center" spacing={1}>
                 <DSTypography variant="dateRange">{post.readTime}</DSTypography>
                 <Badge
-                  variant={post.status === "Draft" ? "teal" : post.status === "Published" ? "gold" : "spotify"}
+                  variant={
+                    post.status === "Draft"
+                      ? "teal"
+                      : post.status === "Published"
+                        ? "gold"
+                        : "spotify"
+                  }
                   size="small"
                   label={post.status}
                 />

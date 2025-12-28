@@ -48,4 +48,3 @@ export const Avatar = ({ src, alt, size = "medium", sx, ...props }: AvatarProps)
     </Box>
   );
 };
-

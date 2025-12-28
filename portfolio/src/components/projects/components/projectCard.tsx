@@ -114,7 +114,10 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               <Pill
                 variant="spotify"
                 startIcon={
-                  <FontAwesomeIcon icon={faDownload} style={{ fontSize: theme.custom.typography.fontSizes.xs }} />
+                  <FontAwesomeIcon
+                    icon={faDownload}
+                    style={{ fontSize: theme.custom.typography.fontSizes.xs }}
+                  />
                 }
               >
                 Downloads: {displayDownloads}/month
@@ -124,19 +127,19 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         ) : null}
         {/* Description or Features */}
         {project.features?.length ? (
-          <Stack 
-            spacing={theme.spacing(theme.custom.componentStyles.projectCard.featuresSpacing)} 
-            sx={{ 
+          <Stack
+            spacing={theme.spacing(theme.custom.componentStyles.projectCard.featuresSpacing)}
+            sx={{
               mb: theme.spacing(theme.custom.componentStyles.projectCard.descriptionMarginBottom),
             }}
           >
             {project.features.map((feature, idx) => {
               const expStyles = theme.custom.componentStyles.experienceCard;
               return (
-                <DSTypography 
+                <DSTypography
                   key={idx}
-                  variant="caption" 
-                  sx={{ 
+                  variant="caption"
+                  sx={{
                     color: "text.primary",
                     lineHeight: 1.6,
                     position: "relative",
@@ -161,9 +164,9 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             })}
           </Stack>
         ) : project.description ? (
-          <DSTypography 
+          <DSTypography
             variant="description"
-            sx={{ 
+            sx={{
               mb: theme.spacing(theme.custom.componentStyles.projectCard.descriptionMarginBottom),
               lineHeight: 1.6,
             }}
@@ -172,63 +175,63 @@ export const ProjectCard = ({ project }: { project: Project }) => {
           </DSTypography>
         ) : null}
 
-          {(project.liveUrl || project.repoUrl || project.npmUrl || project.demoUrl) && (
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={theme.custom.componentStyles.projectCard.buttonsSpacing}
-              rowGap={theme.custom.componentStyles.projectCard.buttonsSpacing}
-              flexWrap="wrap"
-              alignItems="flex-start"
-              sx={{ mt: theme.spacing(theme.custom.componentStyles.projectCard.buttonsMarginTop) }}
-            >
-              {project.demoUrl && (
-                <Button
-                  variant="primary"
-                  size="small"
-                  onClick={() => setOpenDemo(true)}
-                  startIcon={<FontAwesomeIcon icon={faCirclePlay} />}
-                >
-                  Watch demo
-                </Button>
-              )}
-              {project.liveUrl && (
-                <Button
-                  variant="outlined"
-                  size="small"
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
-                >
-                  Live
-                </Button>
-              )}
-              {project.repoUrl && (
-                <Button
-                  variant="outlined"
-                  size="small"
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<FontAwesomeIcon icon={faGithub} />}
-                >
-                  GitHub
-                </Button>
-              )}
-              {project.npmUrl && (
-                <Button
-                  variant="outlined"
-                  size="small"
-                  href={project.npmUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<FontAwesomeIcon icon={faBoxOpen} />}
-                >
-                  npm
-                </Button>
-              )}
-            </Stack>
-          )}
+        {(project.liveUrl || project.repoUrl || project.npmUrl || project.demoUrl) && (
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={theme.custom.componentStyles.projectCard.buttonsSpacing}
+            rowGap={theme.custom.componentStyles.projectCard.buttonsSpacing}
+            flexWrap="wrap"
+            alignItems="flex-start"
+            sx={{ mt: theme.spacing(theme.custom.componentStyles.projectCard.buttonsMarginTop) }}
+          >
+            {project.demoUrl && (
+              <Button
+                variant="primary"
+                size="small"
+                onClick={() => setOpenDemo(true)}
+                startIcon={<FontAwesomeIcon icon={faCirclePlay} />}
+              >
+                Watch demo
+              </Button>
+            )}
+            {project.liveUrl && (
+              <Button
+                variant="outlined"
+                size="small"
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
+              >
+                Live
+              </Button>
+            )}
+            {project.repoUrl && (
+              <Button
+                variant="outlined"
+                size="small"
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<FontAwesomeIcon icon={faGithub} />}
+              >
+                GitHub
+              </Button>
+            )}
+            {project.npmUrl && (
+              <Button
+                variant="outlined"
+                size="small"
+                href={project.npmUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<FontAwesomeIcon icon={faBoxOpen} />}
+              >
+                npm
+              </Button>
+            )}
+          </Stack>
+        )}
       </Box>
 
       {/* Demo modal */}

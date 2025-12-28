@@ -124,7 +124,11 @@ export const NavBar = () => {
             sx={getNavButtonStyles(theme, item.color)}
           >
             <Box className="nav-bar" sx={getNavBarStyles(theme, isActive, item.color)} />
-            <DSTypography className="nav-text" variant="body" sx={getNavTextStyles(theme, isActive, item.color)}>
+            <DSTypography
+              className="nav-text"
+              variant="body"
+              sx={getNavTextStyles(theme, isActive, item.color)}
+            >
               {item.label}
             </DSTypography>
           </Box>

@@ -285,4 +285,3 @@ function AdvancedSearch() {
 
 Throttle is a simple but powerful tool for optimizing real-time features. Use it wisely to balance user experience with performance!
 `;
-

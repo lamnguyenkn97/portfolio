@@ -15,7 +15,7 @@ interface CurrentlyPlayingProps {
 export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
   const theme = useTheme();
   const currentlyPlayingStyles = theme.custom.componentStyles.profile.currentlyPlaying;
-  
+
   // Placeholder data - replace with Spotify API integration
   const currentTrack = track || {
     name: "Not playing",
@@ -42,10 +42,18 @@ export const CurrentlyPlaying = ({ track }: CurrentlyPlayingProps) => {
         },
       }}
     >
-      <Stack direction="row" spacing={theme.spacing(currentlyPlayingStyles.spacing)} alignItems="center" sx={{ color: "primary.main" }}>
+      <Stack
+        direction="row"
+        spacing={theme.spacing(currentlyPlayingStyles.spacing)}
+        alignItems="center"
+        sx={{ color: "primary.main" }}
+      >
         <FontAwesomeIcon
           icon={faMusic}
-          style={{ fontSize: currentlyPlayingStyles.iconSize, opacity: currentlyPlayingStyles.iconOpacity }}
+          style={{
+            fontSize: currentlyPlayingStyles.iconSize,
+            opacity: currentlyPlayingStyles.iconOpacity,
+          }}
         />
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <DSTypography

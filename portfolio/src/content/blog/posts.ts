@@ -21,4 +21,3 @@ export const blogPosts: BlogPost[] = [
     mdx: throttleLodashMdx,
   },
 ];
-

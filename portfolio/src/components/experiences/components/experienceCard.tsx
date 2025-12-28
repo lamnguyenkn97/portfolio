@@ -33,32 +33,32 @@ const renderHighlightWithLinks = (text: string) => {
   ];
 
   // Client names (only public/commercial clients, not agency names)
-  const clientNames = [
-    "GoodNature",
-    "FeelGoodz",
-  ];
+  const clientNames = ["GoodNature", "FeelGoodz"];
 
   // Build regex pattern for all project names (escape special chars)
   const projectPattern = projectNames
     .map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
     .join("|");
-  
+
   // Build regex pattern for client/agency names
   const clientNamePattern = clientNames
     .map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
     .join("|");
-  
+
   // Combined pattern: client links OR project names OR client/agency names
-  const combinedPattern = new RegExp(`(${projectPattern}|${clientNamePattern}|GoodNature|FeelGoodz)`, "gi");
-  
+  const combinedPattern = new RegExp(
+    `(${projectPattern}|${clientNamePattern}|GoodNature|FeelGoodz)`,
+    "gi"
+  );
+
   const parts = text.split(combinedPattern);
   const result: React.ReactNode[] = [];
-  
+
   parts.forEach((part, idx) => {
     if (!part) return; // Skip empty strings
-    
+
     const lowerPart = part.toLowerCase();
-    
+
     // Check if it's a client link
     if (clientLinks[part]) {
       result.push(
@@ -81,12 +81,10 @@ const renderHighlightWithLinks = (text: string) => {
       );
       return;
     }
-    
+
     // Check if it's a project name (case-insensitive)
-    const isProjectName = projectNames.some(
-      (name) => name.toLowerCase() === lowerPart
-    );
-    
+    const isProjectName = projectNames.some((name) => name.toLowerCase() === lowerPart);
+
     if (isProjectName) {
       result.push(
         <Box key={`project-${idx}`} component="span" sx={{ fontWeight: 600 }}>
@@ -95,12 +93,10 @@ const renderHighlightWithLinks = (text: string) => {
       );
       return;
     }
-    
+
     // Check if it's a client/agency name (case-insensitive)
-    const isClientName = clientNames.some(
-      (name) => name.toLowerCase() === lowerPart
-    );
-    
+    const isClientName = clientNames.some((name) => name.toLowerCase() === lowerPart);
+
     if (isClientName) {
       result.push(
         <Box key={`client-${idx}`} component="span" sx={{ fontWeight: 600, color: "primary.main" }}>
@@ -109,11 +105,11 @@ const renderHighlightWithLinks = (text: string) => {
       );
       return;
     }
-    
+
     // Regular text
     result.push(<span key={`text-${idx}`}>{part}</span>);
   });
-  
+
   return <>{result}</>;
 };
 
@@ -147,12 +143,13 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
             rel="noopener noreferrer"
             sx={{ mb: theme.spacing(expStyles.companyMarginBottom) }}
           >
-            <DSTypography variant="companyName">
-              {company}
-            </DSTypography>
+            <DSTypography variant="companyName">{company}</DSTypography>
           </Link>
         ) : (
-          <DSTypography variant="companyName" sx={{ mb: theme.spacing(expStyles.companyMarginBottom) }}>
+          <DSTypography
+            variant="companyName"
+            sx={{ mb: theme.spacing(expStyles.companyMarginBottom) }}
+          >
             {company}
           </DSTypography>
         )}
@@ -171,20 +168,20 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
 
         {/* Highlights (impact bullets) */}
         {highlights?.length ? (
-          <Stack spacing={theme.spacing(expStyles.highlightsSpacing)} sx={{ mb: theme.spacing(expStyles.highlightsMarginBottom) }}>
+          <Stack
+            spacing={theme.spacing(expStyles.highlightsSpacing)}
+            sx={{ mb: theme.spacing(expStyles.highlightsMarginBottom) }}
+          >
             {highlights.map((item, idx) => {
               // Determine if this is a project highlight or quality/testing highlight
               // For Axon: first 4 are projects, last 2 are quality/testing
               // For Novobi: all are projects, no divider needed
-              const isProjectHighlight = 
-                (company === "Axon" && idx < 4) || 
-                company === "Novobi"; // Novobi: all bullets are projects
-              
+              const isProjectHighlight = (company === "Axon" && idx < 4) || company === "Novobi"; // Novobi: all bullets are projects
+
               // Add extra spacing before quality/testing highlights
               const isQualityHighlight = !isProjectHighlight;
-              const previousIsProject = 
-                (company === "Axon" && idx === 4); // Only show divider for Axon
-              
+              const previousIsProject = company === "Axon" && idx === 4; // Only show divider for Axon
+
               return (
                 <Box
                   key={idx}
@@ -206,10 +203,10 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
                       }}
                     />
                   )}
-                  <DSTypography 
-                    variant="caption" 
-                    sx={{ 
-                      color: "text.primary", 
+                  <DSTypography
+                    variant="caption"
+                    sx={{
+                      color: "text.primary",
                       lineHeight: 1.6,
                       position: "relative",
                       pl: theme.spacing(expStyles.highlightMarker.padding), // Use token for padding
@@ -236,9 +233,9 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
         ) : null}
 
         {/* Skills */}
-        <Stack 
-          direction="row" 
-          spacing={theme.spacing(expStyles.skillsSpacing)} 
+        <Stack
+          direction="row"
+          spacing={theme.spacing(expStyles.skillsSpacing)}
           flexWrap="wrap"
           sx={{ mt: theme.spacing(expStyles.skillsMarginTop) }}
         >

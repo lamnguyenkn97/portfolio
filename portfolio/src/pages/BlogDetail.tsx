@@ -46,11 +46,7 @@ export const BlogDetailPage = () => {
         />
       ),
       p: (props: ParagraphProps) => (
-        <DSTypography
-          variant="body"
-          sx={{ lineHeight: 1.7, mb: 1.5 }}
-          {...props}
-        />
+        <DSTypography variant="body" sx={{ lineHeight: 1.7, mb: 1.5 }} {...props} />
       ),
       ul: (props: ListProps) => (
         <Box
@@ -170,7 +166,13 @@ export const BlogDetailPage = () => {
             <Stack direction="row" spacing={1} alignItems="center">
               <DSTypography variant="dateRange">{post.readTime}</DSTypography>
               <Badge
-                variant={post.status === "Draft" ? "teal" : post.status === "Published" ? "gold" : "spotify"}
+                variant={
+                  post.status === "Draft"
+                    ? "teal"
+                    : post.status === "Published"
+                      ? "gold"
+                      : "spotify"
+                }
                 size="small"
                 label={post.status}
               />

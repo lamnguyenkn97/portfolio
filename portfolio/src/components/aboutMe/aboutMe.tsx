@@ -3,7 +3,7 @@ import { SectionHeader, DSTypography } from "../design-system";
 
 export const AboutMe = () => {
   const theme = useTheme();
-  
+
   const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const element = document.getElementById("projects");
@@ -31,16 +31,16 @@ export const AboutMe = () => {
         For 4+ years at{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Axon
-        </Box>
-        {" "}in the{" "}
+        </Box>{" "}
+        in the{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Records Management
-        </Box>
-        {" "}department, I&apos;ve built{" "}
+        </Box>{" "}
+        department, I&apos;ve built{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           React/TypeScript
-        </Box>
-        {" "}applications for enterprise clients. I developed critical systems including{" "}
+        </Box>{" "}
+        applications for enterprise clients. I developed critical systems including{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Training
         </Box>
@@ -55,32 +55,32 @@ export const AboutMe = () => {
         , and{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Personnel Management
-        </Box>
-        {" "}platforms with dynamic configuration capabilities.
+        </Box>{" "}
+        platforms with dynamic configuration capabilities.
       </DSTypography>
 
       <DSTypography variant="body">
         I own all testing for my projects, implementing{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           shift-left testing
-        </Box>
-        {" "}and{" "}
+        </Box>{" "}
+        and{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           automation test writing
-        </Box>
-        {" "}to ensure reliability and accessibility standards across complex workflows.
+        </Box>{" "}
+        to ensure reliability and accessibility standards across complex workflows.
       </DSTypography>
 
       <DSTypography variant="body">
         Prior to Axon, I spent 2 years at{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Novobi
-        </Box>
-        {" "}building{" "}
+        </Box>{" "}
+        building{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           ERP systems
-        </Box>
-        {" "}using{" "}
+        </Box>{" "}
+        using{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Python
         </Box>
@@ -91,8 +91,9 @@ export const AboutMe = () => {
         , and{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           JavaScript
-        </Box>
-        {" "}for B2B clients, gaining deep insight into complex enterprise workflows and business requirements.
+        </Box>{" "}
+        for B2B clients, gaining deep insight into complex enterprise workflows and business
+        requirements.
       </DSTypography>
 
       <DSTypography variant="body">
@@ -110,8 +111,8 @@ export const AboutMe = () => {
           }}
         >
           Spotify Design System
-        </Link>
-        {" "}and{" "}
+        </Link>{" "}
+        and{" "}
         <Link
           href="#projects"
           onClick={scrollToProjects}
@@ -125,8 +126,8 @@ export const AboutMe = () => {
           }}
         >
           Spotify Fanmade
-        </Link>
-        {" "}(see{" "}
+        </Link>{" "}
+        (see{" "}
         <Link
           href="#projects"
           onClick={scrollToProjects}
@@ -140,8 +141,8 @@ export const AboutMe = () => {
           }}
         >
           Projects
-        </Link>
-        {" "}section below).
+        </Link>{" "}
+        section below).
       </DSTypography>
     </Stack>
   );

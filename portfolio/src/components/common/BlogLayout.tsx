@@ -53,10 +53,3 @@ export const BlogLayout = ({ children }: BlogLayoutProps) => {
     </Container>
   );
 };
-
-
-
-
-
-
-

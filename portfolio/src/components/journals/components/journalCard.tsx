@@ -20,9 +20,11 @@ export const JournalCard = ({ journal }: { journal: Journal }) => {
   return (
     <Card
       variant="gold"
-      sx={{
-        // Padding is now handled by Card component default
-      }}
+      sx={
+        {
+          // Padding is now handled by Card component default
+        }
+      }
     >
       <Stack spacing={1.2}>
         <Stack direction="row" spacing={1} alignItems="center">

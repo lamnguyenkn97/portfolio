@@ -29,19 +29,19 @@ const uiOpacity = {
 // All values are multiples of 0.5 (4px) for consistency and clean pixel values
 // This ensures: 0.5=4px, 1=8px, 1.5=12px, 2=16px, 2.5=20px, 3=24px, etc.
 const spacingValues = {
-  xs: 0.5,    // 4px
-  sm: 1,      // 8px
-  md: 1.5,    // 12px
-  lg: 2,      // 16px
-  xl: 2.5,    // 20px
-  "2xl": 3,   // 24px
-  "3xl": 4,   // 32px
-  "4xl": 5,   // 40px
-  "5xl": 6,   // 48px
-  "6xl": 7,   // 56px
-  "7xl": 8,   // 64px
-  "8xl": 10,  // 80px
-  "9xl": 12,  // 96px
+  xs: 0.5, // 4px
+  sm: 1, // 8px
+  md: 1.5, // 12px
+  lg: 2, // 16px
+  xl: 2.5, // 20px
+  "2xl": 3, // 24px
+  "3xl": 4, // 32px
+  "4xl": 5, // 40px
+  "5xl": 6, // 48px
+  "6xl": 7, // 56px
+  "7xl": 8, // 64px
+  "8xl": 10, // 80px
+  "9xl": 12, // 96px
   "10xl": 16, // 128px
   "40xl": 40, // 320px
   "80xl": 80, // 640px
@@ -303,7 +303,12 @@ export const zIndex = {
 // Values are in MUI spacing units (use theme.spacing() to convert to pixels)
 export const layout = {
   container: {
-    paddingX: { xs: spacingValues["2xl"], sm: spacingValues["3xl"], md: spacingValues["4xl"], lg: spacingValues["5xl"] }, // 24px, 32px, 40px, 48px
+    paddingX: {
+      xs: spacingValues["2xl"],
+      sm: spacingValues["3xl"],
+      md: spacingValues["4xl"],
+      lg: spacingValues["5xl"],
+    }, // 24px, 32px, 40px, 48px
     paddingY: spacingValues["5xl"], // 48px
   },
   grid: {
@@ -325,11 +330,11 @@ export const layout = {
 // Common spacing patterns (reusable across components)
 // Values are in MUI spacing units (use theme.spacing() to convert to pixels)
 const commonSpacing = {
-  xs: spacingValues.xs,      // 4px
-  sm: spacingValues.sm,      // 8px
-  md: spacingValues.md,      // 12px
-  lg: spacingValues.lg,      // 16px
-  xl: spacingValues.xl,      // 20px
+  xs: spacingValues.xs, // 4px
+  sm: spacingValues.sm, // 8px
+  md: spacingValues.md, // 12px
+  lg: spacingValues.lg, // 16px
+  xl: spacingValues.xl, // 20px
   "2xl": spacingValues["2xl"], // 24px
 } as const;
 
