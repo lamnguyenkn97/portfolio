@@ -56,7 +56,6 @@ export const NavBar = () => {
       { id: "about", label: "ABOUT", color: "primary.main" }, // Teal
       { id: "experience", label: "EXPERIENCE", color: "secondary.main" }, // Gold (piano)
       { id: "projects", label: "PROJECTS", color: theme.custom.colors.spotify.green }, // Spotify green
-      { id: "journals", label: "JOURNALS", color: "secondary.main" },
     ],
     [theme.custom.colors.spotify.green]
   );

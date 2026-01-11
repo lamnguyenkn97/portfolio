@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Stack, Box, Chip, IconButton, useTheme } from "@mui/material";
 import { Button, Badge, Container, Avatar, Card, DSTypography } from "../design-system";
 import { NavBar } from "../navBar";
-import { SocialNetworks, CurrentlyPlaying } from "./components";
+import { SocialNetworks, CurrentlyPlaying, CVModal } from "./components";
 import { AudioWaveform } from "../common/AudioWaveform";
 import avatarImage from "../../assets/img/avatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShuffle, faFile } from "@fortawesome/free-solid-svg-icons";
 import moodsData from "../../data/moods.json";
-import { config } from "../../config/constants";
 
 export type Mood = {
   id: string;
@@ -22,6 +21,7 @@ export const Profile = () => {
   const theme = useTheme();
   const moods: Mood[] = moodsData.moods;
   const [currentMood, setCurrentMood] = useState<Mood>(moods[0]);
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   const shuffleMood = () => {
     const others = moods.filter((m) => m.id !== currentMood.id);
@@ -148,9 +148,7 @@ export const Profile = () => {
         <Button
           variant="outlined"
           size="small"
-          href={config.resumeUrl}
-          target={config.resumeUrl !== "#" ? "_blank" : undefined}
-          rel={config.resumeUrl !== "#" ? "noopener noreferrer" : undefined}
+          onClick={() => setCvModalOpen(true)}
           startIcon={<FontAwesomeIcon icon={faFile} size="sm" />}
           aria-label="View full resume"
           sx={{
@@ -174,6 +172,9 @@ export const Profile = () => {
           View full resume
         </Button>
       </Box>
+
+      {/* CV Modal */}
+      <CVModal open={cvModalOpen} onClose={() => setCvModalOpen(false)} />
 
       {/* Current mood embed */}
       <Card

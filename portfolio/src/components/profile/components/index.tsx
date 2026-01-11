@@ -1,2 +1,3 @@
-export * from "./socialNetworks";
-export * from "./CurrentlyPlaying";
+export { SocialNetworks } from "./socialNetworks";
+export { CurrentlyPlaying } from "./CurrentlyPlaying";
+export { CVModal } from "./CVModal";

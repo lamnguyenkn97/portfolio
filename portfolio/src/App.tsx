@@ -5,11 +5,8 @@ import { Profile } from "./components/profile";
 import { AboutMe } from "./components/aboutMe";
 import { Experiences } from "./components/experiences";
 import { Projects } from "./components/projects";
-import { Journals } from "./components/journals";
 import { Footer } from "./components/footer";
 import { theme } from "./theme/muiTheme";
-import { BlogPage } from "./pages/Blog";
-import { BlogDetailPage } from "./pages/BlogDetail";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -19,7 +16,6 @@ const HomePage = () => {
     { id: "about", content: <AboutMe /> },
     { id: "experience", content: <Experiences /> },
     { id: "projects", content: <Projects /> },
-    { id: "journals", content: <Journals /> },
   ];
 
   const sectionSx = {
@@ -83,8 +79,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<BlogDetailPage />} />
       </Routes>
     </ThemeProvider>
   );

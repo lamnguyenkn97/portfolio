@@ -1,21 +1,12 @@
-/**
- * Portfolio Configuration Constants
- * Replace placeholder values with your actual information
- */
-
 export const config = {
-  // Contact Information
-  email: process.env.REACT_APP_EMAIL || "lamnguyen.hcmut@gmail.com",
-  linkedIn: process.env.REACT_APP_LINKEDIN || "https://www.linkedin.com/in/lamnguyen-kn97/",
-  github: process.env.REACT_APP_GITHUB || "https://github.com/lamnguyenkn97",
-
-  // Resume
-  resumeUrl: process.env.REACT_APP_RESUME_URL || "#", // Replace with actual resume URL or PDF path
-
-  // Social Links (used in SocialNetworks component)
+  email: "lamnguyen.hcmut@gmail.com",
+  linkedIn: "https://linkedin.com/in/lamnguyen-kn97",
+  github: "https://github.com/lamnguyenkn97",
   social: {
-    facebook: process.env.REACT_APP_FACEBOOK || "https://facebook.com",
-    linkedin: process.env.REACT_APP_LINKEDIN || "https://www.linkedin.com/in/lamnguyen-kn97/",
-    github: process.env.REACT_APP_GITHUB || "https://github.com/lamnguyenkn97",
+    facebook: "https://facebook.com/lamnguyenkn97",
+    linkedin: "https://linkedin.com/in/lamnguyen-kn97",
+    github: "https://github.com/lamnguyenkn97",
   },
-} as const;
+  // Resume
+  resumeUrl: process.env.REACT_APP_RESUME_URL || "/Lam_Nguyen_CV.html",
+};
