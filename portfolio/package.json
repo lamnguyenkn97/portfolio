@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mdx-js/mdx": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@mui/icons-material": "^5.15.19",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.98",
     "@types/react": "^18.3.3",
@@ -21,11 +24,7 @@
     "spotify-design-system": "^1.2.1",
     "styled-components": "^6.1.19",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/free-brands-svg-icons": "^6.5.1",
-    "@fortawesome/react-fontawesome": "^0.2.0"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "PORT=3003 react-scripts start",
@@ -56,6 +55,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.20",
+    "@testing-library/user-event": "^14.6.1",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "^8.57.0",

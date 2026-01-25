@@ -202,6 +202,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<FontAwesomeIcon icon={faExternalLinkAlt} />}
+                aria-label="View live demo"
               >
                 Live
               </Button>
@@ -214,6 +215,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<FontAwesomeIcon icon={faGithub} />}
+                aria-label="View source code on GitHub"
               >
                 GitHub
               </Button>
@@ -226,6 +228,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<FontAwesomeIcon icon={faBoxOpen} />}
+                aria-label="View on NPM registry"
               >
                 npm
               </Button>

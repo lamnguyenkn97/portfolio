@@ -116,6 +116,7 @@ export const Profile = () => {
                 direction="row"
                 spacing={theme.spacing(profileStyles.hobbiesSpacing)}
                 flexWrap="wrap"
+                sx={{ gap: theme.spacing(profileStyles.hobbiesSpacing) }}
               >
                 {[{ label: "React" }, { label: "TypeScript" }, { label: "Enterprise Client" }].map(
                   (item) => (

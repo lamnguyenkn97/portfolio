@@ -130,7 +130,7 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
           sx={{ mb: theme.spacing(expStyles.headerMarginBottom) }}
         >
           <DSTypography variant="dateRange">
-            {startDate} — {endDate}
+            {startDate} – {endDate}
           </DSTypography>
         </Stack>
 

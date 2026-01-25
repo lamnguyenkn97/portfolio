@@ -31,6 +31,8 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
       onClose={onClose}
       maxWidth="lg"
       fullWidth
+      aria-labelledby="cv-modal-title"
+      aria-describedby="cv-modal-description"
       PaperProps={{
         sx: {
           bgcolor: "background.default",
@@ -70,6 +72,7 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
             size="small"
             startIcon={<FontAwesomeIcon icon={faDownload} />}
             onClick={handleDownloadPDF}
+            aria-label="Download CV as PDF"
             sx={{
               textTransform: "none",
               borderColor: "divider",

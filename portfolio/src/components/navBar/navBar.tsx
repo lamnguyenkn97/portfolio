@@ -111,7 +111,7 @@ export const NavBar = () => {
 
   const navStyles = theme.custom.componentStyles.navBar;
   return (
-    <Stack spacing={theme.spacing(navStyles.itemSpacing)}>
+    <Stack spacing={theme.spacing(navStyles.itemSpacing)} component="nav" role="navigation" aria-label="Main navigation">
       {navItems.map((item) => {
         const isActive = activeSection === item.id;
         return (
@@ -120,6 +120,7 @@ export const NavBar = () => {
             component="button"
             onClick={() => handleScrollTo(item.id)}
             aria-label={`Navigate to ${item.label} section`}
+            aria-current={isActive ? "true" : undefined}
             sx={getNavButtonStyles(theme, item.color)}
           >
             <Box className="nav-bar" sx={getNavBarStyles(theme, isActive, item.color)} />
