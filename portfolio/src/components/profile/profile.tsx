@@ -73,7 +73,7 @@ export const Profile = () => {
               spacing={theme.spacing(profileStyles.heroSpacing)}
               flexWrap="wrap"
             >
-              <Badge label="Open to 482 Sponsorship (Australia)" variant="gold" />
+              <Badge label="Open to 482" variant="gold" />
             </Stack>
           </Stack>
 
