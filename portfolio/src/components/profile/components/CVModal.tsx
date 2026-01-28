@@ -157,19 +157,18 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
             </Button>
           </Box>
         ) : (
-          <Box
-            component="iframe"
+          <iframe
             ref={iframeRef}
             src={config.resumeUrl}
             title="Lam Nguyen CV"
             onLoad={handleIframeLoad}
-            sx={{
+            style={{
               width: "100%",
               height: "100%",
               border: 0,
               flex: 1,
-              mt: theme.spacing(7), // Account for header height
-              bgcolor: "background.paper",
+              marginTop: theme.spacing(7),
+              backgroundColor: theme.palette.background.paper,
             }}
           />
         )}
