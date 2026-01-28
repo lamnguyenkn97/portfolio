@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/Lam_Nguyen_CV.html",
+      "destination": "/Lam_Nguyen_CV.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
