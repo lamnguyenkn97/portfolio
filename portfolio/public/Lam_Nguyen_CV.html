@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lam Nguyen - Frontend Engineer CV</title>
+    <style>
+        @page {
+            margin: 0.5cm;
+            size: A4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            line-height: 1.5;
+            color: #2c3e50;
+            font-size: 10pt;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 12px;
+            background: #fff;
+        }
+        
+        /* Header Styles */
+        .header-container {
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+        
+        h1 {
+            font-size: 22pt;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 11pt;
+            color: #555;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        
+        .portfolio-link {
+            font-size: 9.5pt;
+            color: #0066cc;
+            margin-top: 4px;
+            text-decoration: none;
+        }
+        
+        .portfolio-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Info */
+        .contact-bar {
+            padding: 8px 0;
+            margin-bottom: 10px;
+            font-size: 9pt;
+            line-height: 1.6;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .contact-bar strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .contact-bar a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .contact-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Section Headers */
+        h2 {
+            font-size: 12pt;
+            font-weight: 700;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+            border-bottom: 1.5px solid #333;
+            padding-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .section {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+        
+        /* Summary Section */
+        .summary-box {
+            padding: 8px 0;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            text-align: justify;
+            margin-top: 4px;
+            color: #444;
+        }
+
+        .summary-bullets {
+            margin-top: 4px;
+            margin-left: 15px;
+            list-style-type: none;
+        }
+
+        .summary-bullets li {
+            margin-bottom: 6px;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 10px;
+            color: #444;
+        }
+
+        .summary-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .summary-bullets strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        /* Experience & Project Items */
+        .experience-item, .project-item {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        
+        .job-title {
+            font-weight: 700;
+            font-size: 10.5pt;
+            color: #1a1a1a;
+        }
+        
+        .company-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 10pt;
+            margin-left: 8px;
+        }
+        
+        .company-name a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .company-name a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        
+        .date {
+            font-style: italic;
+            color: #666;
+            font-size: 9pt;
+            font-weight: 400;
+        }
+        
+        .description {
+            margin-top: 4px;
+            margin-bottom: 6px;
+            font-size: 9.5pt;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .achievements {
+            margin-top: 6px;
+            margin-left: 15px;
+        }
+        
+        .achievements li {
+            margin-bottom: 4px;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 10px;
+        }
+        
+        .achievements li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 6px;
+            font-size: 9pt;
+            color: #555;
+        }
+        
+        .technologies strong {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            margin-top: 6px;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .skills-section strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        /* Project Styles */
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        
+        .project-title {
+            font-weight: 700;
+            font-size: 10.5pt;
+            color: #1a1a1a;
+        }
+        
+        .project-subtitle {
+            font-style: italic;
+            color: #666;
+            font-size: 9pt;
+            margin-top: 2px;
+        }
+        
+        .project-features {
+            margin-left: 15px;
+            margin-top: 6px;
+        }
+        
+        .project-features li {
+            margin-bottom: 4px;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 10px;
+        }
+        
+        .project-features li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .project-links {
+            margin-top: 6px;
+            font-size: 9pt;
+        }
+        
+        .project-links a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Education */
+        .education-item {
+            padding: 8px 0;
+            margin-top: 4px;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        
+        .education-title {
+            font-weight: 700;
+            font-size: 10.5pt;
+            color: #1a1a1a;
+        }
+        
+        .education-details {
+            font-size: 9.5pt;
+            margin-top: 4px;
+            color: #444;
+        }
+        
+        .education-details strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .awards {
+            margin-top: 6px;
+            font-size: 9pt;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .awards strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* Additional Info */
+        .additional-info {
+            padding: 8px 0;
+            margin-top: 4px;
+        }
+        
+        .additional-info li {
+            margin-bottom: 4px;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            color: #444;
+        }
+        
+        .additional-info strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .footer {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 8pt;
+            text-align: center;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .header-container {
+                page-break-after: avoid;
+                margin-bottom: 8px;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 8px;
+            }
+            
+            .experience-item, .project-item {
+                page-break-inside: avoid;
+                margin-bottom: 8px;
+            }
+            
+            h2 {
+                margin-top: 8px;
+                margin-bottom: 4px;
+            }
+            
+            /* Reduce spacing for print */
+            .summary-bullets li {
+                margin-bottom: 4px;
+            }
+            
+            .achievements li {
+                margin-bottom: 3px;
+            }
+            
+            /* Ensure links are preserved and visible in PDF */
+            a {
+                color: #0066cc !important;
+                text-decoration: underline;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .job-header, .project-header, .education-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>LAM NGUYEN</h1>
+        <div class="subtitle">Frontend Engineer</div>
+        <a href="https://lam-nguyen.dev" class="portfolio-link">lam-nguyen.dev</a>
+    </div>
+    
+    <div class="contact-bar">
+        <strong>Email:</strong> <a href="mailto:lamnguyen.hcmut@gmail.com">lamnguyen.hcmut@gmail.com</a> | 
+        <strong>Phone:</strong> +84 949 054 538 | 
+        <strong>Location:</strong> Ho Chi Minh City, Vietnam (open to relocation to Australia)<br>
+        <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/lamnguyen-kn97">linkedin.com/in/lamnguyen-kn97</a> | 
+        <strong>GitHub:</strong> <a href="https://github.com/lamnguyenkn97">github.com/lamnguyenkn97</a>
+    </div>
+    
+    <div class="section">
+        <h2>Professional Summary</h2>
+        <ul class="summary-bullets">
+            <li><strong>Experience:</strong> 6 years in software engineering, with 4 years specializing as Frontend Engineer at Axon (promoted from L6 to L7)</li>
+            <li><strong>Leadership:</strong> Led 3 major frontend systems end-to-end (Training, EIS alerting, PDF review) as main engineer for US enterprise law enforcement clients, architecting scalable React/TypeScript applications and delivering business features for Standards Product team</li>
+            <li><strong>Test Lead:</strong> Owned quality assurance across all team releases through Playwright E2E automation and TeamCity CI/CD maintenance</li>
+            <li><strong>Open Source:</strong> Published component library to NPM with 24 production components (WCAG AA accessibility, Storybook documentation)</li>
+            <li><strong>Seeking:</strong> Frontend engineering opportunities in Melbourne with 482 visa sponsorship</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Professional Experience</h2>
+        
+        <div class="experience-item">
+            <div class="job-header">
+                <div>
+                    <span class="job-title">Frontend Engineer</span>
+                    <span class="company-name"><a href="https://www.axon.com">Axon</a></span>
+                    <span style="color: #666; font-size: 9pt; margin-left: 8px; font-style: italic;">(Full-time)</span>
+                </div>
+                <div class="date">May 2022 – Present (4 years)</div>
+            </div>
+            <div style="font-size: 9pt; color: #666; font-style: italic; margin-bottom: 6px;">
+                Promoted from L6 to L7 based on consistent strong performance and technical contributions
+            </div>
+            <div class="description">
+                Developing scalable React/TypeScript applications in the Records Management department for US enterprise law enforcement clients. Building frontend features for Training, EIS (Early Intervention System), Report Writing, and Personnel Management systems with dynamic configuration capabilities. Collaborating with cross-functional team of engineers, designers, and product managers.
+            </div>
+            <div style="margin-top: 6px;">
+                <strong style="color: #333; font-size: 9.5pt;">Key Achievements:</strong>
+            </div>
+            <ul class="achievements">
+                <li>Led Training System as main frontend engineer—architected and delivered component-based platform from ground up with course/curriculum management, learner tracking, and bulk CSV import capabilities. Developed reusable React components following atomic design principles</li>
+                <li>Led EIS (Early Intervention System) project as main frontend engineer—built custom rule-based alert system with configurable metric engine, real-time notifications, guardrails, and review workflows enabling data-driven decision making</li>
+                <li>Architected PDF Review integration—wrote design documentation and implemented pdfTron SDK for PDF report display and annotation, significantly improving document processing workflow efficiency</li>
+                <li>Served as Test Lead owning quality assurance for all feature releases—authored comprehensive Playwright E2E test suites for all team features, maintained TeamCity CI/CD pipeline for automated and manual testing across release cycles, achieved strong code coverage with Jest unit/integration tests, and significantly reduced production bugs</li>
+            </ul>
+            <div class="technologies">
+                <strong>Technologies:</strong> React, TypeScript, Jest, Playwright, TeamCity CI/CD, E2E Testing, pdfTron
+            </div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="job-header">
+                <div>
+                    <span class="job-title">Software Engineer</span>
+                    <span class="company-name"><a href="https://www.novobi.com">Novobi</a></span>
+                    <span style="color: #666; font-size: 9pt; margin-left: 8px; font-style: italic;">(Full-time)</span>
+                </div>
+                <div class="date">September 2020 – April 2022</div>
+            </div>
+            <div class="description">
+                Software engineer at Vietnam-based consultancy delivering enterprise ERP solutions for US and international B2B clients. Built Sales, Inventory, Accounting, and Delivery systems using Odoo framework across retail, manufacturing, and e-commerce sectors.
+            </div>
+            <div style="margin-top: 6px;">
+                <strong style="color: #333; font-size: 9.5pt;">Key Achievements:</strong>
+            </div>
+            <ul class="achievements">
+                <li>Owned end-to-end Shopify integration project—architected real-time data synchronization between Shopify API and Odoo ERP using Python. Conducted client meetings to gather requirements, designed inventory and order management solution, and troubleshot technical challenges throughout implementation</li>
+                <li>Developed spreadsheet-based financial reporting feature using JavaScript—built interactive P&L (Profit & Loss) and Balance Sheet reports for US Accounting standards as part of Odoo Accounting Module v13 to v14 migration, demonstrating early frontend development capabilities</li>
+                <li>Delivered multiple custom ERP implementations for diverse B2B clients across retail, manufacturing, and e-commerce sectors, collaborating directly with US-based stakeholders to gather requirements and provide technical solutions</li>
+            </ul>
+            <div class="technologies">
+                <strong>Technologies:</strong> Python, Odoo, JavaScript, PostgreSQL, Docker, Shopify API, REST APIs
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-section">
+            <strong>Frontend:</strong> React, TypeScript, Next.js, JavaScript (ES6+)<br>
+            <strong>Testing & Quality:</strong> Jest, Playwright, Test-Driven Development, TeamCity CI/CD<br>
+            <strong>Design Systems:</strong> Storybook, Design Tokens, Component Architecture, Atomic Design<br>
+            <strong>Styling:</strong> Styled Components, Tailwind CSS, Material-UI, CSS-in-JS, Responsive Design<br>
+            <strong>Accessibility:</strong> WCAG AA Compliance, ARIA Patterns<br>
+            <strong>State Management:</strong> React Context, SWR<br>
+            <strong>Architecture & Integration:</strong> REST APIs, OAuth 2.0, Performance Optimization<br>
+            <strong>Development Practices:</strong> Agile/Scrum, CI/CD
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Side Projects</h2>
+        
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Spotify Design System</div>
+                    <div class="project-subtitle">Open-source React Component Library</div>
+                </div>
+            </div>
+            <ul class="project-features">
+                <li>Created production-ready design system with 24 components (Button, Card, Modal, Form, Navigation, etc.) following atomic design principles—published to NPM with 3,000+ monthly downloads at peak</li>
+                <li>Architected with TypeScript for type safety, Storybook for component documentation, and design tokens for consistent theming across light/dark modes</li>
+                <li>Achieved WCAG AA accessibility—implemented keyboard navigation, focus management, screen reader support, and ARIA patterns for all interactive components</li>
+                <li>Maintained comprehensive test coverage with 70+ test cases (Jest/React Testing Library), CI/CD pipeline via GitHub Actions, and automated semantic versioning</li>
+                <li>Designed comprehensive documentation with usage examples, accessibility guidelines, and migration guides—adopted by developers internationally</li>
+            </ul>
+            <div class="technologies">
+                <strong>Technologies:</strong> React, TypeScript, Storybook, Styled Components, Jest, Design Tokens
+            </div>
+            <div class="project-links">
+                <strong style="color: #333;">Links:</strong>
+                <a href="https://github.com/lamnguyenkn97/spotify_design_system">GitHub</a> |
+                <a href="https://www.npmjs.com/package/spotify-design-system">NPM</a> |
+                <a href="https://spotifydesignsystem.vercel.app/">Live Demo & Docs</a>
+            </div>
+        </div>
+        
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Spotify Fanmade</div>
+                    <div class="project-subtitle">Full-stack Music Application</div>
+                </div>
+            </div>
+            <ul class="project-features">
+                <li>Built full-stack music streaming application with Next.js 15 (App Router), React 18, and TypeScript—showcasing modern frontend architecture and API integration patterns</li>
+                <li>Implemented dual playback strategy—Spotify Web Playback SDK for Premium users with real-time controls, 30-second preview fallback for Free tier users, handling playback state synchronization</li>
+                <li>Developed analytics dashboard—visualized listening patterns using Chart.js (donut, radar, bar charts) with SWR for optimistic UI updates and client-side caching</li>
+                <li>Created advanced queue system—drag-and-drop reordering with @dnd-kit library, optimistic updates, and persistence across sessions</li>
+                <li>Integrated OAuth 2.0 PKCE flow—secure authentication with token refresh, session management, and graceful error handling for expired credentials</li>
+            </ul>
+            <div class="technologies">
+                <strong>Technologies:</strong> Next.js 15, React 18, TypeScript, Tailwind CSS, Chart.js, SWR, OAuth 2.0, Spotify API
+            </div>
+            <div class="project-links">
+                <strong style="color: #333;">Links:</strong>
+                <a href="https://github.com/lamnguyenkn97/spotify_fanmade">GitHub</a> |
+                <a href="https://spotify-fanmade.vercel.app/">Live Demo</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Education</h2>
+        <div class="education-item">
+            <div class="education-header">
+                <div class="education-title">Bachelor of Computer Science</div>
+                <div class="date">2016 – 2020</div>
+            </div>
+            <div style="color: #555; font-size: 9.5pt; margin-bottom: 4px;">Ho Chi Minh University of Technology (HCMUT)</div>
+            <div class="education-details">
+                <strong>GPA:</strong> 7.99/10.0 | <strong>PTE Academic:</strong> 86 (Speaking: 82, Writing: 89)
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Additional Information</h2>
+        <div class="additional-info">
+            <ul>
+                <li><strong>Visa Status:</strong> Eligible for 482 TSS Visa (Temporary Skill Shortage) – Ready for immediate sponsorship. Meets all requirements: 6 years experience, PTE 86 (exceeds minimum), ANZSCO 261212/261213 compliant</li>
+                <li><strong>Target Location:</strong> Melbourne, Victoria (preferred) – Open to Sydney and other Australian cities</li>
+                <li><strong>Languages:</strong> English (Professional Working Proficiency - PTE Academic 86), Vietnamese (Native)</li>
+                <li><strong>Availability:</strong> Ready to relocate to Melbourne upon visa approval</li>
+                <li><strong>Work Authorization:</strong> No current Australian work rights – Requires 482 sponsorship</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">
+        References available upon request
+    </div>
+</body>
+</html>
