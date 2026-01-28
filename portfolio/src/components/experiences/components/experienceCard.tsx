@@ -176,10 +176,6 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
               // Determine if this is a project highlight or quality/testing highlight
               // For Axon: first 4 are projects, last 2 are quality/testing
               // For Novobi: all are projects, no divider needed
-              const isProjectHighlight = (company === "Axon" && idx < 4) || company === "Novobi"; // Novobi: all bullets are projects
-
-              // Add extra spacing before quality/testing highlights
-              const isQualityHighlight = !isProjectHighlight;
               const previousIsProject = company === "Axon" && idx === 4; // Only show divider for Axon
 
               return (

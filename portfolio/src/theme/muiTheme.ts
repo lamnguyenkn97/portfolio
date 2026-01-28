@@ -150,7 +150,7 @@ export const theme = createTheme({
   },
 
   // Shadows - Removed for clean, professional design
-  shadows: Array(25).fill("none") as any,
+  shadows: Array(25).fill("none") as Theme["shadows"],
 
   // Component Overrides - Only override components actually used directly
   // Best Practice: Only override what's necessary for global consistency

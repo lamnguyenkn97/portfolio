@@ -152,7 +152,7 @@ export const Typography = ({
   const finalSx = sx ? [baseStyles, sx] : baseStyles;
 
   return (
-    <MuiTypography variant={muiVariant} sx={finalSx as any} {...props}>
+    <MuiTypography variant={muiVariant} sx={finalSx as SxProps<Theme>} {...props}>
       {children}
     </MuiTypography>
   );

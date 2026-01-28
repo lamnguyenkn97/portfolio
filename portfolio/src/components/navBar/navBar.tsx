@@ -111,7 +111,12 @@ export const NavBar = () => {
 
   const navStyles = theme.custom.componentStyles.navBar;
   return (
-    <Stack spacing={theme.spacing(navStyles.itemSpacing)} component="nav" role="navigation" aria-label="Main navigation">
+    <Stack
+      spacing={theme.spacing(navStyles.itemSpacing)}
+      component="nav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       {navItems.map((item) => {
         const isActive = activeSection === item.id;
         return (
