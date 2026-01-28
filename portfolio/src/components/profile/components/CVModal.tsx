@@ -20,17 +20,23 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
       setIframeError(false);
       // Set a timeout to check if iframe loaded
       const timeout = setTimeout(() => {
+        // Check if iframe has content
         try {
           const iframe = iframeRef.current;
-          if (iframe && iframe.contentWindow) {
-            // Iframe loaded successfully
-            setIframeError(false);
+          if (iframe) {
+            // Try to access content to see if it loaded
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (!iframeDoc || iframeDoc.body.children.length === 0) {
+              // Iframe didn't load properly
+              setIframeError(true);
+            }
           }
         } catch (e) {
-          // Cross-origin or loading error
-          console.error("CV iframe error:", e);
+          // Cross-origin error - this is expected, but we can't verify content
+          // Don't set error for CORS issues as the content might still be loading
+          // eslint-disable-next-line no-console
         }
-      }, 2000);
+      }, 3000);
 
       return () => clearTimeout(timeout);
     }
@@ -51,6 +57,25 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
 
   const handleIframeLoad = () => {
     setIframeError(false);
+    // Verify the iframe actually loaded content
+    setTimeout(() => {
+      try {
+        const iframe = iframeRef.current;
+        if (iframe) {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (iframeDoc) {
+            // Check if content is actually there
+            const body = iframeDoc.body;
+            if (!body || body.children.length === 0) {
+              setIframeError(true);
+            }
+          }
+        }
+      } catch (e) {
+        // CORS - can't check, but assume it loaded if onLoad fired
+        // This is expected and normal
+      }
+    }, 500);
   };
 
   return (
@@ -162,6 +187,9 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
             src={config.resumeUrl}
             title="Lam Nguyen CV"
             onLoad={handleIframeLoad}
+            onError={() => {
+              setIframeError(true);
+            }}
             style={{
               width: "100%",
               height: "100%",
