@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Dialog, DialogContent, IconButton, Box, Button, Stack, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faDownload } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,30 @@ interface CVModalProps {
 
 export const CVModal = ({ open, onClose }: CVModalProps) => {
   const theme = useTheme();
+  const [iframeError, setIframeError] = React.useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (open && iframeRef.current) {
+      // Reset error state when modal opens
+      setIframeError(false);
+      // Set a timeout to check if iframe loaded
+      const timeout = setTimeout(() => {
+        try {
+          const iframe = iframeRef.current;
+          if (iframe && iframe.contentWindow) {
+            // Iframe loaded successfully
+            setIframeError(false);
+          }
+        } catch (e) {
+          // Cross-origin or loading error
+          console.error("CV iframe error:", e);
+        }
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [open]);
 
   const handleDownloadPDF = () => {
     // Open CV in new window and trigger print dialog
@@ -23,6 +47,10 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
         }, 500);
       };
     }
+  };
+
+  const handleIframeLoad = () => {
+    setIframeError(false);
   };
 
   return (
@@ -104,18 +132,47 @@ export const CVModal = ({ open, onClose }: CVModalProps) => {
         </Stack>
 
         {/* CV iframe */}
-        <Box
-          component="iframe"
-          src={config.resumeUrl}
-          title="Lam Nguyen CV"
-          sx={{
-            width: "100%",
-            height: "100%",
-            border: 0,
-            flex: 1,
-            mt: theme.spacing(7), // Account for header height
-          }}
-        />
+        {iframeError ? (
+          <Box
+            sx={{
+              flex: 1,
+              mt: theme.spacing(7),
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              p: theme.spacing(3),
+            }}
+          >
+            <Box sx={{ mb: theme.spacing(2), color: "text.secondary" }}>
+              Unable to load CV. Please try opening it directly:
+            </Box>
+            <Button
+              variant="outlined"
+              href={config.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open CV in New Tab
+            </Button>
+          </Box>
+        ) : (
+          <Box
+            component="iframe"
+            ref={iframeRef}
+            src={config.resumeUrl}
+            title="Lam Nguyen CV"
+            onLoad={handleIframeLoad}
+            sx={{
+              width: "100%",
+              height: "100%",
+              border: 0,
+              flex: 1,
+              mt: theme.spacing(7), // Account for header height
+              bgcolor: "background.paper",
+            }}
+          />
+        )}
       </DialogContent>
     </Dialog>
   );
