@@ -205,11 +205,10 @@ describe("ProjectCard", () => {
   });
 
   describe("Features vs Description", () => {
-    it("renders features when both features and description are provided", () => {
+    it("renders both description and features when both are provided", () => {
       render(<ProjectCard project={mockProject} />);
+      expect(screen.getByText("A test project description")).toBeInTheDocument();
       expect(screen.getByText("Feature 1")).toBeInTheDocument();
-      // Description should NOT be rendered when features are present (features take priority)
-      expect(screen.queryByText("A test project description")).not.toBeInTheDocument();
     });
 
     it("handles project with only description", () => {
