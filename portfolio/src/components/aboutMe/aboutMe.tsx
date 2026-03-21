@@ -28,76 +28,28 @@ export const AboutMe = () => {
     >
       <SectionHeader title="About" />
       <DSTypography variant="body">
-        For 4+ years at{" "}
+        I&apos;m a frontend engineer who&apos;s spent 4+ years at{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Axon
         </Box>{" "}
-        in the{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          Records Management
-        </Box>{" "}
-        department, I&apos;ve built{" "}
+        building{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           React/TypeScript
         </Box>{" "}
-        applications for enterprise clients. I developed critical systems including{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          Training
-        </Box>
-        ,{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          EIS (Early Intervention System)
-        </Box>
-        ,{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          Report Writing
-        </Box>
-        , and{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          Personnel Management
-        </Box>{" "}
-        platforms with dynamic configuration capabilities.
-      </DSTypography>
-
-      <DSTypography variant="body">
-        I own all testing for my projects, implementing{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          shift-left testing
-        </Box>{" "}
-        and{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          automation test writing
-        </Box>{" "}
-        to ensure reliability and accessibility standards across complex workflows.
-      </DSTypography>
-
-      <DSTypography variant="body">
-        Prior to Axon, I spent 2 years at{" "}
+        applications for enterprise clients, and 2 years before that at{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           Novobi
         </Box>{" "}
-        building{" "}
+        working on{" "}
         <Box component="span" sx={{ fontWeight: 600 }}>
           ERP systems
-        </Box>{" "}
-        using{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          Python
         </Box>
-        ,{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          Odoo
-        </Box>
-        , and{" "}
-        <Box component="span" sx={{ fontWeight: 600 }}>
-          JavaScript
-        </Box>{" "}
-        for B2B clients, gaining deep insight into complex enterprise workflows and business
-        requirements.
+        . I care about clean interfaces, solid testing, and the kind of details most people
+        don&apos;t notice.
       </DSTypography>
 
       <DSTypography variant="body">
-        In my free time, I play piano and build side projects like{" "}
+        Outside of work, I play piano, hit the gym, and build side projects like{" "}
         <Link
           href="#projects"
           onClick={scrollToProjects}
@@ -127,22 +79,7 @@ export const AboutMe = () => {
         >
           Spotify Fanmade
         </Link>{" "}
-        (see{" "}
-        <Link
-          href="#projects"
-          onClick={scrollToProjects}
-          sx={{
-            fontWeight: 600,
-            color: "primary.main",
-            textDecoration: "none",
-            "&:hover": {
-              textDecoration: "underline",
-            },
-          }}
-        >
-          Projects
-        </Link>{" "}
-        section below).
+        — because sometimes the best way to learn something is to rebuild it from scratch.
       </DSTypography>
     </Stack>
   );

@@ -73,7 +73,7 @@ export const Profile = () => {
               spacing={theme.spacing(profileStyles.heroSpacing)}
               flexWrap="wrap"
             >
-              <Badge label="Open to 482" variant="gold" />
+              <Badge label="Music Lover" variant="gold" />
             </Stack>
           </Stack>
 
@@ -107,8 +107,8 @@ export const Profile = () => {
                   overflowWrap: "break-word",
                 }}
               >
-                Software Engineer with 6 years of experience building and leading frontend systems
-                for enterprise B2B platforms.
+                Frontend engineer with a love for clean interfaces, good architecture, and even
+                better music.
               </DSTypography>
 
               {/* Professional skills */}

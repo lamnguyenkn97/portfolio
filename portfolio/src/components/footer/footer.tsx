@@ -39,7 +39,7 @@ export const Footer = () => {
             icon={faMusic}
             style={{ fontSize: footerStyles.tagline.iconSize, color: "inherit" }}
           />
-          Frontend Engineer • Seeking opportunities in Australia with 482 visa sponsorship
+          Software Engineer • Music is my second language
         </DSTypography>
 
         <Stack

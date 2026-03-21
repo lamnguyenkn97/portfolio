@@ -25,9 +25,7 @@ coverage
 # Lock files
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
-
-# Generated files
+pnpm-lock.yaml# Generated files
 *.tsbuildinfo
 
 # Config files that shouldn't be formatted

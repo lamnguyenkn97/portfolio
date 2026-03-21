@@ -5,11 +5,12 @@ import { Project, ProjectCard } from "./components";
 const projects: Project[] = [
   {
     title: "Spotify Design System",
+    description:
+      "I love Spotify's UI — so I rebuilt their design system from scratch. 24 components, published to NPM, and fully accessible.",
     features: [
       "Open-source React component library with 24 reusable components, published to NPM",
-      "Built with TypeScript and Storybook, featuring atomic design methodology and design tokens",
-      "WCAG AA accessibility compliance with comprehensive keyboard navigation and ARIA patterns",
-      "Production-ready code quality with comprehensive test coverage (70+ test cases)",
+      "WCAG AA accessibility compliance with keyboard navigation and ARIA patterns",
+      "70+ test cases with comprehensive coverage",
     ],
     techStack: ["React", "TypeScript", "Storybook", "Styled Components"],
     repoUrl: "https://github.com/lamnguyenkn97/spotify_design_system",
@@ -22,13 +23,12 @@ const projects: Project[] = [
   },
   {
     title: "Spotify Fanmade",
+    description:
+      "A full-stack Spotify client I built because the real one didn't have everything I wanted. Real-time playback, listening analytics, drag-and-drop queue — plus a demo access system so anyone can try it.",
     features: [
-      "Full-stack music application built with Next.js 15 and React 18",
-      "Real-time audio playback with Spotify Web Playback SDK (Premium) and 30s preview fallback (Free users)",
-      "Listening analytics dashboard with interactive Chart.js visualizations (donut, radar, bar charts)",
-      "Advanced queue management with drag-and-drop reordering and visual drawer",
+      "Real-time audio playback with Spotify Web Playback SDK and 30s preview fallback for free users",
+      "Listening analytics dashboard with Chart.js visualizations — donut, radar, and bar charts",
       "OAuth 2.0 PKCE authentication with HTTP-only cookies and automated demo request system",
-      "Enterprise-level architecture using React Context, SWR for data fetching, and strategy design patterns",
     ],
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Chart.js"],
     repoUrl: "https://github.com/lamnguyenkn97/spotify_fanmade",

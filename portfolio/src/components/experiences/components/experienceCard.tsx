@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Stack, Link, useTheme } from "@mui/material";
-import { Card, Pill, DSTypography } from "../../design-system";
+import { Card, Pill, DSTypography, Badge } from "../../design-system";
+import { AudioWaveform } from "../../common/AudioWaveform";
 
 export type Experience = {
   title: string;
@@ -11,7 +12,10 @@ export type Experience = {
   skillSet: string[];
   companyUrl?: string;
   highlights?: string[];
+  isCurrent?: boolean;
 };
+
+const HIGHLIGHTS_PREVIEW = 3;
 
 const renderHighlightWithLinks = (text: string) => {
   // Map of client names to their URLs
@@ -115,9 +119,26 @@ const renderHighlightWithLinks = (text: string) => {
 
 export const ExperienceCard = ({ experience }: { experience: Experience }) => {
   const theme = useTheme();
-  const { title, company, startDate, endDate, description, skillSet, companyUrl, highlights } =
-    experience;
+  const {
+    title,
+    company,
+    startDate,
+    endDate,
+    description,
+    skillSet,
+    companyUrl,
+    highlights,
+    isCurrent,
+  } = experience;
   const expStyles = theme.custom.componentStyles.experienceCard;
+  const [expanded, setExpanded] = useState(false);
+
+  const visibleHighlights = highlights
+    ? expanded
+      ? highlights
+      : highlights.slice(0, HIGHLIGHTS_PREVIEW)
+    : [];
+  const hasMore = highlights ? highlights.length > HIGHLIGHTS_PREVIEW : false;
 
   return (
     <Card variant="gold">
@@ -127,11 +148,20 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
           direction="row"
           spacing={theme.spacing(expStyles.headerSpacing)}
           alignItems="center"
+          justifyContent="space-between"
           sx={{ mb: theme.spacing(expStyles.headerMarginBottom) }}
         >
           <DSTypography variant="dateRange">
             {startDate} – {endDate}
           </DSTypography>
+          {isCurrent && (
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Badge label="Now Playing" variant="teal" />
+              <Box sx={{ width: 40 }}>
+                <AudioWaveform height={16} color="primary.main" bars={6} />
+              </Box>
+            </Stack>
+          )}
         </Stack>
 
         <DSTypography variant="experienceTitle">{title}</DSTypography>
@@ -172,59 +202,47 @@ export const ExperienceCard = ({ experience }: { experience: Experience }) => {
             spacing={theme.spacing(expStyles.highlightsSpacing)}
             sx={{ mb: theme.spacing(expStyles.highlightsMarginBottom) }}
           >
-            {highlights.map((item, idx) => {
-              // Determine if this is a project highlight or quality/testing highlight
-              // For Axon: first 4 are projects, last 2 are quality/testing
-              // For Novobi: all are projects, no divider needed
-              const previousIsProject = company === "Axon" && idx === 4; // Only show divider for Axon
-
-              return (
-                <Box
-                  key={idx}
+            {visibleHighlights.map((item, idx) => (
+              <Box key={idx} sx={{ position: "relative" }}>
+                <DSTypography
+                  variant="caption"
                   sx={{
-                    pt: previousIsProject ? theme.spacing(expStyles.highlightsGroupSpacing) : 0,
+                    color: "text.primary",
+                    lineHeight: 1.6,
                     position: "relative",
+                    pl: theme.spacing(expStyles.highlightMarker.padding),
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      left: 0,
+                      top: "0.5em",
+                      transform: "translateY(-50%)",
+                      width: "3px",
+                      height: "3px",
+                      borderRadius: theme.custom.borderRadius.full,
+                      bgcolor: "primary.main",
+                      opacity: expStyles.highlightMarker.opacity,
+                    },
                   }}
                 >
-                  {previousIsProject && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: "1px",
-                        background: `linear-gradient(to right, transparent, ${theme.palette.divider}, transparent)`,
-                        opacity: 0.5, // Increased from 0.3 for better visibility
-                      }}
-                    />
-                  )}
-                  <DSTypography
-                    variant="caption"
-                    sx={{
-                      color: "text.primary",
-                      lineHeight: 1.6,
-                      position: "relative",
-                      pl: theme.spacing(expStyles.highlightMarker.padding), // Use token for padding
-                      "&::before": {
-                        content: '""',
-                        position: "absolute",
-                        left: 0,
-                        top: "0.5em", // Align with first line of text
-                        transform: "translateY(-50%)", // Center vertically with first line
-                        width: "3px", // 3px - slightly bigger bullet point
-                        height: "3px", // 3px - slightly bigger bullet point
-                        borderRadius: theme.custom.borderRadius.full,
-                        bgcolor: "primary.main",
-                        opacity: expStyles.highlightMarker.opacity,
-                      },
-                    }}
-                  >
-                    {renderHighlightWithLinks(item)}
-                  </DSTypography>
-                </Box>
-              );
-            })}
+                  {renderHighlightWithLinks(item)}
+                </DSTypography>
+              </Box>
+            ))}
+            {hasMore && (
+              <DSTypography
+                variant="caption"
+                onClick={() => setExpanded((prev) => !prev)}
+                sx={{
+                  color: "primary.main",
+                  cursor: "pointer",
+                  userSelect: "none",
+                  "&:hover": { opacity: 0.8 },
+                }}
+              >
+                {expanded ? "Show less" : `+${highlights!.length - HIGHLIGHTS_PREVIEW} more`}
+              </DSTypography>
+            )}
           </Stack>
         ) : null}
 

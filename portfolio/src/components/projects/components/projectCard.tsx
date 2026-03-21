@@ -125,7 +125,19 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             )}
           </Stack>
         ) : null}
-        {/* Description or Features */}
+        {/* Description */}
+        {project.description && (
+          <DSTypography
+            variant="description"
+            sx={{
+              mb: theme.spacing(theme.custom.componentStyles.projectCard.featuresSpacing),
+              lineHeight: 1.6,
+            }}
+          >
+            {project.description}
+          </DSTypography>
+        )}
+        {/* Features */}
         {project.features?.length ? (
           <Stack
             spacing={theme.spacing(theme.custom.componentStyles.projectCard.featuresSpacing)}
@@ -163,16 +175,6 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               );
             })}
           </Stack>
-        ) : project.description ? (
-          <DSTypography
-            variant="description"
-            sx={{
-              mb: theme.spacing(theme.custom.componentStyles.projectCard.descriptionMarginBottom),
-              lineHeight: 1.6,
-            }}
-          >
-            {project.description}
-          </DSTypography>
         ) : null}
 
         {(project.liveUrl || project.repoUrl || project.npmUrl || project.demoUrl) && (

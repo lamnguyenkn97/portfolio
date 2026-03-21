@@ -26,4 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 .vercel
 public/Lam_Nguyen_CV.html
+public/Lam_Nguyen_CV_ACS.html
+ref_letters/
+ACS_Reference_Letter_Axon.md
 .claude/
