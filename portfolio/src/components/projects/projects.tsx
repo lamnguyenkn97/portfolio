@@ -4,6 +4,28 @@ import { Project, ProjectCard } from "./components";
 
 const projects: Project[] = [
   {
+    title: "Time Tracking & Timesheet Platform",
+    description:
+      "Frontend lead for a new time-tracking module in Axon's enterprise Records Management System, used by a law-enforcement customer. Officers log hours, supervisors approve them, and leadership tracks compliance metrics driven by strict, customer-specific rules that changed after almost every customer meeting. Delivered on time for go-live.",
+    features: [
+      "Four feature areas: weekly timesheet grid with draft/submit flow, timesheet history, supervisor approval workflow, and a team compliance dashboard",
+      "Configuration-driven calculation engine for eligibility-based pay hours and time-allocation metrics, so formula changes shipped without code rewrites",
+      "Sole engineer on the module for 6 months, working directly with the Product Manager; shipped across the React frontend, GraphQL gateway and backend microservices (30 merged PRs across 5 codebases)",
+      "Fixed a production submission failure across 4 services in one day, then added regression tests so later formula changes can't silently break metrics",
+      "Eligibility snapshot at submission time keeps historical reports accurate when roles change; permission-based views and feature-flagged rollout",
+      "~115 source files with ~43 test files; used Claude Code and Cursor to speed up delivery and tests, with every AI change reviewed",
+    ],
+    techStack: [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Apollo Client",
+      "Node.js",
+      "Jest",
+      "LaunchDarkly",
+    ],
+  },
+  {
     title: "Spotify Design System",
     description:
       "I love Spotify's UI — so I rebuilt their design system from scratch. 24 components, published to NPM, and fully accessible.",

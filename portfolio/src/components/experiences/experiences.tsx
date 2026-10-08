@@ -17,7 +17,7 @@ const experiences: Experience[] = [
       "Led Training System — built course and curriculum management with learner management and bulk import",
       "Extended EIS — developed custom metric rule-based alerting with guardrails and review workflows",
       "Integrated pdfTron for PDF report review, improving workflow efficiency",
-      "Built Personnel System — profile management and time tracking with dynamic configuration",
+      "Led frontend for the Personnel time-tracking and timesheet module — sole engineer for 6 months, config-driven compliance calculations, delivered on time for customer go-live",
       "Own all testing — shift-left strategy with E2E, unit, and integration automation",
       "Improved accessibility — established focus management and ARIA patterns across all systems",
     ],
